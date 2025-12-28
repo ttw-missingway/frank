@@ -1,21 +1,35 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import { copyFileSync } from 'fs';
+import { writeFileSync, mkdirSync } from 'fs';
 import { join } from 'path';
 
 export default defineConfig({
 	plugins: [
 		sveltekit(),
 		{
-			name: 'copy-wrangler-config',
+			name: 'create-wrangler-config',
 			closeBundle() {
-				// Copy wrangler.jsonc to build output directory after build
-				const source = join(process.cwd(), 'wrangler.jsonc');
-				const dest = join(process.cwd(), '.svelte-kit', 'cloudflare', 'wrangler.jsonc');
+				// Create wrangler.jsonc directly in build output directory
+				const destDir = join(process.cwd(), '.svelte-kit', 'cloudflare');
+				const dest = join(destDir, 'wrangler.jsonc');
 				try {
-					copyFileSync(source, dest);
+					mkdirSync(destDir, { recursive: true });
+					writeFileSync(
+						dest,
+						JSON.stringify(
+							{
+								name: 'frank',
+								compatibility_date: '2024-01-01',
+								assets: {
+									directory: '.'
+								}
+							},
+							null,
+							2
+						) + '\n'
+					);
 				} catch (error) {
-					// Ignore if file doesn't exist or directory doesn't exist yet
+					// Ignore if directory doesn't exist yet
 				}
 			}
 		}
