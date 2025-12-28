@@ -1,0 +1,7 @@
+# Cloudflare Pages local development environment variables
+# Copy this file to .dev.vars and fill in your values
+# .dev.vars is gitignored and used by Wrangler for local development
+
+# Prismic environment (optional, defaults to repository name from slicemachine.config.json)
+# VITE_PRISMIC_ENVIRONMENT=your-prismic-repo-name
+
