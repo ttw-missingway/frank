@@ -101,8 +101,10 @@ This project is configured for Cloudflare Pages deployment.
    - Cloudflare Pages will automatically build and deploy on every push to your main branch
    - Preview deployments are created for pull requests
 
+**Note:** For Cloudflare Pages, you don't need `wrangler.toml` - Cloudflare Pages automatically detects and deploys the SvelteKit output from `.svelte-kit/cloudflare`.
+
 **Local development with Cloudflare:**
-- Install Wrangler CLI: `npm install -g wrangler`
+- Install Wrangler CLI: `npm install -g wrangler` (optional, for local testing)
 - Copy `.dev.vars.example` to `.dev.vars` and add your environment variables
 - Run `npm run dev` for local development
 
