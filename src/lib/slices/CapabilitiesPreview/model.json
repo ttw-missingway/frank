@@ -1,0 +1,53 @@
+{
+  "id": "capabilities_preview",
+  "type": "SharedSlice",
+  "name": "CapabilitiesPreview",
+  "description": "CapabilitiesPreview",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "capabilities": {
+          "type": "Group",
+          "config": {
+            "label": "Capabilities",
+            "repeat": true,
+            "fields": {
+              "capability": {
+                "type": "Text",
+                "config": {
+                  "label": "Capability",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "heading_and_copy",
+  "type": "SharedSlice",
+  "name": "HeadingAndCopy",
+  "description": "HeadingAndCopy",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "copy": {
+          "type": "Text",
+          "config": {
+            "label": "Copy",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

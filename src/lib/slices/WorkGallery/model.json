@@ -1,0 +1,59 @@
+{
+  "id": "work_gallery",
+  "type": "SharedSlice",
+  "name": "WorkGallery",
+  "description": "WorkGallery",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "eyebrow_text": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow Text",
+            "placeholder": ""
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "gallery": {
+          "type": "Group",
+          "config": {
+            "label": "Gallery",
+            "repeat": true,
+            "fields": {
+              "work": {
+                "type": "Link",
+                "config": {
+                  "label": "Work",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "work",
+                      "fields": [
+                        "featured_image",
+                        "featured_video"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

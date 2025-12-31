@@ -1,0 +1,40 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"eyebrow_text": {
+				"__TYPE__": "FieldContent",
+				"value": "mile",
+				"type": "Text"
+			},
+			"copy": {
+				"__TYPE__": "FieldContent",
+				"value": "came",
+				"type": "Text"
+			},
+			"pathways": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"pathway",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "59b33f93-b47d-44f5-8e80-c68e566af3e7",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

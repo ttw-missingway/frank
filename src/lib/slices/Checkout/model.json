@@ -1,0 +1,101 @@
+{
+  "id": "checkout",
+  "type": "SharedSlice",
+  "name": "Checkout",
+  "description": "Checkout",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "left_card_date_text": {
+          "type": "Text",
+          "config": {
+            "label": "Left Card Date Text",
+            "placeholder": "2 Weeks from today is"
+          }
+        },
+        "subtext": {
+          "type": "Text",
+          "config": {
+            "label": "Subtext",
+            "placeholder": "you could have your first deliverables by then"
+          }
+        },
+        "left_card_bullet_points": {
+          "type": "Group",
+          "config": {
+            "label": "Left Card Bullet Points",
+            "repeat": true,
+            "fields": {
+              "bullet_point": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Bullet Point",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              }
+            }
+          }
+        },
+        "right_card_title": {
+          "type": "Text",
+          "config": {
+            "label": "Right Card Title",
+            "placeholder": "Launch Clarity Sprint"
+          }
+        },
+        "right_card_bullet_points": {
+          "type": "Group",
+          "config": {
+            "label": "Right Card Bullet Points",
+            "repeat": true,
+            "fields": {
+              "bullet_point": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Bullet Point",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              }
+            }
+          }
+        },
+        "contract_link": {
+          "type": "Link",
+          "config": {
+            "label": "Contract Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "docusign_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Docusign Button Text",
+            "placeholder": "Docusign"
+          }
+        },
+        "pay_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Pay Button Text",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "sink",
+				"type": "Text"
+			},
+			"eyebrow_text": {
+				"__TYPE__": "FieldContent",
+				"value": "cool",
+				"type": "Text"
+			},
+			"spline_url": {
+				"__TYPE__": "FieldContent",
+				"value": "found",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

@@ -1,0 +1,40 @@
+{
+  "id": "pathways_hero",
+  "type": "SharedSlice",
+  "name": "AlternateHero",
+  "description": "PathwaysHero",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "eyebrow_text": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow Text",
+            "placeholder": ""
+          }
+        },
+        "spline_url": {
+          "type": "Text",
+          "config": {
+            "label": "Spline URL",
+            "placeholder": "https://prod.spline.design/ACCTUBsbwzuqM7jg/scene.splinecode"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

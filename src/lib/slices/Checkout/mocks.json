@@ -1,0 +1,91 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"left_card_date_text": {
+				"__TYPE__": "FieldContent",
+				"value": "rich",
+				"type": "Text"
+			},
+			"subtext": {
+				"__TYPE__": "FieldContent",
+				"value": "applied",
+				"type": "Text"
+			},
+			"left_card_bullet_points": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"bullet_point",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Nulla tempor reprehenderit ea ex labore."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"right_card_title": {
+				"__TYPE__": "FieldContent",
+				"value": "stop",
+				"type": "Text"
+			},
+			"right_card_bullet_points": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"bullet_point",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Deserunt minim magna et est."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			},
+			"contract_link": {
+				"key": "b74643b0-fa56-4a69-b748-c1022c5062cd",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "group"
+				}
+			},
+			"docusign_button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "forgotten",
+				"type": "Text"
+			},
+			"pay_button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "fierce",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

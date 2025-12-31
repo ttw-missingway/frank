@@ -1,0 +1,192 @@
+{
+	"format": "custom",
+	"id": "line_items",
+	"label": "Line Items",
+	"repeatable": false,
+	"status": true,
+	"json": {
+		"Main": {
+			"brand_strategy": {
+				"type": "Group",
+				"config": {
+					"label": "Brand Strategy",
+					"repeat": true,
+					"fields": {
+						"item": {
+							"type": "Text",
+							"config": {
+								"label": "Item",
+								"placeholder": ""
+							}
+						},
+						"super_text": {
+							"type": "Text",
+							"config": {
+								"label": "Super Text",
+								"placeholder": ""
+							}
+						},
+						"price": {
+							"type": "Text",
+							"config": {
+								"label": "Price",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			},
+			"web_strategy": {
+				"type": "Group",
+				"config": {
+					"label": "Web Strategy",
+					"repeat": true,
+					"fields": {
+						"item": {
+							"type": "Image",
+							"config": {
+								"label": "Item",
+								"constraint": {},
+								"thumbnails": []
+							}
+						},
+						"super_text": {
+							"type": "Text",
+							"config": {
+								"label": "Super Text",
+								"placeholder": ""
+							}
+						},
+						"price": {
+							"type": "Text",
+							"config": {
+								"label": "Price",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			},
+			"video_production": {
+				"type": "Group",
+				"config": {
+					"label": "Video Production",
+					"repeat": true,
+					"fields": {
+						"item": {
+							"type": "Text",
+							"config": {
+								"label": "Item",
+								"placeholder": ""
+							}
+						},
+						"super_text": {
+							"type": "Text",
+							"config": {
+								"label": "Super Text",
+								"placeholder": ""
+							}
+						},
+						"price": {
+							"type": "Text",
+							"config": {
+								"label": "Price",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			},
+			"ai_implementation": {
+				"type": "Group",
+				"config": {
+					"label": "AI Implementation",
+					"repeat": true,
+					"fields": {
+						"item": {
+							"type": "Text",
+							"config": {
+								"label": "Item",
+								"placeholder": ""
+							}
+						},
+						"super_text": {
+							"type": "Text",
+							"config": {
+								"label": "Super Text",
+								"placeholder": ""
+							}
+						},
+						"price": {
+							"type": "Text",
+							"config": {
+								"label": "Price",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			},
+			"lead_generation": {
+				"type": "Group",
+				"config": {
+					"label": "Lead Generation",
+					"repeat": true,
+					"fields": {
+						"item": {
+							"type": "Text",
+							"config": {
+								"label": "Item",
+								"placeholder": ""
+							}
+						},
+						"super_text": {
+							"type": "Text",
+							"config": {
+								"label": "Super Text",
+								"placeholder": ""
+							}
+						},
+						"price": {
+							"type": "Text",
+							"config": {
+								"label": "Price",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			},
+			"social_media": {
+				"type": "Group",
+				"config": {
+					"label": "Social Media",
+					"repeat": true,
+					"fields": {
+						"item": {
+							"type": "Text",
+							"config": {
+								"label": "Item",
+								"placeholder": ""
+							}
+						},
+						"super_text": {
+							"type": "Text",
+							"config": {
+								"label": "Super Text",
+								"placeholder": ""
+							}
+						},
+						"price": {
+							"type": "Text",
+							"config": {
+								"label": "Price",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

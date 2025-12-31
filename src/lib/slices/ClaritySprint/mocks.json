@@ -1,0 +1,57 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"lead_in_text": {
+				"__TYPE__": "FieldContent",
+				"value": "layers",
+				"type": "Text"
+			},
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "keep",
+				"type": "Text"
+			},
+			"copy": {
+				"__TYPE__": "FieldContent",
+				"value": "pair",
+				"type": "Text"
+			},
+			"bullet_points": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"bullet_point",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "sister",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"email_placeholder_text": {
+				"__TYPE__": "FieldContent",
+				"value": "fed",
+				"type": "Text"
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "simply",
+				"type": "Text"
+			},
+			"disclaimer_text": {
+				"__TYPE__": "FieldContent",
+				"value": "note",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

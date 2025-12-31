@@ -1,0 +1,50 @@
+{
+  "id": "packages",
+  "type": "SharedSlice",
+  "name": "PackageCards",
+  "description": "Packages",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "packages": {
+          "type": "Group",
+          "config": {
+            "label": "Packages",
+            "repeat": true,
+            "fields": {
+              "package": {
+                "type": "Link",
+                "config": {
+                  "label": "Package",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "packages",
+                      "fields": [
+                        {
+                          "id": "packages",
+                          "fields": [
+                            "price",
+                            "duration_options"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

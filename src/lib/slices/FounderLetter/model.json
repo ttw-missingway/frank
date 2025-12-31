@@ -1,0 +1,48 @@
+{
+  "id": "founder_letter",
+  "type": "SharedSlice",
+  "name": "FounderLetter",
+  "description": "FounderLetter",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "avatar": {
+          "type": "Image",
+          "config": {
+            "label": "Avatar",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          }
+        },
+        "letter_text": {
+          "type": "Text",
+          "config": {
+            "label": "Letter Text",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

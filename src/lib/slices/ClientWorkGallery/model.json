@@ -1,0 +1,50 @@
+{
+  "id": "client_work_gallery",
+  "type": "SharedSlice",
+  "name": "ClientWorkGallery",
+  "description": "ClientWorkGallery",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "work": {
+          "type": "Group",
+          "config": {
+            "label": "Work",
+            "repeat": true,
+            "fields": {
+              "work": {
+                "type": "Link",
+                "config": {
+                  "label": "Work",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "work",
+                      "fields": [
+                        {
+                          "id": "gallery",
+                          "fields": [
+                            "gallery_image",
+                            "gallery_video"
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

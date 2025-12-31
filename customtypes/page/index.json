@@ -27,6 +27,54 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"pathways_hero": {
+							"type": "SharedSlice"
+						},
+						"toolbox_and_capabilities": {
+							"type": "SharedSlice"
+						},
+						"pathways_cards": {
+							"type": "SharedSlice"
+						},
+						"selected_work": {
+							"type": "SharedSlice"
+						},
+						"pathways": {
+							"type": "SharedSlice"
+						},
+						"checkout": {
+							"type": "SharedSlice"
+						},
+						"selected_partners": {
+							"type": "SharedSlice"
+						},
+						"hero": {
+							"type": "SharedSlice"
+						},
+						"packages": {
+							"type": "SharedSlice"
+						},
+						"email_form": {
+							"type": "SharedSlice"
+						},
+						"our_story": {
+							"type": "SharedSlice"
+						},
+						"founder_letter": {
+							"type": "SharedSlice"
+						},
+						"heading_and_copy": {
+							"type": "SharedSlice"
+						},
+						"clarity_sprint": {
+							"type": "SharedSlice"
+						},
+						"capabilities_preview": {
+							"type": "SharedSlice"
+						},
+						"work_gallery": {
+							"type": "SharedSlice"
+						},
 						"rich_text": {
 							"type": "SharedSlice"
 						}

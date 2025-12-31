@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "Ready to Scale your business?",
+				"type": "Text"
+			},
+			"placeholder_text": {
+				"__TYPE__": "FieldContent",
+				"value": "Email",
+				"type": "Text"
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "Book a call",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

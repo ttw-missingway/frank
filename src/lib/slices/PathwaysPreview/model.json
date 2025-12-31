@@ -1,0 +1,61 @@
+{
+	"id": "pathways",
+	"type": "SharedSlice",
+	"name": "PathwaysPreview",
+	"description": "Pathways",
+	"variations": [
+		{
+			"id": "default",
+			"name": "Default",
+			"docURL": "...",
+			"version": "initial",
+			"description": "Default",
+			"imageUrl": "",
+			"primary": {
+				"eyebrow_text": {
+					"type": "Text",
+					"config": {
+						"label": "Eyebrow Text",
+						"placeholder": ""
+					}
+				},
+				"copy": {
+					"type": "Text",
+					"config": {
+						"label": "Copy",
+						"placeholder": ""
+					}
+				},
+				"pathways": {
+					"type": "Group",
+					"config": {
+						"label": "Pathways",
+						"repeat": true,
+						"fields": {
+							"pathway": {
+								"type": "Link",
+								"config": {
+									"label": "Pathway",
+									"select": "document",
+									"repeat": false,
+									"customtypes": [
+										{
+											"id": "pathways",
+											"fields": [
+												{
+													"id": "pathway",
+													"fields": ["title", "preview_text", "subtitle"]
+												}
+											]
+										}
+									]
+								}
+							}
+						}
+					}
+				}
+			},
+			"items": {}
+		}
+	]
+}

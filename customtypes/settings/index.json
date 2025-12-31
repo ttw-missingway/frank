@@ -1,0 +1,25 @@
+{
+	"format": "custom",
+	"id": "settings",
+	"label": "Settings",
+	"repeatable": false,
+	"status": true,
+	"json": {
+		"Main": {
+			"contact_email": {
+				"type": "Text",
+				"config": {
+					"label": "Contact Email",
+					"placeholder": ""
+				}
+			},
+			"from_email": {
+				"type": "Text",
+				"config": {
+					"label": "From Email",
+					"placeholder": ""
+				}
+			}
+		}
+	}
+}

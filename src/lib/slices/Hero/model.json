@@ -1,0 +1,49 @@
+{
+  "id": "hero",
+  "type": "SharedSlice",
+  "name": "Hero",
+  "description": "Hero",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Home",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "video": {
+          "type": "Embed",
+          "config": {
+            "label": "Video",
+            "placeholder": ""
+          }
+        },
+        "hero_tags": {
+          "type": "Group",
+          "config": {
+            "label": "Hero Tags",
+            "repeat": true,
+            "fields": {
+              "hero_tag": {
+                "type": "Text",
+                "config": {
+                  "label": "Hero Tag",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "eyebrow_text": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow Text",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

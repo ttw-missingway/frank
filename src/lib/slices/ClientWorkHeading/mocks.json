@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"client_name": {
+				"key": "7d2e808e-cf83-4626-8f4b-df2a2c070c82",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			},
+			"client_description": {
+				"__TYPE__": "LinkContent",
+				"key": "abc5c0e8-d23e-4df9-b909-07c578a80318",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			}
+		},
+		"items": []
+	}
+]

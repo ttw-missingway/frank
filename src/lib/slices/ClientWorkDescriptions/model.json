@@ -1,0 +1,67 @@
+{
+  "id": "client_work_descriptions",
+  "type": "SharedSlice",
+  "name": "ClientWorkDescriptions",
+  "description": "ClientWorkDescriptions",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "pathways": {
+          "type": "Group",
+          "config": {
+            "label": "Pathways",
+            "repeat": true,
+            "fields": {
+              "pathways": {
+                "type": "Link",
+                "config": {
+                  "label": "Pathways",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "work",
+                      "fields": [
+                        {
+                          "id": "pathways",
+                          "fields": [
+                            {
+                              "id": "pathway",
+                              "customtypes": [
+                                {
+                                  "id": "pathways",
+                                  "fields": [
+                                    {
+                                      "id": "pathway",
+                                      "fields": [
+                                        "title",
+                                        "subtitle",
+                                        "before_text",
+                                        "after_text"
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -2,8 +2,12 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/state';
 	import { repositoryName } from '$lib/prismicio';
+	import '../app.css';
+	import Header from '$lib/components/Header.svelte';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
+
 </script>
 
 <svelte:head>
@@ -19,7 +23,10 @@
 		<meta name="twitter:card" content="summary_large_image" />
 	{/if}
 </svelte:head>
-<main>
+
+<main class="bg-black text-white relative">
+	<Header />
 	{@render children()}
+	<Footer />
 </main>
 <PrismicPreview {repositoryName} />

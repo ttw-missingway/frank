@@ -1,0 +1,51 @@
+{
+  "id": "client_work_heading",
+  "type": "SharedSlice",
+  "name": "ClientWorkHeading",
+  "description": "ClientWorkHeading",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "client_name": {
+          "type": "Link",
+          "config": {
+            "label": "Client Name",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "work",
+                "fields": [
+                  "client_name"
+                ]
+              }
+            ]
+          }
+        },
+        "client_description": {
+          "type": "Link",
+          "config": {
+            "label": "Client Description",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "work",
+                "fields": [
+                  "description"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

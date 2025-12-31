@@ -5,6 +5,6 @@
 </script>
 
 <!-- Slot syntax is used for backward compatibility with Svelte <=4. -->
-<SliceSimulator let:slices>
+<SliceSimulator background="#000000" let:slices>
 	<SliceZone {slices} {components} />
 </SliceSimulator>

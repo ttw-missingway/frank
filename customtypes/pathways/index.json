@@ -1,0 +1,70 @@
+{
+	"format": "custom",
+	"id": "pathways",
+	"label": "Pathways",
+	"repeatable": false,
+	"status": true,
+	"json": {
+		"Main": {
+			"pathway": {
+				"type": "Group",
+				"config": {
+					"label": "Pathway",
+					"repeat": true,
+					"fields": {
+						"title": {
+							"type": "Text",
+							"config": {
+								"label": "Title",
+								"placeholder": ""
+							}
+						},
+						"subtitle": {
+							"type": "Text",
+							"config": {
+								"label": "Subtitle",
+								"placeholder": ""
+							}
+						},
+						"preview_text": {
+							"type": "Text",
+							"config": {
+								"label": "Preview Text",
+								"placeholder": ""
+							}
+						},
+						"before_text": {
+							"type": "Text",
+							"config": {
+								"label": "Before Text",
+								"placeholder": ""
+							}
+						},
+						"after_text": {
+							"type": "Text",
+							"config": {
+								"label": "After Text",
+								"placeholder": ""
+							}
+						},
+						"image": {
+							"type": "Image",
+							"config": {
+								"label": "Image",
+								"constraint": {},
+								"thumbnails": []
+							}
+						},
+						"color": {
+							"type": "Color",
+							"config": {
+								"label": "Color",
+								"placeholder": ""
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

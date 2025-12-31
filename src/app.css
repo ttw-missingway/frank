@@ -1,0 +1,451 @@
+/* Auge Trial Font Family */
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-ExtraLight-BF653b293466ccc.otf') format('opentype');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-ExtraLightItalic-BF653b29346c6c7.otf') format('opentype');
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-Light-BF653b29343345d.otf') format('opentype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-LightItalic-BF653b29346f4c3.otf') format('opentype');
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-Regular-BF653b29344568e.otf') format('opentype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-RegularItalic-BF653b29340524c.otf') format('opentype');
+	font-weight: 400;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-SemiBold-BF653b293480a32.otf') format('opentype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-SemiBoldItalic-BF653b29343e328.otf') format('opentype');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-Bold-BF653b29340422a.otf') format('opentype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-BoldItalic-BF653b29347e51f.otf') format('opentype');
+	font-weight: 700;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-ExtraBold-BF653b293481e69.otf') format('opentype');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-ExtraBoldItalic-BF653b2934747fe.otf') format('opentype');
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-Black-BF653b29345b08a.otf') format('opentype');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-BlackItalic-BF653b293434885.otf') format('opentype');
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-ExtraBlack-BF653b293446cd4.otf') format('opentype');
+	font-weight: 950;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Auge Trial';
+	src: url('/auge-trial/Auge-Trial-ExtraBlackItalic-BF653b29347fce1.otf') format('opentype');
+	font-weight: 950;
+	font-style: italic;
+	font-display: swap;
+}
+
+/* Venus+ Font Family */
+@font-face {
+	font-family: 'Venus+';
+	src: url('/Venus+/Venus+Acier.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Venus+ Carrare';
+	src: url('/Venus+/Venus+Carrare.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Venus+ Cormier';
+	src: url('/Venus+/Venus+Cormier.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Venus+ Martre';
+	src: url('/Venus+/Venus+Martre.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Venus+ Plomb';
+	src: url('/Venus+/Venus+Plomb.otf') format('opentype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* ClashDisplay Font Family */
+@font-face {
+	font-family: 'ClashDisplay';
+	src: url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Extralight.woff2') format('woff2'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Extralight.woff') format('woff'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Extralight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ClashDisplay';
+	src: url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Light.woff2') format('woff2'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Light.woff') format('woff'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ClashDisplay';
+	src: url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Regular.woff2') format('woff2'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Regular.woff') format('woff'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ClashDisplay';
+	src: url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.woff2') format('woff2'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.woff') format('woff'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ClashDisplay';
+	src: url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Semibold.woff2') format('woff2'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Semibold.woff') format('woff'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ClashDisplay';
+	src: url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Bold.woff2') format('woff2'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Bold.woff') format('woff'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ClashDisplay Variable';
+	src: url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Variable.woff2') format('woff2'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Variable.woff') format('woff'),
+		 url('/ClashDisplay_Complete/Fonts/WEB/fonts/ClashDisplay-Variable.ttf') format('truetype');
+	font-weight: 200 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Manrope Font Family */
+@font-face {
+	font-family: 'Manrope';
+	src: url('/Manrope/static/Manrope-ExtraLight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('/Manrope/static/Manrope-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('/Manrope/static/Manrope-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('/Manrope/static/Manrope-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('/Manrope/static/Manrope-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('/Manrope/static/Manrope-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('/Manrope/static/Manrope-ExtraBold.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Manrope Variable';
+	src: url('/Manrope/Manrope-VariableFont_wght.ttf') format('truetype');
+	font-weight: 200 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@import 'tailwindcss';
+
+@theme {
+	--font-auge: 'Auge Trial', sans-serif;
+	--font-venus: 'Venus+', sans-serif;
+	--font-venus-acier: 'Venus+', sans-serif;
+	--font-venus-carrare: 'Venus+ Carrare', sans-serif;
+	--font-venus-cormier: 'Venus+ Cormier', sans-serif;
+	--font-venus-martre: 'Venus+ Martre', sans-serif;
+	--font-venus-plomb: 'Venus+ Plomb', sans-serif;
+	--font-clash: 'ClashDisplay', sans-serif;
+	--font-clash-variable: 'ClashDisplay Variable', sans-serif;
+	--font-manrope: 'Manrope', sans-serif;
+	--font-manrope-variable: 'Manrope Variable', sans-serif;
+}
+
+@layer utilities {
+	.font-auge {
+		font-family: var(--font-auge);
+	}
+	
+	.font-venus {
+		font-family: var(--font-venus);
+	}
+	
+	.font-venus-carrare {
+		font-family: var(--font-venus-carrare);
+	}
+	
+	.font-venus-cormier {
+		font-family: var(--font-venus-cormier);
+	}
+	
+	.font-venus-martre {
+		font-family: var(--font-venus-martre);
+	}
+	
+	.font-venus-plomb {
+		font-family: var(--font-venus-plomb);
+	}
+	
+	.font-clash {
+		font-family: var(--font-clash);
+	}
+	
+	.font-clash-variable {
+		font-family: var(--font-clash-variable);
+	}
+	
+	.font-manrope {
+		font-family: var(--font-manrope);
+	}
+	
+	.font-manrope-variable {
+		font-family: var(--font-manrope-variable);
+	}
+}
+
+@layer components {
+	.container {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		
+		/* Mobile: full width with padding */
+		max-width: 100%;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		
+		/* Tablet: 768px */
+		@media (min-width: 768px) {
+			max-width: 768px;
+			padding-left: 3rem;
+			padding-right: 3rem;
+		}
+		
+		/* Desktop: 1280px */
+		@media (min-width: 1024px) {
+			max-width: 1024px;
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+		
+		/* Hi-definition: 1536px */
+		@media (min-width: 1536px) {
+			max-width: 1536px;
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+	}
+
+	.formal-heading {
+		color: #FFFFE6;
+		text-align: center;
+		font-family: 'Auge Trial', sans-serif;
+		font-size: 64px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 72px; /* 112.5% */
+	}
+
+	.body-copy {
+		color: #D1C9C1;
+		text-align: center;
+		leading-trim: both;
+		text-edge: cap;
+		font-family: 'Venus+', sans-serif;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 32px; /* 200% */
+		letter-spacing: 0.32px;
+	}
+
+	.small-copy {
+		color: #858585;
+		text-align: center;
+		leading-trim: both;
+		text-edge: cap;
+		font-family: 'Manrope', sans-serif;
+		font-size: 12px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 32px; /* 266.667% */
+		letter-spacing: 0.72px;
+	}
+
+	.eyebrow-text {
+		color: #8BD475;
+		leading-trim: both;
+		text-edge: cap;
+		font-family: 'ClashDisplay Variable', sans-serif;
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 400;
+		line-height: 32px; /* 200% */
+		letter-spacing: 1.28px;
+		text-transform: uppercase;
+		border-radius: 40px;
+		border: 1px solid #8BD475;
+		display: inline-block;
+		padding-left: 12px;
+		padding-right: 12px;
+	}
+}

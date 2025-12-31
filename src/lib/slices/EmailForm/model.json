@@ -1,0 +1,40 @@
+{
+  "id": "email_form",
+  "type": "SharedSlice",
+  "name": "EmailForm",
+  "description": "EmailForm",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": "Ready to Scale your business?"
+          }
+        },
+        "placeholder_text": {
+          "type": "Text",
+          "config": {
+            "label": "Placeholder Text",
+            "placeholder": "Email"
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": "Book a call"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

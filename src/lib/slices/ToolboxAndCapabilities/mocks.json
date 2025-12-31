@@ -1,0 +1,30 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"eyebrow_text": {
+				"__TYPE__": "FieldContent",
+				"value": "yes",
+				"type": "Text"
+			},
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "throughout",
+				"type": "Text"
+			},
+			"capabilities_body": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Aliquip cupidatat ea nostrud duis. Cillum occaecat laborum elit duis aute labore reprehenderit deserunt dolore consequat deserunt dolore veniam do do. Qui commodo duis cupidatat."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
