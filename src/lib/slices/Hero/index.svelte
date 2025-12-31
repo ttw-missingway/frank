@@ -331,8 +331,8 @@
 					<span data-animate>if</span>
 					<span data-animate>I</span>
 					<span data-animate>had</span>
-					<div class="h-[72px] w-[148px] bg-white rounded-full overflow-hidden" data-animate>
-						<img src="/images/clock.gif" alt="" class="h-full w-full object-cover" />
+					<div class="h-[72px] w-[148px] bg-white rounded-full overflow-hidden flex items-center justify-center" data-animate>
+						<span class="text-black text-xs font-medium">⏰</span>
 					</div>
 					<span data-animate>more</span>
 					<span data-animate>time"</span>
