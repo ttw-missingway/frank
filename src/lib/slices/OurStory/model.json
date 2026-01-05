@@ -32,6 +32,30 @@
             "label": "Body Copy",
             "placeholder": ""
           }
+        },
+        "animation_frame_1": {
+          "type": "Image",
+          "config": {
+            "label": "Animation Frame 1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "animation_frame_2": {
+          "type": "Image",
+          "config": {
+            "label": "Animation Frame 2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "animation_frame_3": {
+          "type": "Image",
+          "config": {
+            "label": "Animation Frame 3",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}

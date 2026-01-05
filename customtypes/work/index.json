@@ -1,5 +1,5 @@
 {
-	"format": "custom",
+	"format": "page",
 	"id": "work",
 	"label": "Work",
 	"repeatable": true,
@@ -10,6 +10,13 @@
 				"type": "UID",
 				"config": {
 					"label": "UID"
+				}
+			},
+			"title": {
+				"type": "Text",
+				"config": {
+					"label": "Title",
+					"placeholder": ""
 				}
 			},
 			"client_name": {
@@ -50,103 +57,34 @@
 					"allowText": true
 				}
 			},
-			"pathways": {
-				"type": "Group",
+			"slices": {
+				"type": "Slices",
+				"fieldset": "Slice Zone",
 				"config": {
-					"label": "Pathways",
-					"repeat": true,
-					"fields": {
-						"pathway": {
-							"type": "Link",
-							"config": {
-								"label": "Pathway",
-								"select": "document",
-								"repeat": false,
-								"customtypes": [
-									{
-										"id": "pathways",
-										"fields": [
-											{
-												"id": "pathway",
-												"fields": ["title", "subtitle", "before_text", "after_text"]
-											}
-										]
-									}
-								]
-							}
-						}
-					}
-				}
-			},
-			"animation_shelf": {
-				"type": "Group",
-				"config": {
-					"label": "Animation Shelf",
-					"repeat": true,
-					"fields": {
-						"image": {
-							"type": "Image",
-							"config": {
-								"label": "Image",
-								"constraint": {},
-								"thumbnails": []
-							}
-						}
-					}
-				}
-			},
-			"impact_cards": {
-				"type": "Group",
-				"config": {
-					"label": "Impact Cards",
-					"repeat": true,
-					"fields": {
-						"upper_left_graphic": {
-							"type": "Text",
-							"config": {
-								"label": "Upper Left Graphic",
-								"placeholder": ""
-							}
+					"choices": {
+						"animation_shelf": {
+							"type": "SharedSlice"
 						},
-						"heading": {
-							"type": "Text",
-							"config": {
-								"label": "Heading",
-								"placeholder": ""
-							}
+						"see_more_work": {
+							"type": "SharedSlice"
 						},
-						"description": {
-							"type": "Text",
-							"config": {
-								"label": "Description",
-								"placeholder": ""
-							}
-						}
-					}
-				}
-			},
-			"gallery": {
-				"type": "Group",
-				"config": {
-					"label": "Gallery",
-					"repeat": true,
-					"fields": {
-						"gallery_image": {
-							"type": "Image",
-							"config": {
-								"label": "Gallery Image",
-								"constraint": {},
-								"thumbnails": []
-							}
+						"email_form": {
+							"type": "SharedSlice"
 						},
-						"gallery_video": {
-							"type": "Link",
-							"config": {
-								"label": "Gallery Video",
-								"placeholder": "",
-								"select": "media",
-								"allowText": true
-							}
+						"quote_block": {
+							"type": "SharedSlice"
+						},
+						"outcome_cards": {
+							"type": "SharedSlice"
+						},
+						"highlight_text": {
+							"type": "SharedSlice"
+						},
+						"pathways_cards": {
+							"type": "SharedSlice"
+						},
+						"client_work_gallery": {
+							"type": "SharedSlice"
 						}
 					}
 				}

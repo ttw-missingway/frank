@@ -1,0 +1,56 @@
+{
+  "id": "outcome_cards",
+  "type": "SharedSlice",
+  "name": "OutcomeCards",
+  "description": "OutcomeCards",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "outcome_cards": {
+          "type": "Group",
+          "config": {
+            "label": "Outcome Cards",
+            "repeat": true,
+            "fields": {
+              "upper_left_graphic": {
+                "type": "Text",
+                "config": {
+                  "label": "Upper Left Graphic",
+                  "placeholder": ""
+                }
+              },
+              "heading": {
+                "type": "Text",
+                "config": {
+                  "label": "Heading",
+                  "placeholder": ""
+                }
+              },
+              "description": {
+                "type": "Text",
+                "config": {
+                  "label": "Description",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

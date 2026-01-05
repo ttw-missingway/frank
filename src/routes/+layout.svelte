@@ -12,6 +12,7 @@
 
 <svelte:head>
 	<title>{page.data.title}</title>
+	<script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=frank"></script>
 	{#if page.data.meta_description}
 		<meta name="description" content={page.data.meta_description} />
 	{/if}

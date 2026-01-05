@@ -34,6 +34,13 @@
             "placeholder": ""
           }
         },
+        "bio_text": {
+          "type": "Text",
+          "config": {
+            "label": "Bio Text",
+            "placeholder": ""
+          }
+        },
         "letter_text": {
           "type": "Text",
           "config": {

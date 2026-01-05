@@ -34,7 +34,7 @@
 					type="module"
 					src="https://unpkg.com/@splinetool/viewer@1.12.28/build/spline-viewer.js"
 				></script>
-				<spline-viewer url={slice.primary.spline_url}
+				<spline-viewer url="`https://prod.spline.design/ACCTUBsbwzuqM7jg/scene.splinecode`"
 				></spline-viewer>
 			</div>
 		</div>

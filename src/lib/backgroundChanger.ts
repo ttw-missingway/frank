@@ -315,6 +315,9 @@ export function createBackgroundChanger(
 	return {
 		destroy: () => {
 			scrollTrigger.kill();
+		},
+		toggleWhiteMode: (enable: boolean) => {
+			toggleWhiteMode(enable);
 		}
 	};
 }

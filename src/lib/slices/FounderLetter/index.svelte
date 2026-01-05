@@ -12,173 +12,58 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white py-12 px-6 md:py-16 md:px-12"
+	class="bg-black text-white container"
 >
-	<div class="founder-letter-container">
-		<div class="left-section">
-			{#if slice.primary.avatar?.url}
-				<div class="avatar-wrapper">
-					<PrismicImage
-						field={slice.primary.avatar}
-					/>
+	<div class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6 w-full max-w-[1400px] mx-auto">
+		<div
+			class="flex flex-col justify-start items-start p-10 bg-[#2a2a2a] rounded-bl-2xl rounded-tr-2xl"
+		>
+			<div class="flex items-start gap-6 md:gap-8 lg:gap-10 w-full mb-6 md:mb-8 lg:mb-10">
+				{#if slice.primary.avatar?.url}
+					<div
+						class="w-[100px] h-[100px] md:w-[120px] md:h-[120px] lg:w-[140px] lg:h-[140px] shrink-0 rounded-full overflow-hidden relative"
+					>
+						<PrismicImage field={slice.primary.avatar} class="w-full h-full object-cover" />
+					</div>
+				{/if}
+
+				<div class="flex-1 flex flex-col gap-1">
+					{#if slice.primary.heading}
+						<h2 class="m-0 text-center font-auge text-[36px] font-semibold leading-[48px] tracking-[0.72px] text-[#FFFFE6] whitespace-nowrap">{slice.primary.heading}</h2>
+					{/if}
+
+					{#if slice.primary.description}
+						<p
+							class="text-sm md:text-[0.9375rem] lg:text-base text-[#e5e5e5] leading-6 font-normal m-0 font-manrope"
+						>
+							{slice.primary.description}
+						</p>
+					{/if}
 				</div>
-			{/if}
-			
-			<div class="profile-info">
-				{#if slice.primary.heading}
-					<h2 class="heading">{slice.primary.heading}</h2>
-				{/if}
-				
-				{#if slice.primary.description}
-					<p class="role">{slice.primary.description}</p>
-				{/if}
 			</div>
+
+			{#if (slice.primary as any).bio_text}
+				<p
+					class="text-[#D9D9D9] font-inter text-[24px] font-normal not-italic leading-[36px] w-full m-0"
+				>
+					{(slice.primary as any).bio_text}
+				</p>
+			{/if}
 		</div>
-		
-		<div class="right-section">
+
+		<div
+			class="flex items-center justify-start p-10 bg-[#9baa6f] rounded-bl-2xl rounded-tr-2xl"
+		>
 			{#if slice.primary.letter_text}
 				<HighlightText
 					text={slice.primary.letter_text}
-					baseColor="#4a5a3f"
-					highlightColor="#ffffe6"
-					fontSize="clamp(1rem, 2vw, 1.5rem)"
-					lineHeight="1.8"
-					className="founder-letter-text"
+					baseColor="#1E1E1E"
+					highlightColor="#1e1e1e"
+					fontSize="32px"
+					lineHeight="52px"
+					className="founder-letter-text w-full"
 				/>
 			{/if}
 		</div>
 	</div>
 </section>
-
-<style>
-	.founder-letter-container {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 1.5rem;
-		width: 100%;
-		max-width: 1400px;
-		margin: 0 auto;
-	}
-
-	.left-section {
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
-		padding: 2.5rem;
-		background-color: #2a2a2a;
-		border-radius: 24px;
-	}
-
-	.avatar-wrapper {
-		width: 120px;
-		height: 120px;
-		margin-bottom: 1.5rem;
-		border-radius: 50%;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.avatar-wrapper :global(img) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
-	.profile-info {
-		width: 100%;
-	}
-
-	.heading {
-		font-size: 1.5rem;
-		font-weight: 600;
-		color: white;
-		margin-bottom: 0.25rem;
-		line-height: 1.3;
-		font-family: 'Manrope', sans-serif;
-	}
-
-	.role {
-		font-size: 0.875rem;
-		color: #9ca3af;
-		line-height: 1.5;
-		font-weight: normal;
-		margin-bottom: 0;
-		font-family: 'Manrope', sans-serif;
-	}
-
-	.right-section {
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		padding: 3rem;
-		background-color: #6b7a5f;
-		border-radius: 24px;
-		min-height: 400px;
-	}
-
-	:global(.founder-letter-text) {
-		width: 100%;
-	}
-
-	@media (min-width: 768px) {
-		.founder-letter-container {
-			grid-template-columns: 1fr 1.5fr;
-			gap: 2rem;
-		}
-
-		.avatar-wrapper {
-			width: 150px;
-			height: 150px;
-			margin-bottom: 2rem;
-		}
-
-		.heading {
-			font-size: 2rem;
-			margin-bottom: 0.75rem;
-		}
-
-		.role {
-			font-size: 0.9375rem;
-		}
-
-		.left-section,
-		.right-section {
-			padding: 3rem;
-		}
-
-		.right-section {
-			min-height: 500px;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.founder-letter-container {
-			gap: 2.5rem;
-		}
-
-		.avatar-wrapper {
-			width: 180px;
-			height: 180px;
-			margin-bottom: 2.5rem;
-		}
-
-		.heading {
-			font-size: 2.5rem;
-			margin-bottom: 1rem;
-		}
-
-		.role {
-			font-size: 1rem;
-		}
-
-		.left-section,
-		.right-section {
-			padding: 4rem;
-		}
-
-		.right-section {
-			min-height: 600px;
-		}
-	}
-</style>

@@ -1,0 +1,18 @@
+{
+  "id": "see_more_work",
+  "type": "SharedSlice",
+  "name": "SeeMoreWork",
+  "description": "SeeMoreWork",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {}
+    }
+  ]
+}

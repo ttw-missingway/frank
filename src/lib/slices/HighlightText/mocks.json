@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"text": {
+				"__TYPE__": "FieldContent",
+				"value": "where",
+				"type": "Text"
+			},
+			"alignment": {
+				"__TYPE__": "FieldContent",
+				"value": "Right",
+				"type": "Select"
+			},
+			"label": {
+				"__TYPE__": "FieldContent",
+				"value": "swam",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

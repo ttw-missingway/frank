@@ -1,0 +1,46 @@
+{
+  "id": "highlight_text",
+  "type": "SharedSlice",
+  "name": "HighlightText",
+  "description": "HighlightText",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "label": {
+          "type": "Text",
+          "config": {
+            "label": "Label",
+            "placeholder": ""
+          }
+        },
+        "text": {
+          "type": "Text",
+          "config": {
+            "label": "Text",
+            "placeholder": ""
+          }
+        },
+        "alignment": {
+          "type": "Select",
+          "config": {
+            "label": "Alignment",
+            "placeholder": "",
+            "options": [
+              "Left",
+              "Center",
+              "Right"
+            ],
+            "default_value": "Left"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
