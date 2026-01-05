@@ -167,8 +167,8 @@
 
 <p
 	bind:this={textContainer}
-	class="relative block {className}"
-	style="max-width: {maxWidth}; font-size: {fontSize}; line-height: {lineHeight}; font-family: {fontFamily};"
+	class="relative block mx-auto px-4 sm:px-6 md:px-8 {className}"
+	style="max-width: min({maxWidth}, 32ch, calc(100% - 2rem)); font-size: {fontSize}; line-height: {lineHeight}; font-family: {fontFamily};"
 >
 	<span class="block relative z-[1] antialiased" style="color: {baseColor}; mix-blend-mode: difference;">{text}</span>
 	<span

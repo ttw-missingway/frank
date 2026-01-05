@@ -1258,16 +1258,24 @@ export type ClientWorkDescriptionsSlice = prismic.SharedSlice<
  */
 export interface ClientWorkGallerySliceDefaultPrimaryWorkItem {
 	/**
-	 * Work field in *ClientWorkGallery → Default → Primary → Work*
+	 * Image field in *ClientWorkGallery → Default → Primary → Work*
 	 *
-	 * - **Field Type**: Content Relationship
+	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: client_work_gallery.default.primary.work[].work
-	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 * - **API ID Path**: client_work_gallery.default.primary.work[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
-	work: ContentRelationshipFieldWithData<
-		[{ id: 'work'; fields: [{ id: 'gallery'; fields: ['gallery_image', 'gallery_video'] }] }]
-	>;
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Video field in *ClientWorkGallery → Default → Primary → Work*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: client_work_gallery.default.primary.work[].video
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	video: prismic.LinkToMediaField<prismic.FieldState, never>;
 }
 
 /**

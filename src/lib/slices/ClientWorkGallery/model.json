@@ -18,26 +18,21 @@
             "label": "Work",
             "repeat": true,
             "fields": {
-              "work": {
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "video": {
                 "type": "Link",
                 "config": {
-                  "label": "Work",
-                  "select": "document",
-                  "repeat": false,
-                  "customtypes": [
-                    {
-                      "id": "work",
-                      "fields": [
-                        {
-                          "id": "gallery",
-                          "fields": [
-                            "gallery_image",
-                            "gallery_video"
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                  "label": "Video",
+                  "placeholder": "",
+                  "select": "media",
+                  "allowText": true
                 }
               }
             }

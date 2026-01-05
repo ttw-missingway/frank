@@ -1,18 +1,49 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
 	import type { SliceComponentProps } from '@prismicio/svelte';
+	import HighlightText from '$lib/components/HighlightText.svelte';
 
 	type Props = SliceComponentProps<Content.HighlightTextSlice>;
 
 	const { slice }: Props = $props();
+
+	// Get alignment class based on the alignment value
+	function getAlignmentClass(alignment: string | null | undefined): string {
+		switch (alignment?.toLowerCase()) {
+			case 'center':
+				return 'text-center mx-auto';
+			case 'right':
+				return 'text-right ml-auto';
+			case 'left':
+			default:
+				return 'text-left mr-auto';
+		}
+	}
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	Placeholder component for {slice.slice_type} (variation: {slice.variation}) slices.
-	<br />
-	<strong>You can edit this slice directly in your code editor.</strong>
-	<!--
-	💡 Use the Prismic MCP server with your code editor
-	📚 Docs: https://prismic.io/docs/ai#code-with-prismics-mcp-server
-	-->
+<section 
+	data-slice-type={slice.slice_type} 
+	data-slice-variation={slice.variation}
+	class="bg-black text-white min-h-screen flex flex-col justify-center items-center px-6 md:px-8 py-20 md:py-32"
+>
+	<div class="container">
+		{#if slice.primary.label}
+			<div class="mb-8 md:mb-12 {getAlignmentClass(slice.primary.alignment)}">
+				<span class="text-[#8BD475] underline font-clash text-base md:text-lg">
+					{slice.primary.label}
+				</span>
+			</div>
+		{/if}
+		
+		{#if slice.primary.text}
+			<div class="{getAlignmentClass(slice.primary.alignment)}">
+				<HighlightText 
+					text={slice.primary.text}
+					fontSize="36px"
+					lineHeight="52px"
+					maxWidth="100%"
+				/>
+			</div>
+		{/if}
+	</div>
 </section>
