@@ -29,7 +29,7 @@
 
 				<div class="flex-1 flex flex-col gap-1">
 					{#if slice.primary.heading}
-						<h2 class="m-0 text-center font-auge text-[36px] font-semibold leading-[48px] tracking-[0.72px] text-[#FFFFE6] whitespace-nowrap">{slice.primary.heading}</h2>
+						<h2 class="m-0 text-center font-auge font-semibold tracking-[0.72px] text-[#FFFFE6] whitespace-nowrap" style="font-size: clamp(1.75rem, 3vw + 1rem, 2.25rem); line-height: clamp(2rem, 3.5vw + 1rem, 3rem);">{slice.primary.heading}</h2>
 					{/if}
 
 					{#if slice.primary.description}
@@ -44,7 +44,8 @@
 
 			{#if (slice.primary as any).bio_text}
 				<p
-					class="text-[#D9D9D9] font-inter text-[24px] font-normal not-italic leading-[36px] w-full m-0"
+					class="text-[#D9D9D9] font-inter font-normal not-italic w-full m-0"
+					style="font-size: clamp(1rem, 2vw + 0.5rem, 1.5rem); line-height: clamp(1.5rem, 3vw + 0.75rem, 2.25rem);"
 				>
 					{(slice.primary as any).bio_text}
 				</p>
@@ -59,8 +60,8 @@
 					text={slice.primary.letter_text}
 					baseColor="#1E1E1E"
 					highlightColor="#1e1e1e"
-					fontSize="32px"
-					lineHeight="52px"
+					fontSize="clamp(1.5rem, 2.5vw + 0.75rem, 2rem)"
+					lineHeight="clamp(2rem, 3.5vw + 1.25rem, 3.25rem)"
 					className="founder-letter-text w-full"
 				/>
 			{/if}

@@ -19,6 +19,26 @@
 					"label": "From Email",
 					"placeholder": ""
 				}
+			},
+			"links": {
+				"type": "Group",
+				"config": {
+					"label": "Links",
+					"repeat": true,
+					"fields": {
+						"link": {
+							"type": "Link",
+							"config": {
+								"label": "Link",
+								"placeholder": "",
+								"select": null,
+								"allowTargetBlank": true,
+								"allowText": true,
+								"repeat": false
+							}
+						}
+					}
+				}
 			}
 		}
 	}

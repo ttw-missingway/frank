@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { PrismicImage } from '@prismicio/svelte';
 	import { PrismicLink } from '@prismicio/svelte';
-	import type { ImageFieldImage, LinkField, EmbedField } from '@prismicio/client';
+	import type { ImageFieldImage, LinkField, EmbedField, LinkToMediaField } from '@prismicio/client';
+	import { isFilled } from '@prismicio/client';
 	import { gsap } from 'gsap';
 
 	interface Props {
 		image?: ImageFieldImage | null;
-		video?: EmbedField | null;
-		link?: LinkField | null;
+		video?: EmbedField | LinkToMediaField | null;
+		link?: LinkField | string | null;
 		class?: string;
 		aspectRatio?: string;
 		width?: string;
@@ -27,6 +28,14 @@
 		minHeight = '370px',
 		onHoverChange
 	}: Props = $props();
+
+	// Compute video and image states
+	const hasVideo = $derived(video && (isFilled.linkToMedia(video) || isFilled.embed(video)));
+	const hasImage = $derived(isFilled.image(image));
+	const videoUrl = $derived(hasVideo && isFilled.linkToMedia(video) && 'url' in video ? video.url : null);
+	const embedVideo = $derived(hasVideo && isFilled.embed(video) ? video : null);
+	const linkHref = $derived(typeof link === 'string' ? link : null);
+	const linkField = $derived(typeof link !== 'string' ? link : null);
 
 	let cardElement: HTMLElement | undefined = $state();
 	let outlinePath: SVGPathElement | undefined = $state();
@@ -177,29 +186,73 @@
 	style="--aspect-ratio: {aspectRatio}; --width: {width}; --max-width: {maxWidth}; --min-height: {minHeight};"
 >
 	{#if link}
-		<PrismicLink field={link} class="block h-full relative z-10">
-			{#if image}
-				<PrismicImage
-					field={image}
-					class="w-full h-full object-cover rounded-2xl"
-				/>
-			{:else if video}
-				<div class="w-full h-full bg-gray-300 rounded-2xl flex items-center justify-center">
-					<!-- Video placeholder or embed could go here -->
-				</div>
-			{:else}
-				<div class="w-full h-full bg-gray-300 rounded-2xl"></div>
-			{/if}
-		</PrismicLink>
-	{:else if image}
+		{#if linkHref}
+			<a href={linkHref} class="block h-full relative z-10">
+				{#if hasVideo && videoUrl}
+					<video
+						src={videoUrl}
+						class="w-full h-full object-cover rounded-2xl"
+						autoplay
+						loop
+						muted
+						playsinline
+					></video>
+				{:else if hasVideo && embedVideo}
+					<div class="w-full h-full bg-gray-300 rounded-2xl flex items-center justify-center">
+						<!-- Embed video placeholder -->
+					</div>
+				{:else if hasImage}
+					<PrismicImage
+						field={image}
+						class="w-full h-full object-cover rounded-2xl"
+					/>
+				{:else}
+					<div class="w-full h-full bg-gray-300 rounded-2xl"></div>
+				{/if}
+			</a>
+		{:else if linkField}
+			<PrismicLink field={linkField} class="block h-full relative z-10">
+				{#if hasVideo && videoUrl}
+					<video
+						src={videoUrl}
+						class="w-full h-full object-cover rounded-2xl"
+						autoplay
+						loop
+						muted
+						playsinline
+					></video>
+				{:else if hasVideo && embedVideo}
+					<div class="w-full h-full bg-gray-300 rounded-2xl flex items-center justify-center">
+						<!-- Embed video placeholder -->
+					</div>
+				{:else if hasImage}
+					<PrismicImage
+						field={image}
+						class="w-full h-full object-cover rounded-2xl"
+					/>
+				{:else}
+					<div class="w-full h-full bg-gray-300 rounded-2xl"></div>
+				{/if}
+			</PrismicLink>
+		{/if}
+	{:else if hasVideo && videoUrl}
+		<video
+			src={videoUrl}
+			class="w-full h-full object-cover rounded-2xl relative z-10"
+			autoplay
+			loop
+			muted
+			playsinline
+		></video>
+	{:else if hasVideo && embedVideo}
+		<div class="w-full h-full bg-gray-300 rounded-2xl flex items-center justify-center relative z-10">
+			<!-- Embed video placeholder -->
+		</div>
+	{:else if hasImage}
 		<PrismicImage
 			field={image}
 			class="w-full h-full object-cover rounded-2xl relative z-10"
 		/>
-	{:else if video}
-		<div class="w-full h-full bg-gray-300 rounded-2xl flex items-center justify-center relative z-10">
-			<!-- Video placeholder or embed could go here -->
-		</div>
 	{:else}
 		<div class="w-full h-full bg-gray-300 rounded-2xl relative z-10"></div>
 	{/if}

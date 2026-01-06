@@ -26,30 +26,24 @@
             "placeholder": ""
           }
         },
-        "gallery": {
-          "type": "Group",
+        "work": {
+          "type": "Link",
           "config": {
-            "label": "Gallery",
-            "repeat": true,
-            "fields": {
-              "work": {
-                "type": "Link",
-                "config": {
-                  "label": "Work",
-                  "select": "document",
-                  "repeat": false,
-                  "customtypes": [
-                    {
-                      "id": "work",
-                      "fields": [
-                        "featured_image",
-                        "featured_video"
-                      ]
-                    }
-                  ]
-                }
+            "label": "Work",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              {
+                "id": "work",
+                "fields": [
+                  "featured_image",
+                  "featured_video",
+                  "client_name",
+                  "description",
+                  "body_copy"
+                ]
               }
-            }
+            ]
           }
         }
       },

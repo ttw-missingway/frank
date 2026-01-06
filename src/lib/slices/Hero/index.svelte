@@ -310,16 +310,16 @@
 		bind:this={state1Container}
 		class="max-h-[80vh] absolute inset-0 flex flex-col justify-center items-center"
 	>
-		<div class="text-center max-w-5xl">
-			<div class="flex flex-col items-center gap-2">
-				<span class="inline-flex items-center gap-2 md:gap-3 formal-heading">
+		<div class="text-center max-w-5xl px-4">
+			<div class="flex flex-col items-center gap-1 md:gap-2">
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>Lincoln</span>
-					<div class="h-[72px] w-[192px] rounded-full overflow-hidden" data-animate>
+					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(6rem,20vw+3rem,12rem)] rounded-full overflow-hidden shrink-0" data-animate>
 						<img src="/images/abe.png" alt="" class="h-full w-full object-cover" />
 					</div>
 					<span data-animate>wrote</span>
 				</span>
-				<span class="inline-flex items-center gap-2 md:gap-3 formal-heading">
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>"I</span>
 					<span data-animate>would've</span>
 					<span data-animate>sent</span>
@@ -327,12 +327,12 @@
 					<span data-animate>shorter</span>
 					<span data-animate>letter</span>
 				</span>
-				<span class="inline-flex items-center gap-2 md:gap-3 formal-heading">
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>if</span>
 					<span data-animate>I</span>
 					<span data-animate>had</span>
-					<div class="h-[72px] w-[148px] bg-white rounded-full overflow-hidden flex items-center justify-center" data-animate>
-						<span class="text-black text-xs font-medium">⏰</span>
+					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] bg-white rounded-full overflow-hidden flex items-center justify-center shrink-0" data-animate>
+						<span class="text-black font-medium" style="font-size: clamp(0.5rem, 1.5vw + 0.5rem, 0.75rem);">⏰</span>
 					</div>
 					<span data-animate>more</span>
 					<span data-animate>time"</span>
@@ -345,24 +345,24 @@
 		bind:this={state2Container}
 		class="max-h-[80vh] absolute inset-0 flex flex-col justify-center items-center"
 	>
-		<div class="text-center max-w-5xl">
-			<div class="flex flex-col items-center gap-2">
-				<span class="inline-flex items-center gap-2 md:gap-3 formal-heading">
+		<div class="text-center max-w-5xl px-4">
+			<div class="flex flex-col items-center gap-1 md:gap-2">
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>Startup</span>
 					<span data-animate>Founders,</span>
 					<span data-animate>you</span>
 				</span>
-				<span class="inline-flex items-center gap-2 md:gap-3 formal-heading">
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>already</span>
 					<span data-animate>work</span>
-					<div class="h-[72px] w-[148px] bg-white rounded-full overflow-hidden" data-animate>
+					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] bg-white rounded-full overflow-hidden shrink-0" data-animate>
 						<img src="/images/horse.gif" alt="" class="h-full w-full object-cover" />
 					</div>
 					<span class="text-italic" data-animate>60+</span>
 					<span class="text-italic" data-animate>hours</span>
 				</span>
-				<span class="inline-flex items-center gap-2 md:gap-3 formal-heading">
-					<div class="h-[72px] w-[148px] bg-white rounded-full overflow-hidden" data-animate>
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
+					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] bg-white rounded-full overflow-hidden shrink-0" data-animate>
 						<img src="/images/candle.gif" alt="" class="h-full w-full object-cover" />
 					</div>
 					<span data-animate>per</span>
@@ -373,11 +373,11 @@
 	</div>
 	<div
 		bind:this={videoWrapper}
-		class="h-screen relative top-[70vh] pt-5 flex flex-col items-center justify-center gap-10 w-full"
+		class="h-screen relative top-[70vh] pt-5 flex flex-col items-center justify-center gap-6 md:gap-10 w-full px-4"
 	>
-		<div bind:this={textContainer} class="flex flex-col items-center justify-center gap-2">
+		<div bind:this={textContainer} class="flex flex-col items-center justify-center gap-2 w-full max-w-4xl">
 			<h2 class="body-copy">Let us handle the messaging</h2>
-			<div class="flex flex-row items-center justify-between w-[40rem]">
+			<div class="flex flex-row flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-6 w-full">
 				<p class="small-copy">Marriott Autograph Collection</p>
 				<p class="small-copy">United Airlines</p>
 				<p class="small-copy">G•Shock</p>

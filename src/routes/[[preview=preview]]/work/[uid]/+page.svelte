@@ -65,13 +65,14 @@
 <div class="container px-6 md:px-12 flex flex-col items-center justify-center mt-[224px]">
 	<h1
 		bind:this={titleElement}
-		class="text-[#FFFFE6] text-center font-auge text-[64px] font-semibold leading-[80px] tracking-[0.64px] not-italic"
+		class="text-[#FFFFE6] text-center font-auge font-semibold tracking-[0.64px] not-italic"
+		style="font-size: clamp(2.5rem, 5vw + 1rem, 4rem); line-height: clamp(3rem, 6vw + 1.25rem, 5rem);"
 	>
 		{#each titleChars as { char, id } (id)}
 			<span class="char inline-block">{char}</span>
 		{/each}
 	</h1>
-	<p class="text-[#A2A2A2] text-center font-manrope text-[12px] font-normal not-italic leading-[32px] tracking-[0.72px] [leading-trim:both] [text-edge:cap]">
+	<p class="text-[#A2A2A2] text-center font-manrope font-normal not-italic tracking-[0.72px] [leading-trim:both] [text-edge:cap]" style="font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); line-height: clamp(1.75rem, 3vw + 0.5rem, 2rem);">
 		{data.work.data.description}
 	</p>
 </div>

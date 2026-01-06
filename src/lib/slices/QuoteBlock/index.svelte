@@ -73,7 +73,8 @@
 		{#if slice.primary.quote}
 			<blockquote
 				bind:this={quoteText}
-				class="text-[#FFFFE6] font-auge text-4xl md:text-5xl lg:text-6xl leading-tight mb-8 md:mb-12"
+				class="text-[#FFFFE6] font-auge leading-tight mb-8 md:mb-12"
+				style="font-size: clamp(2rem, 4vw + 1rem, 3.75rem);"
 			>
 				{slice.primary.quote}
 			</blockquote>
@@ -81,7 +82,8 @@
 		{#if slice.primary.bottom_text}
 			<p
 				bind:this={attributionText}
-				class="text-[#8bd475] text-center font-clash-variable text-[16px] not-italic font-normal leading-[32px] tracking-[1.28px] uppercase [leading-trim:both] [text-edge:cap]"
+				class="text-[#8bd475] text-center font-clash-variable not-italic font-normal tracking-[1.28px] uppercase [leading-trim:both] [text-edge:cap]"
+				style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); line-height: clamp(1.75rem, 3vw + 0.5rem, 2rem);"
 			>
 				{slice.primary.bottom_text}
 			</p>

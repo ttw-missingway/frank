@@ -39,9 +39,10 @@
 			<div class="{getAlignmentClass(slice.primary.alignment)}">
 				<HighlightText 
 					text={slice.primary.text}
-					fontSize="36px"
-					lineHeight="52px"
+					fontSize="clamp(1.75rem, 3vw + 1rem, 2.25rem)"
+					lineHeight="clamp(2.25rem, 4vw + 1.25rem, 3.25rem)"
 					maxWidth="100%"
+					alignment={(slice.primary.alignment?.toLowerCase() as 'left' | 'center' | 'right') || 'left'}
 				/>
 			</div>
 		{/if}

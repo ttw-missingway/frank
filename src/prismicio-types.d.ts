@@ -608,6 +608,21 @@ export type PathwaysDocument<Lang extends string = string> = prismic.PrismicDocu
 >;
 
 /**
+ * Item in *Settings → Links*
+ */
+export interface SettingsDocumentDataLinksItem {
+	/**
+	 * Link field in *Settings → Links*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.links[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -632,6 +647,17 @@ interface SettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	from_email: prismic.KeyTextField;
+
+	/**
+	 * Links field in *Settings*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.links[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	links: prismic.GroupField<Simplify<SettingsDocumentDataLinksItem>>;
 }
 
 /**
@@ -2376,34 +2402,16 @@ export type SelectedPartnersSlice = prismic.SharedSlice<
  */
 export interface SelectedWorkSliceDefaultPrimarySelectedWorkItem {
 	/**
-	 * Thumbnail Image field in *SelectedWork → Default → Primary → Selected Work*
+	 * Work field in *SelectedWork → Default → Primary → Selected Work*
 	 *
-	 * - **Field Type**: Image
+	 * - **Field Type**: Content Relationship
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: selected_work.default.primary.selected_work[].thumbnail_image
-	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 * - **API ID Path**: selected_work.default.primary.selected_work[].work
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	thumbnail_image: prismic.ImageField<never>;
-
-	/**
-	 * Thumbnail Video field in *SelectedWork → Default → Primary → Selected Work*
-	 *
-	 * - **Field Type**: Embed
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: selected_work.default.primary.selected_work[].thumbnail_video
-	 * - **Documentation**: https://prismic.io/docs/fields/embed
-	 */
-	thumbnail_video: prismic.EmbedField;
-
-	/**
-	 * Link field in *SelectedWork → Default → Primary → Selected Work*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: selected_work.default.primary.selected_work[].link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+	work: ContentRelationshipFieldWithData<
+		[{ id: 'work'; fields: ['title', 'client_name', 'featured_image', 'featured_video'] }]
+	>;
 }
 
 /**
@@ -2534,23 +2542,6 @@ export type ToolboxAndCapabilitiesSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *WorkGallery → Default → Primary → Gallery*
- */
-export interface WorkGallerySliceDefaultPrimaryGalleryItem {
-	/**
-	 * Work field in *WorkGallery → Default → Primary → Gallery*
-	 *
-	 * - **Field Type**: Content Relationship
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: work_gallery.default.primary.gallery[].work
-	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
-	 */
-	work: ContentRelationshipFieldWithData<
-		[{ id: 'work'; fields: ['featured_image', 'featured_video'] }]
-	>;
-}
-
-/**
  * Primary content in *WorkGallery → Default → Primary*
  */
 export interface WorkGallerySliceDefaultPrimary {
@@ -2575,14 +2566,21 @@ export interface WorkGallerySliceDefaultPrimary {
 	heading: prismic.KeyTextField;
 
 	/**
-	 * Gallery field in *WorkGallery → Default → Primary*
+	 * Work field in *WorkGallery → Default → Primary*
 	 *
-	 * - **Field Type**: Group
+	 * - **Field Type**: Content Relationship
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: work_gallery.default.primary.gallery[]
-	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 * - **API ID Path**: work_gallery.default.primary.work
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	gallery: prismic.GroupField<Simplify<WorkGallerySliceDefaultPrimaryGalleryItem>>;
+	work: ContentRelationshipFieldWithData<
+		[
+			{
+				id: 'work';
+				fields: ['featured_image', 'featured_video', 'client_name', 'description', 'body_copy'];
+			}
+		]
+	>;
 }
 
 /**
@@ -2652,6 +2650,7 @@ declare module '@prismicio/client' {
 			PathwaysDocumentDataPathwayItem,
 			SettingsDocument,
 			SettingsDocumentData,
+			SettingsDocumentDataLinksItem,
 			WorkDocument,
 			WorkDocumentData,
 			WorkDocumentDataSlicesSlice,
@@ -2766,7 +2765,6 @@ declare module '@prismicio/client' {
 			ToolboxAndCapabilitiesSliceVariation,
 			ToolboxAndCapabilitiesSliceDefault,
 			WorkGallerySlice,
-			WorkGallerySliceDefaultPrimaryGalleryItem,
 			WorkGallerySliceDefaultPrimary,
 			WorkGallerySliceVariation,
 			WorkGallerySliceDefault

@@ -399,10 +399,10 @@
 		color: #FFFFE6;
 		text-align: center;
 		font-family: 'Auge Trial', sans-serif;
-		font-size: 64px;
+		font-size: clamp(2.5rem, 5vw + 1rem, 4rem); /* Responsive: 40px to 64px */
 		font-style: normal;
 		font-weight: 400;
-		line-height: 72px; /* 112.5% */
+		line-height: clamp(2.75rem, 5.5vw + 1rem, 4.5rem); /* Responsive: 44px to 72px */
 	}
 
 	.body-copy {
@@ -411,10 +411,10 @@
 		leading-trim: both;
 		text-edge: cap;
 		font-family: 'Venus+', sans-serif;
-		font-size: 16px;
+		font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); /* Responsive: 14px to 16px */
 		font-style: normal;
 		font-weight: 400;
-		line-height: 32px; /* 200% */
+		line-height: clamp(1.75rem, 3vw + 0.5rem, 2rem); /* Responsive: 28px to 32px */
 		letter-spacing: 0.32px;
 	}
 
@@ -424,10 +424,10 @@
 		leading-trim: both;
 		text-edge: cap;
 		font-family: 'Manrope', sans-serif;
-		font-size: 12px;
+		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-style: normal;
 		font-weight: 400;
-		line-height: 32px; /* 266.667% */
+		line-height: clamp(1.75rem, 3vw + 0.5rem, 2rem); /* Responsive: 28px to 32px */
 		letter-spacing: 0.72px;
 	}
 
@@ -436,10 +436,10 @@
 		leading-trim: both;
 		text-edge: cap;
 		font-family: 'ClashDisplay Variable', sans-serif;
-		font-size: 16px;
+		font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); /* Responsive: 14px to 16px */
 		font-style: normal;
 		font-weight: 400;
-		line-height: 32px; /* 200% */
+		line-height: clamp(1.75rem, 3vw + 0.5rem, 2rem); /* Responsive: 28px to 32px */
 		letter-spacing: 1.28px;
 		text-transform: uppercase;
 		border-radius: 40px;

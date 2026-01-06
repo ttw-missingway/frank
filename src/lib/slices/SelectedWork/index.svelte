@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
 	import type { SliceComponentProps } from '@prismicio/svelte';
+	import { isFilled } from '@prismicio/client';
 	import HighlightText from '$lib/components/HighlightText.svelte';
 	import HorizontalScroller from '$lib/components/HorizontalScroller.svelte';
 	import TiltCard from '$lib/components/TiltCard.svelte';
@@ -217,12 +218,22 @@
 		<div class="glow-effect" bind:this={glowElement}></div>
 		<HorizontalScroller overflowPadding={60}>
 			{#each slice.primary.selected_work || [] as item}
-				<TiltCard
-					image={item.thumbnail_image}
-					video={item.thumbnail_video}
-					link={item.link}
-					onHoverChange={handleCardHover}
-				/>
+				{@const work = (item as any).work}
+				{@const hasWork = work && 'data' in work && work.data}
+				{#if hasWork}
+					{@const featuredVideo = work.data?.featured_video}
+					{@const featuredImage = work.data?.featured_image}
+					{@const hasVideo = featuredVideo && isFilled.linkToMedia(featuredVideo)}
+					{@const hasImage = featuredImage && isFilled.image(featuredImage)}
+					{@const workUid = 'uid' in work ? work.uid : null}
+					{@const workLink = workUid ? `/work/${workUid}` : null}
+					<TiltCard
+						image={hasImage ? featuredImage : null}
+						video={hasVideo ? featuredVideo : null}
+						link={workLink}
+						onHoverChange={handleCardHover}
+					/>
+				{/if}
 			{/each}
 		</HorizontalScroller>
 	</div>

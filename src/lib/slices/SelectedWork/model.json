@@ -32,30 +32,23 @@
             "label": "Selected Work",
             "repeat": true,
             "fields": {
-              "thumbnail_image": {
-                "type": "Image",
-                "config": {
-                  "label": "Thumbnail Image",
-                  "constraint": {},
-                  "thumbnails": []
-                }
-              },
-              "thumbnail_video": {
-                "type": "Embed",
-                "config": {
-                  "label": "Thumbnail Video",
-                  "placeholder": ""
-                }
-              },
-              "link": {
+              "work": {
                 "type": "Link",
                 "config": {
-                  "label": "Link",
-                  "placeholder": "",
-                  "select": null,
-                  "allowTargetBlank": true,
-                  "allowText": true,
-                  "repeat": false
+                  "label": "Work",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    {
+                      "id": "work",
+                      "fields": [
+                        "title",
+                        "client_name",
+                        "featured_image",
+                        "featured_video"
+                      ]
+                    }
+                  ]
                 }
               }
             }

@@ -16,23 +16,39 @@
 		className?: string;
 		startTrigger?: string;
 		endTrigger?: string;
+		alignment?: 'left' | 'center' | 'right';
 	}
 
 	const {
 		text,
 		baseColor = '#595959',
 		highlightColor = '#ffffe6',
-		fontSize = '36px',
-		lineHeight = '52px',
+		fontSize = 'clamp(1.75rem, 3vw + 1rem, 2.25rem)', // Responsive: 28px to 36px
+		lineHeight = 'clamp(2.25rem, 4vw + 1.25rem, 3.25rem)', // Responsive: 36px to 52px
 		fontFamily = "'Manrope', sans-serif",
 		maxWidth = '648px',
 		className = '',
 		startTrigger = 'top 70%',
-		endTrigger = 'bottom 30%'
+		endTrigger = 'bottom 30%',
+		alignment = 'left'
 	}: Props = $props();
 
 	let textContainer: HTMLElement | undefined = $state();
 	let scrollTriggerInstance: ScrollTrigger | null = null;
+	let resizeObserver: ResizeObserver | null = null;
+
+	// Get text alignment class for base and highlight layers
+	function getTextAlignmentClass(align: string): string {
+		switch (align?.toLowerCase()) {
+			case 'center':
+				return 'text-center';
+			case 'right':
+				return 'text-right';
+			case 'left':
+			default:
+				return 'text-left';
+		}
+	}
 
 	// Function to detect line breaks by measuring rendered text height
 	function detectLinesFromRenderedText(element: HTMLElement, text: string): string[] {
@@ -113,6 +129,43 @@
 				)
 				.join('');
 
+			// Function to position highlight layer to match base layer exactly
+			const positionHighlightLayer = () => {
+				if (!textContainer) return;
+				const baseRect = baseLayer.getBoundingClientRect();
+				const containerRect = textContainer.getBoundingClientRect();
+				
+				// Calculate offset from container to base layer
+				const offsetTop = baseRect.top - containerRect.top;
+				const offsetLeft = baseRect.left - containerRect.left;
+				const width = baseRect.width;
+				const height = baseRect.height;
+
+				// Position highlight layer to match base layer exactly
+				gsap.set(highlightLayer, {
+					top: `${offsetTop}px`,
+					left: `${offsetLeft}px`,
+					width: `${width}px`,
+					height: `${height}px`,
+					right: 'auto',
+					bottom: 'auto'
+				});
+			};
+
+			// Position after a brief delay to ensure rendering is complete
+			setTimeout(() => {
+				positionHighlightLayer();
+			}, 10);
+
+			// Set up resize observer to reposition on resize
+			if (textContainer) {
+				resizeObserver = new ResizeObserver(() => {
+					positionHighlightLayer();
+				});
+				resizeObserver.observe(textContainer);
+				resizeObserver.observe(baseLayer);
+			}
+
 			const lineElements = highlightLayer.querySelectorAll(
 				'span[data-line-index]'
 			) as NodeListOf<HTMLElement>;
@@ -161,6 +214,10 @@
 				scrollTriggerInstance.kill();
 				scrollTriggerInstance = null;
 			}
+			if (resizeObserver) {
+				resizeObserver.disconnect();
+				resizeObserver = null;
+			}
 		};
 	});
 </script>
@@ -170,9 +227,9 @@
 	class="relative block mx-auto px-4 sm:px-6 md:px-8 {className}"
 	style="max-width: min({maxWidth}, 32ch, calc(100% - 2rem)); font-size: {fontSize}; line-height: {lineHeight}; font-family: {fontFamily};"
 >
-	<span class="block relative z-[1] antialiased" style="color: {baseColor}; mix-blend-mode: difference;">{text}</span>
+	<span class="block relative z-[1] antialiased {getTextAlignmentClass(alignment)}" style="color: {baseColor}; mix-blend-mode: difference;">{text}</span>
 	<span
-		class="absolute top-0 left-0 w-full z-[2] pointer-events-none antialiased"
+		class="absolute z-[2] pointer-events-none antialiased block {getTextAlignmentClass(alignment)}"
 		style="color: {highlightColor};"
 		>{text}</span
 	>

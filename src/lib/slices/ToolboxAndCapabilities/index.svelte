@@ -61,10 +61,10 @@
 
 	.capabilities-content :global(h1),
 	.capabilities-content :global(h2) {
-		font-size: 1.5rem; /* text-2xl */
+		font-size: clamp(1.25rem, 2vw + 0.75rem, 1.5rem); /* Responsive: 20px to 24px */
 		font-weight: 600; /* font-semibold */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
-		line-height: 1.5rem; /* leading-6 */
+		line-height: clamp(1.5rem, 2vw + 0.75rem, 1.75rem); /* Responsive: 24px to 28px */
 		margin-top: 2rem;
 		margin-bottom: 1rem;
 		color: white;
@@ -79,12 +79,12 @@
 	.capabilities-content :global(h4),
 	.capabilities-content :global(h5),
 	.capabilities-content :global(h6) {
-		font-size: 0.75rem; /* text-xs */
+		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-weight: 700; /* font-bold */
 		margin-top: 1.5rem;
 		margin-bottom: 0.75rem;
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
-		line-height: 1.5rem; /* leading-6 */
+		line-height: clamp(1.25rem, 1.5vw + 0.75rem, 1.5rem); /* Responsive: 20px to 24px */
 	}
 
 	.capabilities-content :global(ul) {
@@ -92,10 +92,10 @@
 		margin-bottom: 1rem;
 		margin-top: 0.5rem;
 		list-style-type: disc;
-		font-size: 0.75rem; /* text-xs */
+		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-weight: 600; /* font-semibold */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
-		line-height: 1.25rem; /* leading-5 */
+		line-height: clamp(1rem, 1.25vw + 0.625rem, 1.25rem); /* Responsive: 16px to 20px */
 		letter-spacing: -0.01em; /* tracking-tight */
 		opacity: 0.8;
 	}
@@ -103,10 +103,10 @@
 	.capabilities-content :global(li) {
 		margin-bottom: 0.5rem;
 		color: white;
-		font-size: 0.75rem; /* text-xs */
+		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-weight: 600; /* font-semibold */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
-		line-height: 1.25rem; /* leading-5 */
+		line-height: clamp(1rem, 1.25vw + 0.625rem, 1.25rem); /* Responsive: 16px to 20px */
 		letter-spacing: -0.01em; /* tracking-tight */
 		opacity: 0.8;
 	}
@@ -114,10 +114,10 @@
 	.capabilities-content :global(p) {
 		margin-bottom: 0.75rem;
 		color: white;
-		font-size: 0.75rem; /* text-xs */
+		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-weight: 600; /* font-semibold */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
-		line-height: 1.25rem; /* leading-5 */
+		line-height: clamp(1rem, 1.25vw + 0.625rem, 1.25rem); /* Responsive: 16px to 20px */
 		letter-spacing: -0.01em; /* tracking-tight */
 		opacity: 0.8;
 	}
@@ -125,9 +125,9 @@
 	.capabilities-content :global(strong) {
 		font-weight: 600;
 		color: white;
-		font-size: 0.75rem; /* text-xs */
+		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
-		line-height: 1.25rem; /* leading-5 */
+		line-height: clamp(1rem, 1.25vw + 0.625rem, 1.25rem); /* Responsive: 16px to 20px */
 		letter-spacing: -0.01em; /* tracking-tight */
 		opacity: 0.8;
 	}

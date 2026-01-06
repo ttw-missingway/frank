@@ -248,7 +248,8 @@
 		{#if slice.primary.heading}
 			<h2
 				bind:this={headingElement}
-				class="text-[36px] leading-[52px] font-semibold font-auge text-center"
+				class="font-semibold font-auge text-center"
+				style="font-size: clamp(1.75rem, 3vw + 1rem, 2.25rem); line-height: clamp(2.25rem, 4vw + 1.25rem, 3.25rem);"
 			>
 				{slice.primary.heading}
 			</h2>
@@ -270,7 +271,8 @@
 		{#if slice.primary.body_copy}
 			<p
 				bind:this={bodyCopyElement}
-				class="text-center font-manrope font-medium text-[16px] leading-[28px] text-[#666] max-w-[720px]"
+				class="text-center font-manrope font-medium text-[#666] max-w-[720px]"
+				style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); line-height: clamp(1.5rem, 2.5vw + 0.75rem, 1.75rem);"
 			>
 				{slice.primary.body_copy}
 			</p>
@@ -297,9 +299,10 @@
 						bind:this={animationFrameTextElement1}
 						class="absolute inset-0 flex items-center justify-center gap-2 z-10"
 					>
-						<span class="text-[140px] font-auge font-semibold">22M</span>
+						<span class="font-auge font-semibold" style="font-size: clamp(4rem, 12vw + 2rem, 8.75rem);">22M</span>
 						<span
-							class="text-[#333] font-manrope text-[16px] font-medium leading-[20px] not-italic text-wrap whitespace-pre-line max-w-[80px]"
+							class="text-[#333] font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
+							style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); line-height: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);"
 						>
 							YouTube uploads daily
 						</span>
@@ -308,9 +311,10 @@
 						bind:this={animationFrameTextElement2}
 						class="absolute inset-0 flex items-center justify-center gap-2 z-10"
 					>
-						<span class="text-[140px] font-auge font-semibold">34M</span>
+						<span class="font-auge font-semibold" style="font-size: clamp(4rem, 12vw + 2rem, 8.75rem);">34M</span>
 						<span
-							class="text-[#333] font-manrope text-[16px] font-medium leading-[20px] not-italic text-wrap whitespace-pre-line max-w-[80px]"
+							class="text-[#333] font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
+							style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); line-height: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);"
 						>
 							Tik Tok uploads daily</span
 						>

@@ -47,7 +47,7 @@
 	.outcome-cards-label {
 		margin-bottom: 2rem;
 		font-family: 'ClashDisplay Variable', sans-serif;
-		font-size: 0.875rem;
+		font-size: clamp(0.75rem, 1vw + 0.5rem, 0.875rem); /* Responsive: 12px to 14px */
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
 		color: #858585;
@@ -67,7 +67,7 @@
 	}
 
 	.outcome-card-icon {
-		font-size: 7rem;
+		font-size: clamp(4rem, 8vw + 2rem, 7rem); /* Responsive: 64px to 112px */
 		line-height: 1;
 		color: #000000;
 		font-family: 'Venus+', sans-serif;
@@ -87,7 +87,7 @@
 
 	.outcome-card-title {
 		font-family: 'Auge Trial', sans-serif;
-		font-size: 1.25rem;
+		font-size: clamp(1rem, 1.5vw + 0.75rem, 1.25rem); /* Responsive: 16px to 20px */
 		font-weight: 400;
 		line-height: 1.3;
 		color: #000000;
@@ -97,7 +97,7 @@
 
 	.outcome-card-description {
 		font-family: 'Manrope', sans-serif;
-		font-size: 0.875rem;
+		font-size: clamp(0.75rem, 1vw + 0.5rem, 0.875rem); /* Responsive: 12px to 14px */
 		font-weight: 400;
 		line-height: 1.5;
 		color: #000000;
@@ -129,15 +129,15 @@
 		}
 
 		.outcome-card-icon {
-			font-size: 8rem;
+			font-size: clamp(5rem, 9vw + 2.5rem, 8rem); /* Responsive: 80px to 128px */
 		}
 
 		.outcome-card-title {
-			font-size: 1.375rem;
+			font-size: clamp(1.125rem, 1.75vw + 0.875rem, 1.375rem); /* Responsive: 18px to 22px */
 		}
 
 		.outcome-card-description {
-			font-size: 0.9375rem;
+			font-size: clamp(0.8125rem, 1.125vw + 0.5625rem, 0.9375rem); /* Responsive: 13px to 15px */
 			-webkit-line-clamp: 5;
 			line-clamp: 5;
 		}
@@ -155,15 +155,15 @@
 		}
 
 		.outcome-card-icon {
-			font-size: 9rem;
+			font-size: clamp(6rem, 10vw + 3rem, 9rem); /* Responsive: 96px to 144px */
 		}
 
 		.outcome-card-title {
-			font-size: 1.5rem;
+			font-size: clamp(1.25rem, 2vw + 1rem, 1.5rem); /* Responsive: 20px to 24px */
 		}
 
 		.outcome-card-description {
-			font-size: 1rem;
+			font-size: clamp(0.875rem, 1.25vw + 0.625rem, 1rem); /* Responsive: 14px to 16px */
 			-webkit-line-clamp: 6;
 			line-clamp: 6;
 		}

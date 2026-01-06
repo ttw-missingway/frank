@@ -13,26 +13,13 @@
 				"value": "ice",
 				"type": "Text"
 			},
-			"gallery": {
-				"__TYPE__": "GroupContentType",
-				"value": [
-					{
-						"__TYPE__": "GroupItemContent",
-						"value": [
-							[
-								"work",
-								{
-									"key": "8a213521-d6a8-456d-9b29-7600577804bb",
-									"__TYPE__": "LinkContent",
-									"value": {
-										"__TYPE__": "DocumentLink",
-										"id": "mock_document_id"
-									}
-								}
-							]
-						]
-					}
-				]
+			"work": {
+				"__TYPE__": "LinkContent",
+				"key": "bc28074e-99a4-4a0e-8511-b044eb7d6802",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []
