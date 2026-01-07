@@ -12,33 +12,59 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "video": {
-          "type": "Embed",
-          "config": {
-            "label": "Video",
-            "placeholder": ""
-          }
-        },
-        "hero_tags": {
+        "social_proof": {
           "type": "Group",
           "config": {
-            "label": "Hero Tags",
+            "label": "Social Proof",
             "repeat": true,
             "fields": {
-              "hero_tag": {
+              "social_proof": {
                 "type": "Text",
                 "config": {
-                  "label": "Hero Tag",
+                  "label": "Social Proof",
                   "placeholder": ""
                 }
               }
             }
           }
         },
-        "eyebrow_text": {
+        "lead_in_text": {
           "type": "Text",
           "config": {
-            "label": "Eyebrow Text",
+            "label": "Lead In Text",
+            "placeholder": ""
+          }
+        },
+        "pills": {
+          "type": "Group",
+          "config": {
+            "label": "Pills",
+            "repeat": true,
+            "fields": {
+              "pill_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Pill Image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "pill_video": {
+                "type": "Link",
+                "config": {
+                  "label": "Pill Video",
+                  "placeholder": "",
+                  "select": "media",
+                  "allowText": true
+                }
+              }
+            }
+          }
+        },
+        "cloudflare_stream_id": {
+          "type": "Text",
+          "config": {
+            "label": "Cloudflare Stream ID",
             "placeholder": ""
           }
         }

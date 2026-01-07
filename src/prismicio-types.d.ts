@@ -1604,18 +1604,43 @@ export type HeadingAndCopySlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *Hero → Home → Primary → Hero Tags*
+ * Item in *Hero → Home → Primary → Social Proof*
  */
-export interface HeroSliceDefaultPrimaryHeroTagsItem {
+export interface HeroSliceDefaultPrimarySocialProofItem {
 	/**
-	 * Hero Tag field in *Hero → Home → Primary → Hero Tags*
+	 * Social Proof field in *Hero → Home → Primary → Social Proof*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.hero_tags[].hero_tag
+	 * - **API ID Path**: hero.default.primary.social_proof[].social_proof
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	hero_tag: prismic.KeyTextField;
+	social_proof: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Hero → Home → Primary → Pills*
+ */
+export interface HeroSliceDefaultPrimaryPillsItem {
+	/**
+	 * Pill Image field in *Hero → Home → Primary → Pills*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.pills[].pill_image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	pill_image: prismic.ImageField<never>;
+
+	/**
+	 * Pill Video field in *Hero → Home → Primary → Pills*
+	 *
+	 * - **Field Type**: Link to Media
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.pills[].pill_video
+	 * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+	 */
+	pill_video: prismic.LinkToMediaField<prismic.FieldState, never>;
 }
 
 /**
@@ -1623,34 +1648,44 @@ export interface HeroSliceDefaultPrimaryHeroTagsItem {
  */
 export interface HeroSliceDefaultPrimary {
 	/**
-	 * Video field in *Hero → Home → Primary*
-	 *
-	 * - **Field Type**: Embed
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.video
-	 * - **Documentation**: https://prismic.io/docs/fields/embed
-	 */
-	video: prismic.EmbedField;
-
-	/**
-	 * Hero Tags field in *Hero → Home → Primary*
+	 * Social Proof field in *Hero → Home → Primary*
 	 *
 	 * - **Field Type**: Group
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.hero_tags[]
+	 * - **API ID Path**: hero.default.primary.social_proof[]
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
-	hero_tags: prismic.GroupField<Simplify<HeroSliceDefaultPrimaryHeroTagsItem>>;
+	social_proof: prismic.GroupField<Simplify<HeroSliceDefaultPrimarySocialProofItem>>;
 
 	/**
-	 * Eyebrow Text field in *Hero → Home → Primary*
+	 * Lead In Text field in *Hero → Home → Primary*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: hero.default.primary.eyebrow_text
+	 * - **API ID Path**: hero.default.primary.lead_in_text
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	eyebrow_text: prismic.KeyTextField;
+	lead_in_text: prismic.KeyTextField;
+
+	/**
+	 * Pills field in *Hero → Home → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.pills[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	pills: prismic.GroupField<Simplify<HeroSliceDefaultPrimaryPillsItem>>;
+
+	/**
+	 * Cloudflare Stream ID field in *Hero → Home → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.cloudflare_stream_id
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	cloudflare_stream_id: prismic.KeyTextField;
 }
 
 /**
@@ -2703,7 +2738,8 @@ declare module '@prismicio/client' {
 			HeadingAndCopySliceVariation,
 			HeadingAndCopySliceDefault,
 			HeroSlice,
-			HeroSliceDefaultPrimaryHeroTagsItem,
+			HeroSliceDefaultPrimarySocialProofItem,
+			HeroSliceDefaultPrimaryPillsItem,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
 			HeroSliceDefault,

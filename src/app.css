@@ -405,6 +405,67 @@
 		line-height: clamp(2.75rem, 5.5vw + 1rem, 4.5rem); /* Responsive: 44px to 72px */
 	}
 
+	.formal-heading-italic {
+		color: #FFFFE6;
+		text-align: center;
+		font-family: 'Auge Trial', sans-serif;
+		font-size: clamp(2.5rem, 5vw + 1rem, 4rem); /* Responsive: 40px to 64px */
+		font-style: italic;
+		font-weight: 400;
+		line-height: clamp(2.75rem, 5.5vw + 1rem, 4.5rem); /* Responsive: 44px to 72px */
+	}
+
+	.hero-text-line > span[data-animate]:not(:last-child) {
+		margin-right: 0.25rem; /* 4px on mobile */
+	}
+
+	@media (min-width: 768px) {
+		.hero-text-line > span[data-animate]:not(:last-child) {
+			margin-right: 0.5rem; /* 8px on tablet */
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.hero-text-line > span[data-animate]:not(:last-child) {
+			margin-right: 0.75rem; /* 12px on desktop */
+		}
+	}
+
+	/* Mobile text line spacing - uses margins instead of flex gaps */
+	.hero-text-line > span[data-animate]:not(:last-child) {
+		margin-right: 0.25rem; /* 4px on mobile */
+	}
+
+	@media (min-width: 768px) {
+		.hero-text-line > span[data-animate]:not(:last-child) {
+			margin-right: 0.5rem; /* 8px on tablet */
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.hero-text-line > span[data-animate]:not(:last-child) {
+			margin-right: 0.75rem; /* 12px on desktop */
+		}
+	}
+
+	/* Prevent orphans on mobile - keep grouped words together */
+	.hero-word-group {
+		white-space: nowrap;
+	}
+
+	/* Add more horizontal spacing around pills on mobile */
+	@media (max-width: 767px) {
+		.hero-text-line > div[data-animate] {
+			margin-left: 0.75rem; /* 12px */
+			margin-right: 0.75rem; /* 12px */
+		}
+	}
+
+	/* Hide animated elements initially to prevent flicker */
+	[data-animate] {
+		opacity: 0;
+	}
+
 	.body-copy {
 		color: #D1C9C1;
 		text-align: center;

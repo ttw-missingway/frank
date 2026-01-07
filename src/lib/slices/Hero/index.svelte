@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
 	import type { SliceComponentProps } from '@prismicio/svelte';
+	import { PrismicImage } from '@prismicio/svelte';
+	import { isFilled } from '@prismicio/client';
 	import { onMount } from 'svelte';
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -84,8 +86,67 @@
 		gsap.set(state1Container, { opacity: 1 });
 		gsap.set(textContainer, { y: 0 });
 
-		// Animate state 1 elements in on mount
+		// Set initial states for all animated elements immediately to prevent flicker
 		const state1Elements = state1Container.querySelectorAll('[data-animate]');
+		const state2Elements = state2Container.querySelectorAll('[data-animate]');
+		
+		// Set initial states for state 1 elements immediately
+		state1Elements.forEach((el) => {
+			const directions = ['top', 'bottom', 'left', 'right'];
+			const distance = 100;
+			const index = Array.from(state1Elements).indexOf(el);
+			const directionIndex = (index * 3 + Math.floor(index / 2)) % directions.length;
+			const direction = directions[directionIndex];
+			let initialX = 0;
+			let initialY = 0;
+
+			switch (direction) {
+				case 'top':
+					initialY = -distance;
+					break;
+				case 'bottom':
+					initialY = distance;
+					break;
+				case 'left':
+					initialX = -distance;
+					break;
+				case 'right':
+					initialX = distance;
+					break;
+			}
+
+			gsap.set(el, { opacity: 0, x: initialX, y: initialY });
+		});
+
+		// Set initial states for state 2 elements immediately (they're hidden anyway, but this prevents any flicker)
+		state2Elements.forEach((el) => {
+			const directions = ['top', 'bottom', 'left', 'right'];
+			const distance = 100;
+			const index = Array.from(state2Elements).indexOf(el);
+			const directionIndex = (index * 3 + Math.floor(index / 2)) % directions.length;
+			const direction = directions[directionIndex];
+			let initialX = 0;
+			let initialY = 0;
+
+			switch (direction) {
+				case 'top':
+					initialY = -distance;
+					break;
+				case 'bottom':
+					initialY = distance;
+					break;
+				case 'left':
+					initialX = -distance;
+					break;
+				case 'right':
+					initialX = distance;
+					break;
+			}
+
+			gsap.set(el, { opacity: 0, x: initialX, y: initialY });
+		});
+
+		// Animate state 1 elements in on mount
 		animateFromDirections(state1Elements, 0.2);
 
 		let currentState = 1;
@@ -310,16 +371,37 @@
 		bind:this={state1Container}
 		class="max-h-[80vh] absolute inset-0 flex flex-col justify-center items-center"
 	>
-		<div class="text-center max-w-5xl px-4">
+		<!-- Desktop State 1 -->
+		<div class="hidden md:block text-center max-w-5xl px-4">
 			<div class="flex flex-col items-center gap-1 md:gap-2">
 				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>Lincoln</span>
-					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(6rem,20vw+3rem,12rem)] rounded-full overflow-hidden shrink-0" data-animate>
-						<img src="/images/abe.png" alt="" class="h-full w-full object-cover" />
-					</div>
+					{#if slice.primary.pills?.[0]}
+						{@const pill0 = slice.primary.pills[0]}
+						{@const pill0HasVideo = isFilled.linkToMedia(pill0.pill_video)}
+						{@const pill0HasImage = isFilled.image(pill0.pill_image)}
+						{@const pill0VideoUrl = pill0HasVideo && 'url' in pill0.pill_video ? pill0.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(6rem,20vw+3rem,12rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill0HasVideo && pill0VideoUrl}
+								<video
+									src={pill0VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill0HasImage}
+								<PrismicImage
+									field={pill0.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
 					<span data-animate>wrote</span>
 				</span>
-				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading-italic">
 					<span data-animate>"I</span>
 					<span data-animate>would've</span>
 					<span data-animate>sent</span>
@@ -327,13 +409,97 @@
 					<span data-animate>shorter</span>
 					<span data-animate>letter</span>
 				</span>
-				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
+				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading-italic">
 					<span data-animate>if</span>
 					<span data-animate>I</span>
 					<span data-animate>had</span>
-					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] bg-white rounded-full overflow-hidden flex items-center justify-center shrink-0" data-animate>
-						<span class="text-black font-medium" style="font-size: clamp(0.5rem, 1.5vw + 0.5rem, 0.75rem);">⏰</span>
-					</div>
+					{#if slice.primary.pills?.[1]}
+						{@const pill1 = slice.primary.pills[1]}
+						{@const pill1HasVideo = isFilled.linkToMedia(pill1.pill_video)}
+						{@const pill1HasImage = isFilled.image(pill1.pill_image)}
+						{@const pill1VideoUrl = pill1HasVideo && 'url' in pill1.pill_video ? pill1.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(6rem,20vw+3rem,9.25rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill1HasVideo && pill1VideoUrl}
+								<video
+									src={pill1VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill1HasImage}
+								<PrismicImage
+									field={pill1.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
+					<span data-animate>more</span>
+					<span data-animate>time"</span>
+				</span>
+			</div>
+		</div>
+		<!-- Mobile State 1 -->
+		<div class="block md:hidden text-center max-w-5xl px-4">
+			<div class="flex flex-col items-center gap-1 md:gap-2">
+				<span class="inline-flex flex-wrap items-center justify-center formal-heading hero-text-line">
+					<span class="hero-word-group" data-animate>Lincoln</span>
+					{#if slice.primary.pills?.[0]}
+						{@const pill0 = slice.primary.pills[0]}
+						{@const pill0HasVideo = isFilled.linkToMedia(pill0.pill_video)}
+						{@const pill0HasImage = isFilled.image(pill0.pill_image)}
+						{@const pill0VideoUrl = pill0HasVideo && 'url' in pill0.pill_video ? pill0.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(6rem,20vw+3rem,12rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill0HasVideo && pill0VideoUrl}
+								<video
+									src={pill0VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill0HasImage}
+								<PrismicImage
+									field={pill0.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
+					<span class="hero-word-group" data-animate>wrote</span>
+				</span>
+				<span class="inline-flex flex-wrap items-center justify-center formal-heading-italic hero-text-line">
+					<span class="hero-word-group" data-animate>"I would've sent</span>
+					<span class="hero-word-group" data-animate>a shorter letter</span>
+				</span>
+				<span class="inline-flex flex-wrap items-center justify-center formal-heading-italic hero-text-line">
+					<span class="hero-word-group" data-animate>if I had</span>
+					{#if slice.primary.pills?.[1]}
+						{@const pill1 = slice.primary.pills[1]}
+						{@const pill1HasVideo = isFilled.linkToMedia(pill1.pill_video)}
+						{@const pill1HasImage = isFilled.image(pill1.pill_image)}
+						{@const pill1VideoUrl = pill1HasVideo && 'url' in pill1.pill_video ? pill1.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill1HasVideo && pill1VideoUrl}
+								<video
+									src={pill1VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill1HasImage}
+								<PrismicImage
+									field={pill1.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
 					<span data-animate>more</span>
 					<span data-animate>time"</span>
 				</span>
@@ -345,7 +511,8 @@
 		bind:this={state2Container}
 		class="max-h-[80vh] absolute inset-0 flex flex-col justify-center items-center"
 	>
-		<div class="text-center max-w-5xl px-4">
+		<!-- Desktop State 2 -->
+		<div class="hidden md:block text-center max-w-5xl px-4">
 			<div class="flex flex-col items-center gap-1 md:gap-2">
 				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>Startup</span>
@@ -355,18 +522,117 @@
 				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
 					<span data-animate>already</span>
 					<span data-animate>work</span>
-					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] bg-white rounded-full overflow-hidden shrink-0" data-animate>
-						<img src="/images/horse.gif" alt="" class="h-full w-full object-cover" />
-					</div>
-					<span class="text-italic" data-animate>60+</span>
-					<span class="text-italic" data-animate>hours</span>
+					{#if slice.primary.pills?.[2]}
+						{@const pill2 = slice.primary.pills[2]}
+						{@const pill2HasVideo = isFilled.linkToMedia(pill2.pill_video)}
+						{@const pill2HasImage = isFilled.image(pill2.pill_image)}
+						{@const pill2VideoUrl = pill2HasVideo && 'url' in pill2.pill_video ? pill2.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(6rem,20vw+3rem,9.25rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill2HasVideo && pill2VideoUrl}
+								<video
+									src={pill2VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill2HasImage}
+								<PrismicImage
+									field={pill2.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
+					<span class="formal-heading-italic" data-animate>60+</span>
+					<span class="formal-heading-italic" data-animate>hours</span>
 				</span>
 				<span class="inline-flex flex-wrap items-center justify-center gap-1 md:gap-2 lg:gap-3 formal-heading">
-					<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] bg-white rounded-full overflow-hidden shrink-0" data-animate>
-						<img src="/images/candle.gif" alt="" class="h-full w-full object-cover" />
-					</div>
+					{#if slice.primary.pills?.[3]}
+						{@const pill3 = slice.primary.pills[3]}
+						{@const pill3HasVideo = isFilled.linkToMedia(pill3.pill_video)}
+						{@const pill3HasImage = isFilled.image(pill3.pill_image)}
+						{@const pill3VideoUrl = pill3HasVideo && 'url' in pill3.pill_video ? pill3.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill3HasVideo && pill3VideoUrl}
+								<video
+									src={pill3VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill3HasImage}
+								<PrismicImage
+									field={pill3.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
 					<span data-animate>per</span>
 					<span data-animate>week...</span>
+				</span>
+			</div>
+		</div>
+		<!-- Mobile State 2 -->
+		<div class="block md:hidden text-center max-w-5xl px-4">
+			<div class="flex flex-col items-center gap-1 md:gap-2">
+				<span class="inline-flex flex-wrap items-center justify-center formal-heading hero-text-line">
+					<span class="hero-word-group" data-animate>Startup Founders,</span>
+					<span class="hero-word-group" data-animate>you already work</span>
+					{#if slice.primary.pills?.[2]}
+						{@const pill2 = slice.primary.pills[2]}
+						{@const pill2HasVideo = isFilled.linkToMedia(pill2.pill_video)}
+						{@const pill2HasImage = isFilled.image(pill2.pill_image)}
+						{@const pill2VideoUrl = pill2HasVideo && 'url' in pill2.pill_video ? pill2.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill2HasVideo && pill2VideoUrl}
+								<video
+									src={pill2VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill2HasImage}
+								<PrismicImage
+									field={pill2.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
+					<span class="hero-word-group formal-heading-italic" data-animate>60+ hours</span>
+				</span>
+				<span class="inline-flex flex-wrap items-center justify-center formal-heading hero-text-line">
+					{#if slice.primary.pills?.[3]}
+						{@const pill3 = slice.primary.pills[3]}
+						{@const pill3HasVideo = isFilled.linkToMedia(pill3.pill_video)}
+						{@const pill3HasImage = isFilled.image(pill3.pill_image)}
+						{@const pill3VideoUrl = pill3HasVideo && 'url' in pill3.pill_video ? pill3.pill_video.url : null}
+						<div class="h-[clamp(3rem,8vw+1rem,4.5rem)] w-[clamp(4rem,15vw+2rem,9.25rem)] rounded-full overflow-hidden shrink-0" data-animate>
+							{#if pill3HasVideo && pill3VideoUrl}
+								<video
+									src={pill3VideoUrl}
+									class="h-full w-full object-cover"
+									autoplay
+									loop
+									muted
+									playsinline
+								></video>
+							{:else if pill3HasImage}
+								<PrismicImage
+									field={pill3.pill_image}
+									class="h-full w-full object-cover"
+								/>
+							{/if}
+						</div>
+					{/if}
+					<span class="hero-word-group" data-animate>per week...</span>
 				</span>
 			</div>
 		</div>
@@ -376,40 +642,46 @@
 		class="h-screen relative top-[70vh] pt-5 flex flex-col items-center justify-center gap-6 md:gap-10 w-full px-4"
 	>
 		<div bind:this={textContainer} class="flex flex-col items-center justify-center gap-2 w-full max-w-4xl">
-			<h2 class="body-copy">Let us handle the messaging</h2>
-			<div class="flex flex-row flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-6 w-full">
-				<p class="small-copy">Marriott Autograph Collection</p>
-				<p class="small-copy">United Airlines</p>
-				<p class="small-copy">G•Shock</p>
-				<p class="small-copy">19 AAF "Addy" Awards</p>
-			</div>
+			{#if slice.primary.lead_in_text}
+				<h2 class="body-copy">{slice.primary.lead_in_text}</h2>
+			{/if}
+			{#if slice.primary.social_proof && slice.primary.social_proof.length > 0}
+				<div class="flex flex-row flex-wrap items-center justify-center gap-3 md:gap-4 lg:gap-6 w-full">
+					{#each slice.primary.social_proof as item}
+						{#if item.social_proof}
+							<p class="small-copy">{item.social_proof}</p>
+						{/if}
+					{/each}
+				</div>
+			{/if}
 		</div>
 		<div class="h-full w-full relative">
-			<!-- Mask container - scales and reveals more of the videos -->
+			<!-- Mask container - scales and reveals more of the video -->
 			<div
 				bind:this={roundedContainer}
-				class="absolute inset-0 bg-slate-500 rounded-3xl overflow-hidden"
+				class="absolute inset-0 rounded-3xl overflow-hidden lg:max-h-[33vw] max-h-[90vh]"
 				style="transform-origin: center;"
 			>
-				<!-- Fixed-size videos container - counteracts parent scale to stay fixed size -->
+				<!-- Fixed-size video container - counteracts parent scale to stay fixed size -->
 				<div
 					bind:this={videosContainer}
-					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row"
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full overflow-hidden"
 					style="transform-origin: center;"
 				>
-					{#each Array(3) as _, i}
-						<div class="flex-1 h-full relative">
-							<iframe
-								src="https://customer-yy99jk2iutjm3e4s.cloudflarestream.com/0d5e4df84aa685c96d585ecbc1a4e2f8/iframe?muted=true&loop=true&autoplay=true&poster=https%3A%2F%2Fcustomer-yy99jk2iutjm3e4s.cloudflarestream.com%2F0d5e4df84aa685c96d585ecbc1a4e2f8%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600"
-								loading="lazy"
-								title="Hero video"
-								style="border: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-								class="rounded-none"
-								allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-								allowfullscreen={true}
-							></iframe>
-						</div>
-					{/each}
+					{#if slice.primary.cloudflare_stream_id}
+						{@const streamId = slice.primary.cloudflare_stream_id}
+						{@const customerId = 'yy99jk2iutjm3e4s'}
+						{@const videoUrl = `https://customer-${customerId}.cloudflarestream.com/${streamId}/iframe?muted=true&loop=true&autoplay=true&controls=false&poster=https%3A%2F%2Fcustomer-${customerId}.cloudflarestream.com%2F${streamId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
+						<iframe
+							src={videoUrl}
+							loading="lazy"
+							title="Hero video"
+							style="border: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(2.5); width: 100%; height: 100%; min-width: 100%; min-height: 100%;"
+							class="rounded-none"
+							allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+							allowfullscreen
+						></iframe>
+					{/if}
 				</div>
 			</div>
 		</div>
