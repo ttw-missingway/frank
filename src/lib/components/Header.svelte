@@ -1,5 +1,6 @@
 <script lang="ts">
 	import FullscreenNav from './FullscreenNav.svelte';
+	import Logo from './Logo.svelte';
 	import type { SettingsDocument } from '../../prismicio-types';
 
 	interface Props {
@@ -20,22 +21,22 @@
 </script>
 
 <header
-	class="w-full flex justify-between items-center p-6 md:p-8 lg:p-10 fixed top-0 left-0 right-0 z-50 container"
+	class="w-full fixed top-0 left-0 right-0 z-50"
 >
-	<!-- Logo placeholder -->
-	<a href="/" class="flex items-center">
-		<img src="/icons/Frank.svg" alt="Logo" class="w-full h-full object-cover" />
-	</a>
+	<div class="flex justify-between items-center py-6 md:py-8 lg:py-10 container">
+		<!-- Logo -->
+		<Logo />
 
-	<!-- Hamburger menu button -->
-	<button
-		onclick={openNav}
-		class="text-white hover:text-white/80 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded p-2"
-		aria-label="Open menu"
-		type="button"
-	>
-		<img src="/icons/Nav.svg" alt="Menu" class="w-6 h-6 md:w-7 md:h-7" />
-	</button>
+		<!-- Hamburger menu button -->
+		<button
+			onclick={openNav}
+			class="hover:opacity-80 transition-opacity focus:outline-none p-2 cursor-pointer"
+			aria-label="Open menu"
+			type="button"
+		>
+			<img src="/icons/Nav.svg" alt="Menu" class="w-6 h-6 md:w-7 md:h-7" />
+		</button>
+	</div>
 </header>
 
 <FullscreenNav isOpen={isNavOpen} {settings} onClose={closeNav} />

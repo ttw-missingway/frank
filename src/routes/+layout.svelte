@@ -5,6 +5,7 @@
 	import '../app.css';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import PageTransition from '$lib/components/PageTransition.svelte';
 
 	let { children, data } = $props();
 
@@ -25,6 +26,7 @@
 	{/if}
 </svelte:head>
 
+<PageTransition />
 <main class="bg-black text-white relative">
 	<Header settings={data.settings} />
 	{@render children()}
