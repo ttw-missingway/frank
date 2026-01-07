@@ -364,7 +364,7 @@
 	bind:this={heroSection}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="min-h-[200vh] bg-black text-white flex flex-col relative container"
+	class="min-h-[200vh] bg-black text-white flex flex-col relative container overflow-visible"
 >
 	<!-- State 1: Lincoln Quote with Pills (Top Section) -->
 	<div
@@ -655,17 +655,17 @@
 				</div>
 			{/if}
 		</div>
-		<div class="h-full w-full relative">
+		<div class="h-full w-full relative -mx-10 md:-mx-16 lg:-mx-12 overflow-visible">
 			<!-- Mask container - scales and reveals more of the video -->
 			<div
 				bind:this={roundedContainer}
-				class="absolute inset-0 rounded-3xl overflow-hidden lg:max-h-[33vw] max-h-[90vh]"
+				class="absolute -left-[-0.5rem] -right-[-0.5rem] -top-[-0.5rem] -bottom-[-0.5rem] rounded-3xl overflow-hidden xl:max-h-[33vw] max-h-[90vh]"
 				style="transform-origin: center;"
 			>
 				<!-- Fixed-size video container - counteracts parent scale to stay fixed size -->
 				<div
 					bind:this={videosContainer}
-					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full overflow-hidden"
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full"
 					style="transform-origin: center;"
 				>
 					{#if slice.primary.cloudflare_stream_id}
