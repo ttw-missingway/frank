@@ -7,6 +7,7 @@
 
 	interface Props {
 		text: string;
+		mode?: 'light' | 'dark';
 		baseColor?: string;
 		highlightColor?: string;
 		fontSize?: string;
@@ -21,8 +22,9 @@
 
 	const {
 		text,
-		baseColor = '#595959',
-		highlightColor = '#ffffe6',
+		mode = 'dark',
+		baseColor,
+		highlightColor,
 		fontSize = 'clamp(1.75rem, 3vw + 1rem, 2.25rem)', // Responsive: 28px to 36px
 		lineHeight = 'clamp(2.25rem, 4vw + 1.25rem, 3.25rem)', // Responsive: 36px to 52px
 		fontFamily = "'Manrope', sans-serif",
@@ -32,6 +34,10 @@
 		endTrigger = 'bottom 30%',
 		alignment = 'left'
 	}: Props = $props();
+
+	// Set default colors based on mode if not explicitly provided
+	const resolvedBaseColor = baseColor ?? (mode === 'light' ? '#ffffff' : '#595959');
+	const resolvedHighlightColor = highlightColor ?? (mode === 'light' ? '#1e1e1e' : '#ffffe6');
 
 	let textContainer: HTMLElement | undefined = $state();
 	let scrollTriggerInstance: ScrollTrigger | null = null;
@@ -227,10 +233,10 @@
 	class="relative block mx-auto px-4 sm:px-6 md:px-8 {className}"
 	style="max-width: min({maxWidth}, 32ch, calc(100% - 2rem)); font-size: {fontSize}; line-height: {lineHeight}; font-family: {fontFamily};"
 >
-	<span class="block relative z-[1] antialiased {getTextAlignmentClass(alignment)}" style="color: {baseColor}; mix-blend-mode: difference;">{text}</span>
+	<span class="block relative z-[1] antialiased {getTextAlignmentClass(alignment)}" style="color: {resolvedBaseColor}; mix-blend-mode: difference;">{text}</span>
 	<span
 		class="absolute z-[2] pointer-events-none antialiased block {getTextAlignmentClass(alignment)}"
-		style="color: {highlightColor};"
+		style="color: {resolvedHighlightColor};"
 		>{text}</span
 	>
 </p>

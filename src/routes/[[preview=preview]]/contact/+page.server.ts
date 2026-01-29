@@ -1,6 +1,7 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { sendEmail } from '$lib/email';
+import { createClient } from '$lib/prismicio';
 
 // Disable prerendering for this page since it has form actions
 export const prerender = false;
@@ -57,7 +58,11 @@ function validateForm(data: FormData): { valid: boolean; errors: Record<string, 
 	};
 }
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ fetch, cookies }) => {
+	// Initialize Prismic client with preview support
+	// Even though this page doesn't use Prismic content, we need to handle preview cookies
+	const client = createClient({ fetch, cookies });
+	
 	return {};
 };
 
@@ -144,4 +149,5 @@ ${message}
 		};
 	}
 };
+
 

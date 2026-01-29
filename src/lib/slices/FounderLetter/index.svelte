@@ -58,8 +58,6 @@
 			{#if slice.primary.letter_text}
 				<HighlightText
 					text={slice.primary.letter_text}
-					baseColor="#1E1E1E"
-					highlightColor="#1e1e1e"
 					fontSize="clamp(1.5rem, 2.5vw + 0.75rem, 2rem)"
 					lineHeight="clamp(2rem, 3.5vw + 1.25rem, 3.25rem)"
 					className="founder-letter-text w-full"
