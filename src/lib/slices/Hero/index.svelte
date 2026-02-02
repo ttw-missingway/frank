@@ -279,7 +279,7 @@
 								const inverseScale = 1 / parentScale;
 								gsap.set(videosContainer, { scaleX: inverseScale, scaleY: 1 });
 							}
-						}
+						},
 					});
 				}
 				// Trigger shrink animation
@@ -305,6 +305,7 @@
 					const inverseScale = 1 / currentScale;
 					gsap.set(videosContainer, { scaleX: inverseScale, scaleY: 1 });
 				}
+
 
 				// Fade out animations at the end
 				if (progress >= 0.92 && !roundedContainerScaled) {
@@ -659,28 +660,45 @@
 			<!-- Mask container - scales and reveals more of the video -->
 			<div
 				bind:this={roundedContainer}
-				class="absolute -left-[-0.5rem] -right-[-0.5rem] -top-[-0.5rem] -bottom-[-0.5rem] rounded-3xl overflow-hidden xl:max-h-[33vw] max-h-[90vh]"
+				class="absolute inset-0 rounded-3xl overflow-hidden xl:max-h-[33vw] max-h-[90vh]"
 				style="transform-origin: center;"
 			>
 				<!-- Fixed-size video container - counteracts parent scale to stay fixed size -->
 				<div
 					bind:this={videosContainer}
-					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full"
+					class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full overflow-hidden rounded-3xl"
 					style="transform-origin: center;"
 				>
 					{#if slice.primary.cloudflare_stream_id}
 						{@const streamId = slice.primary.cloudflare_stream_id}
 						{@const customerId = 'yy99jk2iutjm3e4s'}
 						{@const videoUrl = `https://customer-${customerId}.cloudflarestream.com/${streamId}/iframe?muted=true&loop=true&autoplay=true&controls=false&poster=https%3A%2F%2Fcustomer-${customerId}.cloudflarestream.com%2F${streamId}%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600`}
-						<iframe
-							src={videoUrl}
-							loading="lazy"
-							title="Hero video"
-							style="border: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(2.5); width: 100%; height: 100%; min-width: 100%; min-height: 100%;"
-							class="rounded-none"
-							allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-							allowfullscreen
-						></iframe>
+						<div class="block md:hidden w-full h-full">
+							<iframe
+								src={videoUrl}
+								loading="lazy"
+								title="Hero video"
+								style="border: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(2.5); width: 100%; height: 100%; min-width: 100%; min-height: 100%;"
+								class="rounded-none"
+								allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+								allowfullscreen
+							></iframe>
+						</div>
+						<div class="hidden md:flex h-full w-full items-center justify-between gap-6">
+							{#each Array(3) as _}
+								<div class="relative h-full max-h-[85vh] w-full max-w-[22vw] flex-1 min-w-0 aspect-9/16 overflow-hidden rounded-2xl bg-black/10">
+									<iframe
+										src={videoUrl}
+										loading="lazy"
+										title="Hero video"
+										style="border: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(1.35); width: 100%; height: 100%; min-width: 100%; min-height: 100%;"
+										class="rounded-none"
+										allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+										allowfullscreen
+									></iframe>
+								</div>
+							{/each}
+						</div>
 					{/if}
 				</div>
 			</div>

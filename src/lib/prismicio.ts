@@ -16,7 +16,13 @@ export const repositoryName = import.meta.env.VITE_PRISMIC_ENVIRONMENT || sm.rep
 const routes: Route[] = [
 	{ type: 'page', path: '/', uid: 'home' },
 	{ type: 'page', path: '/:uid' },
-	{ type: 'work', path: '/work/:uid' }
+	{ type: 'work', path: '/work/:uid' },
+	// Singleton documents used across the site should resolve to a page
+	// that renders their content so previews can redirect somewhere valid.
+	{ type: 'settings', path: '/' },
+	{ type: 'packages', path: '/' },
+	{ type: 'pathways', path: '/' },
+	{ type: 'line_items', path: '/' }
 ];
 
 /**
