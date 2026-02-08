@@ -4,6 +4,7 @@
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -296,37 +297,54 @@
 		{/if}
 
 		<!-- Email Input and Button -->
-		<form
-			onsubmit={(e) => {
-				e.preventDefault();
-				handleSubmit();
-			}}
-			class="w-full flex flex-row items-center gap-6 px-8"
-		>
-			<input
-				bind:this={emailInput}
-				type="email"
-				bind:value={email}
-				placeholder={slice.primary.email_placeholder_text || 'Email'}
-				class="flex-1 text-zinc-500 text-3xl font-light font-venus leading-[64px] tracking-wider text-center border-b-2 border-zinc-500 focus:outline-none placeholder:text-zinc-500 placeholder:text-center min-w-0"
-				style="background: none;"
-				required
-				name="email"
-				autocomplete="email"
-			/>
-			<button
-				bind:this={submitButton}
-				type="submit"
-				class="flex-1 flex flex-row items-center justify-center px-6 py-3 border border-[#CFF602] rounded-[40px] bg-transparent gap-2 whitespace-nowrap min-w-0"
-			>
-				<div
-					class="justify-start text-[#CFF602] text-2xl font-normal font-clash-variable uppercase leading-8 tracking-wider"
+		{#if slice.variation === 'paymentPage'}
+			<div class="w-full flex justify-center px-8">
+				<Button
+					bind:element={submitButton}
+					href="/checkout"
+					class="flex flex-row items-center justify-center px-8 py-3 border border-[#CFF602] rounded-[40px] bg-transparent gap-2 whitespace-nowrap"
 				>
-					{slice.primary.button_text || 'book a call'}
-				</div>
-				<img src="/icons/Arrow-Green.svg" alt="Arrow" class="w-4 h-4" />
-			</button>
-		</form>
+					<div
+						class="justify-start text-[#CFF602] text-2xl font-normal font-clash-variable uppercase leading-8 tracking-wider"
+					>
+						{slice.primary.button_text || 'book a call'}
+					</div>
+					<img src="/icons/Arrow-Green.svg" alt="Arrow" class="w-4 h-4" />
+				</Button>
+			</div>
+		{:else}
+			<form
+				onsubmit={(e) => {
+					e.preventDefault();
+					handleSubmit();
+				}}
+				class="w-full flex flex-row items-center gap-6 px-8"
+			>
+				<input
+					bind:this={emailInput}
+					type="email"
+					bind:value={email}
+					placeholder={slice.primary.email_placeholder_text || 'Email'}
+					class="flex-1 text-zinc-500 text-3xl font-light font-venus leading-[64px] tracking-wider text-center border-b-2 border-zinc-500 focus:outline-none placeholder:text-zinc-500 placeholder:text-center min-w-0"
+					style="background: none;"
+					required
+					name="email"
+					autocomplete="email"
+				/>
+				<Button
+					bind:element={submitButton}
+					type="submit"
+					class="flex-1 flex flex-row items-center justify-center px-6 py-3 border border-[#CFF602] rounded-[40px] bg-transparent gap-2 whitespace-nowrap min-w-0"
+				>
+					<div
+						class="justify-start text-[#CFF602] text-2xl font-normal font-clash-variable uppercase leading-8 tracking-wider"
+					>
+						{slice.primary.button_text || 'book a call'}
+					</div>
+					<img src="/icons/Arrow-Green.svg" alt="Arrow" class="w-4 h-4" />
+				</Button>
+			</form>
+		{/if}
 
 		<!-- Disclaimer -->
 		{#if slice.primary.disclaimer_text}

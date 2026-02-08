@@ -4,6 +4,7 @@
 	import { gsap } from 'gsap';
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 	import { onMount } from 'svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	gsap.registerPlugin(ScrollTrigger);
 
@@ -219,16 +220,16 @@
 				class="self-stretch inline-flex justify-center items-center gap-4 flex-wrap content-center"
 			>
 				{#each pathways as pathway, index}
-					<button
-						bind:this={pathwayButtons[index]}
+					<Button
+						bind:element={pathwayButtons[index]}
 						type="button"
-						onclick={() => togglePathway(pathway)}
+						on:click={() => togglePathway(pathway)}
 						class=" text-base md:text-lg font-normal eyebrow-text
 							{selectedPathways.includes(pathway) ? 'bg-[#8BD475] text-black' : 'bg-transparent'}"
 						style="border-width: 1px;"
 					>
 						{pathway}
-					</button>
+					</Button>
 				{/each}
 			</div>
 			<span>with your business?</span>
@@ -256,8 +257,8 @@
 			/>
 
 			<!-- Submit Button -->
-			<button
-				bind:this={submitButton}
+			<Button
+				bind:element={submitButton}
 				type="submit"
 				class="self-stretch px-6 py-3 bg-[#8BD475] rounded-[40px] outline outline-1 outline-offset-[-1px] outline-[#8BD475] inline-flex justify-center items-center gap-8"
 			>
@@ -267,7 +268,7 @@
 					book a call
 				</div>
 				<img src="/icons/Arrow.svg" alt="Arrow" class="w-4 h-4" />
-			</button>
+			</Button>
 		</form>
 	</div>
 </section>

@@ -69,17 +69,6 @@
             }
           }
         },
-        "contract_link": {
-          "type": "Link",
-          "config": {
-            "label": "Contract Link",
-            "placeholder": "",
-            "select": null,
-            "allowTargetBlank": true,
-            "allowText": true,
-            "repeat": false
-          }
-        },
         "docusign_button_text": {
           "type": "Text",
           "config": {
@@ -87,11 +76,15 @@
             "placeholder": "Docusign"
           }
         },
-        "pay_button_text": {
-          "type": "Text",
+        "pay_button": {
+          "type": "Link",
           "config": {
-            "label": "Pay Button Text",
-            "placeholder": ""
+            "label": "Pay Button",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         }
       },

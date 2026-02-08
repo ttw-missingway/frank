@@ -53,5 +53,60 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "paymentPage",
+		"primary": {
+			"lead_in_text": {
+				"__TYPE__": "FieldContent",
+				"value": "pair",
+				"type": "Text"
+			},
+			"heading": {
+				"__TYPE__": "FieldContent",
+				"value": "whispered",
+				"type": "Text"
+			},
+			"copy": {
+				"__TYPE__": "FieldContent",
+				"value": "sang",
+				"type": "Text"
+			},
+			"bullet_points": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"bullet_point",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "correctly",
+									"type": "Text"
+								}
+							]
+						]
+					}
+				]
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"value": "end",
+				"type": "Text"
+			},
+			"disclaimer_text": {
+				"__TYPE__": "FieldContent",
+				"value": "medicine",
+				"type": "Text"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

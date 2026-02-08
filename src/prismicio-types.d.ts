@@ -1021,16 +1021,6 @@ export interface CheckoutSliceDefaultPrimary {
 	>;
 
 	/**
-	 * Contract Link field in *Checkout → Default → Primary*
-	 *
-	 * - **Field Type**: Link
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: checkout.default.primary.contract_link
-	 * - **Documentation**: https://prismic.io/docs/fields/link
-	 */
-	contract_link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
-
-	/**
 	 * Docusign Button Text field in *Checkout → Default → Primary*
 	 *
 	 * - **Field Type**: Text
@@ -1041,14 +1031,14 @@ export interface CheckoutSliceDefaultPrimary {
 	docusign_button_text: prismic.KeyTextField;
 
 	/**
-	 * Pay Button Text field in *Checkout → Default → Primary*
+	 * Pay Button field in *Checkout → Default → Primary*
 	 *
-	 * - **Field Type**: Text
+	 * - **Field Type**: Link
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: checkout.default.primary.pay_button_text
-	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 * - **API ID Path**: checkout.default.primary.pay_button
+	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
-	pay_button_text: prismic.KeyTextField;
+	pay_button: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -1088,6 +1078,21 @@ export interface ClaritySprintSliceDefaultPrimaryBulletPointsItem {
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: clarity_sprint.default.primary.bullet_points[].bullet_point
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	bullet_point: prismic.KeyTextField;
+}
+
+/**
+ * Item in *ClaritySprint → Payment Page → Primary → Bullet Points*
+ */
+export interface ClaritySprintSlicePaymentPagePrimaryBulletPointsItem {
+	/**
+	 * Bullet Point field in *ClaritySprint → Payment Page → Primary → Bullet Points*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: clarity_sprint.paymentPage.primary.bullet_points[].bullet_point
 	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	bullet_point: prismic.KeyTextField;
@@ -1182,9 +1187,87 @@ export type ClaritySprintSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *ClaritySprint → Payment Page → Primary*
+ */
+export interface ClaritySprintSlicePaymentPagePrimary {
+	/**
+	 * Lead-In Text field in *ClaritySprint → Payment Page → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: clarity_sprint.paymentPage.primary.lead_in_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	lead_in_text: prismic.KeyTextField;
+
+	/**
+	 * Heading field in *ClaritySprint → Payment Page → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: clarity_sprint.paymentPage.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Copy field in *ClaritySprint → Payment Page → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: clarity_sprint.paymentPage.primary.copy
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	copy: prismic.KeyTextField;
+
+	/**
+	 * Bullet Points field in *ClaritySprint → Payment Page → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: clarity_sprint.paymentPage.primary.bullet_points[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	bullet_points: prismic.GroupField<Simplify<ClaritySprintSlicePaymentPagePrimaryBulletPointsItem>>;
+
+	/**
+	 * Button Text field in *ClaritySprint → Payment Page → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: clarity_sprint.paymentPage.primary.button_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	button_text: prismic.KeyTextField;
+
+	/**
+	 * Disclaimer Text field in *ClaritySprint → Payment Page → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: clarity_sprint.paymentPage.primary.disclaimer_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	disclaimer_text: prismic.KeyTextField;
+}
+
+/**
+ * Payment Page variation for ClaritySprint Slice
+ *
+ * - **API ID**: `paymentPage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ClaritySprintSlicePaymentPage = prismic.SharedSliceVariation<
+	'paymentPage',
+	Simplify<ClaritySprintSlicePaymentPagePrimary>,
+	never
+>;
+
+/**
  * Slice variation for *ClaritySprint*
  */
-type ClaritySprintSliceVariation = ClaritySprintSliceDefault;
+type ClaritySprintSliceVariation = ClaritySprintSliceDefault | ClaritySprintSlicePaymentPage;
 
 /**
  * ClaritySprint Shared Slice
@@ -1962,16 +2045,34 @@ export type OutcomeCardsSlice = prismic.SharedSlice<'outcome_cards', OutcomeCard
  */
 export interface PackagesSliceDefaultPrimaryPackagesItem {
 	/**
-	 * Package field in *PackageCards → Default → Primary → Packages*
+	 * Eyebrow Text field in *PackageCards → Default → Primary → Packages*
 	 *
-	 * - **Field Type**: Content Relationship
+	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: packages.default.primary.packages[].package
-	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 * - **API ID Path**: packages.default.primary.packages[].eyebrow_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	package: ContentRelationshipFieldWithData<
-		[{ id: 'packages'; fields: [{ id: 'packages'; fields: ['price', 'duration_options'] }] }]
-	>;
+	eyebrow_text: prismic.KeyTextField;
+
+	/**
+	 * Heading field in *PackageCards → Default → Primary → Packages*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: packages.default.primary.packages[].heading
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Description field in *PackageCards → Default → Primary → Packages*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: packages.default.primary.packages[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	description: prismic.KeyTextField;
 }
 
 /**
@@ -2709,8 +2810,11 @@ declare module '@prismicio/client' {
 			ClaritySprintSlice,
 			ClaritySprintSliceDefaultPrimaryBulletPointsItem,
 			ClaritySprintSliceDefaultPrimary,
+			ClaritySprintSlicePaymentPagePrimaryBulletPointsItem,
+			ClaritySprintSlicePaymentPagePrimary,
 			ClaritySprintSliceVariation,
 			ClaritySprintSliceDefault,
+			ClaritySprintSlicePaymentPage,
 			ClientWorkDescriptionsSlice,
 			ClientWorkDescriptionsSliceDefaultPrimaryPathwaysItem,
 			ClientWorkDescriptionsSliceDefaultPrimary,

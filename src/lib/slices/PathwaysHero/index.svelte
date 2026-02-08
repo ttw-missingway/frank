@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
 	import type { SliceComponentProps } from '@prismicio/svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	type Props = SliceComponentProps<Content.PathwaysHeroSlice>;
 
@@ -19,9 +20,9 @@
 				<h1 class="formal-heading text-left text-[#FFFFE6]">
 					{@html slice.primary.heading || 'Turn, "Keep us updated," into, "Send me the contract."'}
 				</h1>
-				<button class="eyebrow-text self-start">
+				<Button class="eyebrow-text self-start" type="button">
 					{slice.primary.eyebrow_text || 'THIS IS HOW'}
-				</button>
+				</Button>
 			</div>
 		</div>
 

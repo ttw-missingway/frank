@@ -5,15 +5,28 @@
 	import { PrismicImage } from '@prismicio/svelte';
 	import HorizontalScroller from '$lib/components/HorizontalScroller.svelte';
 	import { onMount } from 'svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	type Props = SliceComponentProps<Content.ClientWorkGallerySlice>;
 
 	const { slice }: Props = $props();
 
 	let scrollerElement: HTMLDivElement | null = null;
+	let scrollerOriginalSnap: string | null = null;
 	let cardElements: HTMLDivElement[] = [];
 	let containerElement: HTMLElement;
+	let isJumping = false;
+	let suppressTransitions = false;
 	const hoverScaleMultiplier = 1.05; // 5% increase on hover
+
+	const baseItems = $derived.by(() => slice.primary.work || []);
+	const shouldLoop = $derived.by(() => baseItems.length > 1);
+	const loopCopies = 3;
+	const displayedItems = $derived.by(() =>
+		shouldLoop ? Array.from({ length: loopCopies }, () => baseItems).flat() : baseItems
+	);
+	const getOriginalIndex = (displayIndex: number) =>
+		shouldLoop ? displayIndex % baseItems.length : displayIndex;
 	
 	// Lightbox state
 	let lightboxOpen = $state(false);
@@ -25,6 +38,10 @@
 
 		const scrollerRect = scrollerElement.getBoundingClientRect();
 		const viewportCenter = scrollerRect.left + scrollerRect.width / 2;
+
+		let closestIndex = 0;
+		let closestDistance = Number.POSITIVE_INFINITY;
+		let closestScale = 1;
 
 		cardElements.forEach((card, index) => {
 			if (!card) return;
@@ -38,6 +55,12 @@
 			const scale = 1.3 - normalizedDistance * 0.8;
 			const clampedScale = Math.max(0.5, Math.min(1.3, scale));
 
+			if (distanceFromCenter < closestDistance) {
+				closestDistance = distanceFromCenter;
+				closestIndex = index;
+				closestScale = clampedScale;
+			}
+
 			// Store base scale on the card element for hover effect
 			(card as any).baseScale = clampedScale;
 
@@ -46,32 +69,153 @@
 			const zIndex = Math.round(10 - normalizedDistance * 9);
 			const clampedZIndex = Math.max(1, Math.min(10, zIndex));
 
-			// Dynamic spacing: negative margin (overlap) at edges, positive margin (more space) at center
-			// Account for base gap (~24px), so we add/subtract from that
-			// At center: +60px extra margin (total ~84px spacing), at edges: -80px margin (total ~-56px overlap)
-			// Skip margin on first card to avoid shifting the carousel
-			const marginLeft = index === 0 ? 0 : 60 - normalizedDistance * 140; // 60px at center, -80px at edges
-			const clampedMargin = index === 0 ? 0 : Math.max(-80, Math.min(60, marginLeft));
+			// Dynamic spacing via translateX so layout/scrollWidth stays stable
+			// At center: +60px, at edges: -80px
+			const translateX = 60 - normalizedDistance * 140; // 60px at center, -80px at edges
+			const clampedTranslateX = Math.max(-80, Math.min(60, translateX));
+
+			// Store base translate for hover effect (so we only scale on hover)
+			(card as any).baseTranslateX = clampedTranslateX;
 
 			// Only update transform if not hovering (hover state is handled separately)
 			if (!(card as any).isHovering) {
-				card.style.transform = `scale(${clampedScale})`;
+				card.style.transform = `translateX(${clampedTranslateX}px) scale(${clampedScale})`;
 			}
 			card.style.zIndex = clampedZIndex.toString();
-			card.style.marginLeft = `${clampedMargin}px`;
-			card.style.transition = 'transform 0.2s ease-out, z-index 0.2s ease-out, margin-left 0.2s ease-out';
+			card.style.marginLeft = '';
+			card.style.transition = suppressTransitions
+				? 'none'
+				: 'transform 0.2s ease-out, z-index 0.2s ease-out';
 		});
+
+		// #region agent log
+		fetch('http://127.0.0.1:7244/ingest/53c6304f-f016-4df4-aa32-0336bf84c333',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ClientWorkGallery/index.svelte:updateCardStyles',message:'scroller metrics',data:{scrollLeft:scrollerElement.scrollLeft,scrollWidth:scrollerElement.scrollWidth,clientWidth:scrollerElement.clientWidth,cardCount:cardElements.length,viewportCenter,closestIndex,closestDistance,closestScale,isJumping},timestamp:Date.now(),sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H5'})}).catch(()=>{});
+		// #endregion
+	};
+
+	const setScrollerPosition = (position: number) => {
+		if (!scrollerElement) return;
+		const previousBehavior = scrollerElement.style.scrollBehavior;
+		const previousSnap = scrollerElement.style.scrollSnapType;
+		isJumping = true;
+		suppressTransitions = true;
+		// #region agent log
+		fetch('http://127.0.0.1:7244/ingest/53c6304f-f016-4df4-aa32-0336bf84c333',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ClientWorkGallery/index.svelte:setScrollerPosition',message:'before jump',data:{scrollLeft:scrollerElement.scrollLeft,target:position,previousBehavior,previousSnap},timestamp:Date.now(),sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2'})}).catch(()=>{});
+		// #endregion
+		scrollerElement.style.scrollBehavior = 'auto';
+		scrollerElement.style.scrollSnapType = 'none';
+		scrollerElement.scrollLeft = position;
+		updateCardStyles();
+		requestAnimationFrame(() => {
+			if (!scrollerElement) return;
+			scrollerElement.style.scrollBehavior = previousBehavior;
+			scrollerElement.style.scrollSnapType = previousSnap;
+			// #region agent log
+			fetch('http://127.0.0.1:7244/ingest/53c6304f-f016-4df4-aa32-0336bf84c333',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ClientWorkGallery/index.svelte:setScrollerPosition',message:'after jump',data:{scrollLeft:scrollerElement.scrollLeft,restoredBehavior:scrollerElement.style.scrollBehavior,restoredSnap:scrollerElement.style.scrollSnapType},timestamp:Date.now(),sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H2'})}).catch(()=>{});
+			// #endregion
+			// #region agent log
+			const computed = getComputedStyle(scrollerElement);
+			const scrollerRect = scrollerElement.getBoundingClientRect();
+			const viewportCenterX = scrollerRect.left + scrollerRect.width / 2;
+			let closestIndex = 0;
+			let closestDistance = Number.POSITIVE_INFINITY;
+			for (let i = 0; i < cardElements.length; i += 1) {
+				const card = cardElements[i];
+				if (!card) continue;
+				const rect = card.getBoundingClientRect();
+				const center = rect.left + rect.width / 2;
+				const distance = Math.abs(center - viewportCenterX);
+				if (distance < closestDistance) {
+					closestDistance = distance;
+					closestIndex = i;
+				}
+			}
+			fetch('http://127.0.0.1:7244/ingest/53c6304f-f016-4df4-aa32-0336bf84c333',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ClientWorkGallery/index.svelte:setScrollerPosition',message:'post-jump snap check',data:{scrollLeft:scrollerElement.scrollLeft,closestIndex,closestDistance,snapType:computed.scrollSnapType,behavior:computed.scrollBehavior},timestamp:Date.now(),sessionId:'debug-session',runId:'post-fix',hypothesisId:'H4'})}).catch(()=>{});
+			// #endregion
+			suppressTransitions = false;
+			isJumping = false;
+		});
+	};
+
+	const handleInfiniteScroll = () => {
+		if (!scrollerElement || !shouldLoop) return;
+
+		const totalScrollWidth = scrollerElement.scrollWidth;
+		if (!totalScrollWidth) return;
+
+		const segmentWidth = totalScrollWidth / loopCopies;
+		if (!segmentWidth) return;
+
+		const leftThreshold = segmentWidth * 0.1;
+		const rightThreshold = segmentWidth * 1.9;
+
+		const baseCount = baseItems.length;
+		const leftStart = cardElements[0]?.offsetLeft ?? null;
+		const middleStart = cardElements[baseCount]?.offsetLeft ?? null;
+		const rightStart = cardElements[baseCount * 2]?.offsetLeft ?? null;
+		const offsetSegment = leftStart !== null && middleStart !== null ? middleStart - leftStart : null;
+
+		const scrollerRect = scrollerElement.getBoundingClientRect();
+		const viewportCenterX = scrollerRect.left + scrollerRect.width / 2;
+		let closestIndex = 0;
+		let closestDistance = Number.POSITIVE_INFINITY;
+		for (let i = 0; i < cardElements.length; i += 1) {
+			const card = cardElements[i];
+			if (!card) continue;
+			const rect = card.getBoundingClientRect();
+			const center = rect.left + rect.width / 2;
+			const distance = Math.abs(center - viewportCenterX);
+			if (distance < closestDistance) {
+				closestDistance = distance;
+				closestIndex = i;
+			}
+		}
+		const originalIndex = baseCount > 0 ? closestIndex % baseCount : 0;
+		const leftIndex = originalIndex;
+		const middleIndex = baseCount + originalIndex;
+		const rightIndex = baseCount * 2 + originalIndex;
+		const leftOffset = cardElements[leftIndex]?.offsetLeft ?? null;
+		const middleOffset = cardElements[middleIndex]?.offsetLeft ?? null;
+		const rightOffset = cardElements[rightIndex]?.offsetLeft ?? null;
+		const leftDelta =
+			leftOffset !== null && middleOffset !== null ? middleOffset - leftOffset : null;
+		const rightDelta =
+			middleOffset !== null && rightOffset !== null ? rightOffset - middleOffset : null;
+
+		// #region agent log
+		fetch('http://127.0.0.1:7244/ingest/53c6304f-f016-4df4-aa32-0336bf84c333',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ClientWorkGallery/index.svelte:handleInfiniteScroll',message:'threshold check',data:{scrollLeft:scrollerElement.scrollLeft,segmentWidth,leftThreshold,rightThreshold,scrollWidth:totalScrollWidth,baseCount,leftStart,middleStart,rightStart,offsetSegment,closestIndex,originalIndex,leftDelta,rightDelta},timestamp:Date.now(),sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1'})}).catch(()=>{});
+		// #endregion
+
+		if (scrollerElement.scrollLeft <= leftThreshold) {
+			// #region agent log
+			fetch('http://127.0.0.1:7244/ingest/53c6304f-f016-4df4-aa32-0336bf84c333',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ClientWorkGallery/index.svelte:handleInfiniteScroll',message:'jump right',data:{scrollLeft:scrollerElement.scrollLeft,delta:leftDelta ?? offsetSegment ?? segmentWidth},timestamp:Date.now(),sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1'})}).catch(()=>{});
+			// #endregion
+			const delta = leftDelta ?? offsetSegment ?? segmentWidth;
+			setScrollerPosition(scrollerElement.scrollLeft + delta);
+		} else if (scrollerElement.scrollLeft >= rightThreshold) {
+			// #region agent log
+			fetch('http://127.0.0.1:7244/ingest/53c6304f-f016-4df4-aa32-0336bf84c333',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'ClientWorkGallery/index.svelte:handleInfiniteScroll',message:'jump left',data:{scrollLeft:scrollerElement.scrollLeft,delta:rightDelta ?? offsetSegment ?? segmentWidth},timestamp:Date.now(),sessionId:'debug-session',runId:'pre-fix',hypothesisId:'H1'})}).catch(()=>{});
+			// #endregion
+			const delta = rightDelta ?? offsetSegment ?? segmentWidth;
+			setScrollerPosition(scrollerElement.scrollLeft - delta);
+		}
+	};
+
+	const handleScrollerScroll = () => {
+		handleInfiniteScroll();
+		updateCardStyles();
 	};
 
 	const handleCardHover = (card: HTMLDivElement, isHovering: boolean) => {
 		if (!card) return;
 		const baseScale = (card as any).baseScale || 1;
+		const baseTranslateX = (card as any).baseTranslateX || 0;
 		(card as any).isHovering = isHovering;
 		
 		if (isHovering) {
-			card.style.transform = `scale(${baseScale * hoverScaleMultiplier})`;
+			card.style.transform = `translateX(${baseTranslateX}px) scale(${baseScale * hoverScaleMultiplier})`;
 		} else {
-			card.style.transform = `scale(${baseScale})`;
+			card.style.transform = `translateX(${baseTranslateX}px) scale(${baseScale})`;
 		}
 	};
 
@@ -94,16 +238,14 @@
 			closeLightbox();
 		} else if (e.key === 'ArrowLeft' && lightboxIndex !== null) {
 			// Navigate to previous image
-			const items = slice.primary.work || [];
-			if (items.length > 0) {
-				const newIndex = lightboxIndex > 0 ? lightboxIndex - 1 : items.length - 1;
+			if (baseItems.length > 0) {
+				const newIndex = lightboxIndex > 0 ? lightboxIndex - 1 : baseItems.length - 1;
 				lightboxIndex = newIndex;
 			}
 		} else if (e.key === 'ArrowRight' && lightboxIndex !== null) {
 			// Navigate to next image
-			const items = slice.primary.work || [];
-			if (items.length > 0) {
-				const newIndex = lightboxIndex < items.length - 1 ? lightboxIndex + 1 : 0;
+			if (baseItems.length > 0) {
+				const newIndex = lightboxIndex < baseItems.length - 1 ? lightboxIndex + 1 : 0;
 				lightboxIndex = newIndex;
 			}
 		}
@@ -123,10 +265,16 @@
 			if (scroller && scroller !== scrollerElement) {
 				// Remove old listener if it exists
 				if (scrollerElement) {
-					scrollerElement.removeEventListener('scroll', updateCardStyles);
+					scrollerElement.removeEventListener('scroll', handleScrollerScroll);
 				}
 				scrollerElement = scroller;
-				scrollerElement.addEventListener('scroll', updateCardStyles);
+				if (shouldLoop) {
+					if (scrollerOriginalSnap === null) {
+						scrollerOriginalSnap = scrollerElement.style.scrollSnapType;
+					}
+					scrollerElement.style.scrollSnapType = 'none';
+				}
+				scrollerElement.addEventListener('scroll', handleScrollerScroll);
 				// Initial update after DOM is ready
 				requestAnimationFrame(() => {
 					setTimeout(updateCardStyles, 50);
@@ -144,10 +292,21 @@
 		window.addEventListener('resize', updateCardStyles);
 		// Initial update
 		setTimeout(updateCardStyles, 150);
+		setTimeout(() => {
+			if (scrollerElement && shouldLoop) {
+				const segmentWidth = scrollerElement.scrollWidth / loopCopies;
+				if (segmentWidth) {
+					setScrollerPosition(segmentWidth);
+				}
+			}
+		}, 150);
 
 		return () => {
 			if (scrollerElement) {
-				scrollerElement.removeEventListener('scroll', updateCardStyles);
+				scrollerElement.removeEventListener('scroll', handleScrollerScroll);
+				if (scrollerOriginalSnap !== null) {
+					scrollerElement.style.scrollSnapType = scrollerOriginalSnap;
+				}
 			}
 			window.removeEventListener('resize', updateCardStyles);
 			// Restore body scroll on cleanup
@@ -173,10 +332,11 @@
 >
 	<div class="container px-6 md:px-12" bind:this={containerElement}>
 		<HorizontalScroller>
-			{#each slice.primary.work || [] as item, index}
+			{#each displayedItems as item, index}
 				{@const hasVideo = isFilled.linkToMedia(item.video)}
 				{@const hasImage = isFilled.image(item.image)}
 				{@const videoUrl = hasVideo && 'url' in item.video ? item.video.url : null}
+				{@const originalIndex = getOriginalIndex(index)}
 				<div
 					bind:this={cardElements[index]}
 					class="shrink-0 bg-gray-300 rounded-lg relative overflow-hidden aspect-4/5 w-[180px] md:w-[220px] lg:w-[260px] carousel-card"
@@ -186,13 +346,13 @@
 					onmouseleave={() => handleCardHover(cardElements[index], false)}
 					onclick={() => {
 						if (hasImage || hasVideo) {
-							openLightbox(index);
+							openLightbox(originalIndex);
 						}
 					}}
 					onkeydown={(e) => {
 						if ((e.key === 'Enter' || e.key === ' ') && (hasImage || hasVideo)) {
 							e.preventDefault();
-							openLightbox(index);
+							openLightbox(originalIndex);
 						}
 					}}
 				>
@@ -237,12 +397,11 @@
 
 	<!-- Lightbox Modal -->
 	{#if lightboxOpen && lightboxIndex !== null}
-		{@const currentItem = slice.primary.work?.[lightboxIndex]}
+		{@const currentItem = baseItems[lightboxIndex]}
 		{@const hasVideo = currentItem && isFilled.linkToMedia(currentItem.video)}
 		{@const hasImage = currentItem && isFilled.image(currentItem.image)}
 		{@const videoUrl = hasVideo && currentItem.video && 'url' in currentItem.video ? currentItem.video.url : null}
-		{@const items = slice.primary.work || []}
-		{@const hasMultiple = items.length > 1}
+		{@const hasMultiple = baseItems.length > 1}
 		<div
 			bind:this={lightboxElement}
 			class="lightbox-overlay"
@@ -268,10 +427,11 @@
 				role="presentation"
 			>
 				<!-- Close button -->
-				<button
+				<Button
 					class="lightbox-close"
-					onclick={closeLightbox}
+					on:click={closeLightbox}
 					aria-label="Close lightbox"
+					type="button"
 				>
 					<svg
 						width="24"
@@ -286,17 +446,18 @@
 						<line x1="18" y1="6" x2="6" y2="18" />
 						<line x1="6" y1="6" x2="18" y2="18" />
 					</svg>
-				</button>
+				</Button>
 
 				<!-- Navigation arrows -->
 				{#if hasMultiple}
-					<button
+					<Button
 						class="lightbox-nav lightbox-nav-prev"
-						onclick={() => {
-							const newIndex = lightboxIndex! > 0 ? lightboxIndex! - 1 : items.length - 1;
+						on:click={() => {
+							const newIndex = lightboxIndex! > 0 ? lightboxIndex! - 1 : baseItems.length - 1;
 							lightboxIndex = newIndex;
 						}}
 						aria-label="Previous image"
+						type="button"
 					>
 						<svg
 							width="24"
@@ -310,14 +471,15 @@
 						>
 							<polyline points="15 18 9 12 15 6" />
 						</svg>
-					</button>
-					<button
+					</Button>
+					<Button
 						class="lightbox-nav lightbox-nav-next"
-						onclick={() => {
-							const newIndex = lightboxIndex! < items.length - 1 ? lightboxIndex! + 1 : 0;
+						on:click={() => {
+							const newIndex = lightboxIndex! < baseItems.length - 1 ? lightboxIndex! + 1 : 0;
 							lightboxIndex = newIndex;
 						}}
 						aria-label="Next image"
+						type="button"
 					>
 						<svg
 							width="24"
@@ -331,7 +493,7 @@
 						>
 							<polyline points="9 18 15 12 9 6" />
 						</svg>
-					</button>
+					</Button>
 				{/if}
 
 				<!-- Media content -->
@@ -359,7 +521,7 @@
 				<!-- Image counter -->
 				{#if hasMultiple}
 					<div class="lightbox-counter">
-						{lightboxIndex + 1} / {items.length}
+					{lightboxIndex + 1} / {baseItems.length}
 					</div>
 				{/if}
 			</div>
@@ -455,7 +617,7 @@
 		justify-content: center;
 	}
 
-	.lightbox-close {
+	:global(.lightbox-close) {
 		position: absolute;
 		top: 1rem;
 		right: 1rem;
@@ -473,12 +635,12 @@
 		transition: background-color 0.2s, border-color 0.2s;
 	}
 
-	.lightbox-close:hover {
+	:global(.lightbox-close:hover) {
 		background: rgba(255, 255, 255, 0.2);
 		border-color: rgba(255, 255, 255, 0.3);
 	}
 
-	.lightbox-nav {
+	:global(.lightbox-nav) {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
@@ -496,16 +658,16 @@
 		transition: background-color 0.2s, border-color 0.2s;
 	}
 
-	.lightbox-nav:hover {
+	:global(.lightbox-nav:hover) {
 		background: rgba(255, 255, 255, 0.2);
 		border-color: rgba(255, 255, 255, 0.3);
 	}
 
-	.lightbox-nav-prev {
+	:global(.lightbox-nav-prev) {
 		left: 1rem;
 	}
 
-	.lightbox-nav-next {
+	:global(.lightbox-nav-next) {
 		right: 1rem;
 	}
 
@@ -558,23 +720,23 @@
 			padding: 1rem;
 		}
 
-		.lightbox-close {
+		:global(.lightbox-close) {
 			top: 0.5rem;
 			right: 0.5rem;
 			width: 40px;
 			height: 40px;
 		}
 
-		.lightbox-nav {
+		:global(.lightbox-nav) {
 			width: 40px;
 			height: 40px;
 		}
 
-		.lightbox-nav-prev {
+		:global(.lightbox-nav-prev) {
 			left: 0.5rem;
 		}
 
-		.lightbox-nav-next {
+		:global(.lightbox-nav-next) {
 			right: 0.5rem;
 		}
 	}

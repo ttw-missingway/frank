@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import Button from './Button.svelte';
 
 	export let form: { data?: Record<string, string>; errors?: Record<string, string> } | null =
 		null;
@@ -57,7 +58,7 @@
 		<div class="form-error">{form.errors._form}</div>
 	{/if}
 
-	<button type="submit">Send Message</button>
+	<Button type="submit" class="contact-form-button">Send Message</Button>
 </form>
 
 <style>
@@ -117,7 +118,7 @@
 		border-radius: 4px;
 	}
 
-	button {
+	:global(.contact-form-button) {
 		width: 100%;
 		padding: 0.75rem 1.5rem;
 		background-color: #007bff;
@@ -130,11 +131,11 @@
 		transition: background-color 0.2s;
 	}
 
-	button:hover:not(:disabled) {
+	:global(.contact-form-button:hover:not(:disabled)) {
 		background-color: #0056b3;
 	}
 
-	button:disabled {
+	:global(.contact-form-button:disabled) {
 		background-color: #6c757d;
 		cursor: not-allowed;
 	}

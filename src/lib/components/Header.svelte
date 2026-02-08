@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from './Button.svelte';
 	import FullscreenNav from './FullscreenNav.svelte';
 	import Logo from './Logo.svelte';
 	import type { SettingsDocument } from '../../prismicio-types';
@@ -29,14 +30,15 @@
 		<Logo />
 
 		<!-- Hamburger menu button -->
-		<button
-			onclick={openNav}
+		<Button
+			on:click={openNav}
 			class="hover:opacity-80 transition-opacity focus:outline-none p-2 cursor-pointer"
 			aria-label="Open menu"
 			type="button"
+			hoverEffect={false}
 		>
 			<img src="/icons/Nav.svg" alt="Menu" class="w-6 h-6 md:w-7 md:h-7" />
-		</button>
+		</Button>
 	</div>
 </header>
 

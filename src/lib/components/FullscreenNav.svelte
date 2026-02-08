@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PrismicLink } from '@prismicio/svelte';
+	import Button from './Button.svelte';
 	import Logo from './Logo.svelte';
 	import type { SettingsDocument } from '../../prismicio-types';
 	import { onMount } from 'svelte';
@@ -681,11 +682,12 @@
 				<Logo onClick={onClose} class="cursor-pointer relative" />
 
 				<!-- Close button -->
-				<button
-					onclick={onClose}
+				<Button
+					on:click={onClose}
 					class="text-white hover:opacity-80 transition-opacity focus:outline-none p-2 relative cursor-pointer"
 					aria-label="Close menu"
 					type="button"
+					hoverEffect={false}
 				>
 					<svg
 						width="24"
@@ -700,7 +702,7 @@
 						<line x1="20" y1="4" x2="4" y2="20" />
 						<line x1="4" y1="4" x2="20" y2="20" />
 					</svg>
-				</button>
+				</Button>
 			</div>
 		</div>
 
@@ -723,7 +725,7 @@
 									onmouseleave={(e) => {
 										handleLinkLeave(e.currentTarget as HTMLElement);
 									}}
-									class="text-[#FFFFE6] font-venus-carrare text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.1] block relative z-20"
+									class="text-[#FFFFE6] font-auge text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.1] block relative z-20"
 								>
 									{link.text || 'Link'}
 								</PrismicLink>
@@ -749,7 +751,7 @@
 							required
 						/>
 					</div>
-					<button
+					<Button
 						type="submit"
 						class="text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded p-2 flex-shrink-0"
 						aria-label="Submit email"
@@ -767,7 +769,7 @@
 							<line x1="5" y1="12" x2="19" y2="12"></line>
 							<polyline points="12 5 19 12 12 19"></polyline>
 						</svg>
-					</button>
+					</Button>
 				</form>
 			</div>
 		</div>

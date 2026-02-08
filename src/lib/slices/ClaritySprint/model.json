@@ -72,6 +72,68 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "paymentPage",
+      "name": "Payment Page",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "lead_in_text": {
+          "type": "Text",
+          "config": {
+            "label": "Lead-In Text",
+            "placeholder": ""
+          }
+        },
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "copy": {
+          "type": "Text",
+          "config": {
+            "label": "Copy",
+            "placeholder": ""
+          }
+        },
+        "bullet_points": {
+          "type": "Group",
+          "config": {
+            "label": "Bullet Points",
+            "repeat": true,
+            "fields": {
+              "bullet_point": {
+                "type": "Text",
+                "config": {
+                  "label": "Bullet Point",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        },
+        "button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Button Text",
+            "placeholder": ""
+          }
+        },
+        "disclaimer_text": {
+          "type": "Text",
+          "config": {
+            "label": "Disclaimer Text",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

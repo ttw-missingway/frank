@@ -10,14 +10,27 @@
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
-								"package",
+								"eyebrow_text",
 								{
-									"__TYPE__": "LinkContent",
-									"key": "aee908ef-95a5-45f9-8dea-70467db0dcd5",
-									"value": {
-										"__TYPE__": "DocumentLink",
-										"id": "mock_document_id"
-									}
+									"__TYPE__": "FieldContent",
+									"value": "sail",
+									"type": "Text"
+								}
+							],
+							[
+								"heading",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "hearing",
+									"type": "Text"
+								}
+							],
+							[
+								"description",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "positive",
+									"type": "Text"
 								}
 							]
 						]

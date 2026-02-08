@@ -66,24 +66,19 @@
 					}
 				]
 			},
-			"contract_link": {
-				"key": "b74643b0-fa56-4a69-b748-c1022c5062cd",
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "https://slicemachine.dev",
-					"text": "group"
-				}
-			},
 			"docusign_button_text": {
 				"__TYPE__": "FieldContent",
 				"value": "forgotten",
 				"type": "Text"
 			},
-			"pay_button_text": {
-				"__TYPE__": "FieldContent",
-				"value": "fierce",
-				"type": "Text"
+			"pay_button": {
+				"__TYPE__": "LinkContent",
+				"key": "69920b3c-f7ce-4b89-9965-7cacbd3107f4",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://google.com",
+					"text": "fog"
+				}
 			}
 		},
 		"items": []

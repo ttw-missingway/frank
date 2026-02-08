@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
 	import { PrismicRichText, PrismicLink, type SliceComponentProps } from '@prismicio/svelte';
+	import Button from '$lib/components/Button.svelte';
 
 	type Props = SliceComponentProps<Content.CheckoutSlice>;
 
@@ -149,21 +150,21 @@
 				{/if}
 				
 				{#if slice.primary.docusign_button_text}
-					<button 
+					<Button
 						type="button"
 						class="bg-white border-2 border-black text-black px-6 py-2 text-sm md:text-base font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
 					>
 						{slice.primary.docusign_button_text}
-					</button>
+					</Button>
 				{/if}
 				
 				{#if slice.primary.pay_button_text}
-					<button 
+					<Button
 						type="button"
 						class="bg-blue-600 text-white px-6 py-2 text-sm md:text-base font-medium hover:bg-blue-700 transition-colors whitespace-nowrap"
 					>
 						{slice.primary.pay_button_text}
-					</button>
+					</Button>
 				{/if}
 			</div>
 		</div>
