@@ -1,4 +1,19 @@
 <script lang="ts">
+	import type { ImageField } from '@prismicio/client';
+	import { PrismicImage } from '@prismicio/svelte';
+	import type { SettingsDocument } from '../../prismicio-types';
+
+	type SettingsWithLogo = SettingsDocument & {
+		data: SettingsDocument['data'] & {
+			logo?: ImageField;
+		};
+	};
+
+	interface Props {
+		settings?: SettingsWithLogo | null;
+	}
+
+	const { settings = null }: Props = $props();
 </script>
 
 <footer class="bg-black text-white relative container py-8 md:py-12 lg:py-16">
@@ -10,7 +25,14 @@
 			class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal m-0 text-white leading-tight hover:text-[#CFF602] transition-colors duration-600 cursor-pointer"
 			style="font-family: 'Auge Trial', sans-serif;"
 		>
-			FRANK
+			{#if settings?.data?.logo}
+				<PrismicImage
+					field={settings.data.logo}
+					class="w-auto h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 object-contain"
+				/>
+			{:else}
+				FRANK
+			{/if}
 		</a>
 		<!-- <script
 			type="module"

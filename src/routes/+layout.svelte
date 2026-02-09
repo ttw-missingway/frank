@@ -30,6 +30,6 @@
 <main class="bg-black text-white relative">
 	<Header settings={data.settings} />
 	{@render children()}
-	<Footer />
+	<Footer settings={data.settings} />
 </main>
 <PrismicPreview {repositoryName} />

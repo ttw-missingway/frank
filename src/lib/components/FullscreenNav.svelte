@@ -707,8 +707,8 @@
 		</div>
 
 		<div bind:this={contentContainer} class="relative flex flex-col z-20 w-full h-full container">
-			<!-- Main navigation links - positioned left and slightly above center -->
-			<div class="flex-1 flex items-center px-6 md:px-8 lg:px-10 -mt-20">
+			<!-- Main navigation links - positioned left and centered vertically -->
+			<div class="flex-1 flex items-center px-6 md:px-8 lg:px-10">
 				<nav bind:this={navContainer} class="flex flex-col gap-6 md:gap-8">
 					{#if settings?.data.links && settings.data.links.length > 0}
 						{#each settings.data.links as linkItem}
