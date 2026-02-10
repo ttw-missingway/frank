@@ -461,7 +461,8 @@
 								hoveredIndex = -1;
 							}}
 						>
-							<div class="grid grid-cols-[280px_1fr_48px_1fr] md:grid-cols-[320px_1fr_48px_1fr] items-center gap-8 relative md:gap-12">
+							<!-- Mobile: single column stack. Desktop: 4-column grid -->
+							<div class="grid grid-cols-1 md:grid-cols-[320px_1fr_48px_1fr] items-center gap-4 md:gap-12 relative">
 								<div class="flex items-start gap-3 shrink-0 md:gap-4">
 									<span
 										bind:this={numberElements[index]}
@@ -492,7 +493,7 @@
 								{#if pathway.before_text}
 									<p
 										bind:this={beforeTextElements[index]}
-										class="text-white text-base font-normal leading-normal m-0"
+										class="text-white text-base font-normal leading-normal m-0 min-w-0"
 										style="font-family: 'Manrope', sans-serif;"
 									>
 										{pathway.before_text}
@@ -500,7 +501,26 @@
 								{:else}
 									<div></div>
 								{/if}
-								<div bind:this={arrowElements[index]} class="shrink-0 flex justify-center">
+								<!-- Mobile: downward arrow, always visible (not bound so no hover/GSAP) -->
+								<div class="shrink-0 flex justify-center md:hidden text-white/90" aria-hidden="true">
+									<svg
+										width="48"
+										height="48"
+										viewBox="0 0 24 24"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M12 5V19M12 19L5 12M12 19L19 12"
+											stroke="currentColor"
+											stroke-width="1.5"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</div>
+								<!-- Desktop: horizontal arrow (bound for hover animation) -->
+								<div bind:this={arrowElements[index]} class="shrink-0 hidden md:flex justify-center">
 									<svg
 										width="48"
 										height="48"
@@ -520,7 +540,7 @@
 								{#if pathway.after_text}
 									<p
 										bind:this={afterTextElements[index]}
-										class="text-white text-base font-normal leading-normal m-0"
+										class="text-white text-base font-normal leading-normal m-0 min-w-0"
 										style="font-family: 'Manrope', sans-serif;"
 									>
 										{pathway.after_text}

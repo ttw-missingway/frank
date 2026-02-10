@@ -438,7 +438,7 @@
 					{#if pathway}
 						<div
 							bind:this={cardElements[index]}
-							class="relative py-6 px-4 rounded-xl bg-transparent cursor-pointer z-1"
+							class="relative pt-4 pb-3 px-4 rounded-xl bg-transparent cursor-pointer z-1 md:py-6"
 							role="button"
 							tabindex="0"
 							onmouseenter={() => {
@@ -448,8 +448,9 @@
 								hoveredIndex = -1;
 							}}
 						>
-							<div class="flex items-center gap-8 relative md:gap-12">
-								<div class="flex items-start gap-3 shrink-0 md:gap-4 w-[280px] md:w-[320px]">
+							<!-- Mobile: stack vertically, tight spacing, no arrow. Desktop: row with title block, description, arrow -->
+							<div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-12 relative">
+								<div class="flex items-start gap-3 md:gap-4 shrink-0 md:w-[320px]">
 									<span
 										bind:this={numberElements[index]}
 										class="text-white text-base leading-[1.2] md:text-xl"
@@ -457,7 +458,7 @@
 									>
 										{index + 1}
 									</span>
-									<div class="flex flex-col gap-1">
+									<div class="flex flex-col gap-1 min-w-0">
 										<h3
 											bind:this={titleElements[index]}
 											class="text-white text-3xl font-normal leading-[1.2] m-0 md:text-[2.5rem]"
@@ -479,13 +480,13 @@
 								{#if pathway.before_text}
 									<p
 										bind:this={descriptionElements[index]}
-										class="text-white text-base font-normal leading-normal m-0"
+										class="text-white text-base font-normal leading-normal m-0 min-w-0 md:flex-1"
 										style="font-family: 'Manrope', sans-serif;"
 									>
 										{pathway.before_text}
 									</p>
 								{/if}
-								<div bind:this={arrowElements[index]} class="shrink-0 ml-auto">
+								<div bind:this={arrowElements[index]} class="hidden shrink-0 md:block md:ml-auto">
 									<svg
 										width="48"
 										height="48"

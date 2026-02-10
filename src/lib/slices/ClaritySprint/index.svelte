@@ -230,7 +230,7 @@
 		{/if}
 
 		<!-- Three Guarantees -->
-		<div bind:this={guaranteesContainer} class="flex flex-wrap justify-center items-center gap-6 md:gap-10">
+		<div bind:this={guaranteesContainer} class="flex flex-wrap justify-start md:justify-center items-center gap-6 md:gap-10 w-full">
 			<div bind:this={guarantee1} class="flex items-center gap-2">
 				<img src="/icons/CheckIcon.svg" alt="Checkmark" class="w-5 h-5" />
 				<span class="text-sm md:text-base font-manrope text-[#D1C9C1]"
@@ -272,7 +272,7 @@
 
 		<!-- Bullet Points - Two Columns -->
 		{#if slice.primary.bullet_points && slice.primary.bullet_points.length > 0}
-			<div bind:this={bulletPointsContainer} class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-4">
+			<div bind:this={bulletPointsContainer} class="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mt-4 justify-items-start">
 				<div class="flex flex-col gap-3">
 					{#each bulletColumns[0] as item}
 						{#if item.bullet_point}
@@ -318,14 +318,14 @@
 					e.preventDefault();
 					handleSubmit();
 				}}
-				class="w-full flex flex-row items-center gap-6 px-8"
+				class="w-full flex flex-col md:flex-row items-stretch md:items-center gap-6 px-8"
 			>
 				<input
 					bind:this={emailInput}
 					type="email"
 					bind:value={email}
 					placeholder={slice.primary.email_placeholder_text || 'Email'}
-					class="flex-1 text-zinc-500 text-3xl font-light font-venus leading-[64px] tracking-wider text-center border-b-2 border-zinc-500 focus:outline-none placeholder:text-zinc-500 placeholder:text-center min-w-0"
+					class="flex-1 text-zinc-500 text-3xl font-light font-venus leading-[64px] tracking-wider text-center md:text-center border-b-2 border-zinc-500 focus:outline-none placeholder:text-zinc-500 placeholder:text-center min-w-0 w-full"
 					style="background: none;"
 					required
 					name="email"
@@ -334,7 +334,7 @@
 				<Button
 					bind:element={submitButton}
 					type="submit"
-					class="flex-1 flex flex-row items-center justify-center px-6 py-3 border border-[#CFF602] rounded-[40px] bg-transparent gap-2 whitespace-nowrap min-w-0"
+					class="flex-1 w-full md:min-w-0 flex flex-row items-center justify-center px-6 py-3 border border-[#CFF602] rounded-[40px] bg-transparent gap-2 whitespace-nowrap"
 				>
 					<div
 						class="justify-start text-[#CFF602] text-2xl font-normal font-clash-variable uppercase leading-8 tracking-wider"

@@ -17,7 +17,7 @@ import OutcomeCards from './OutcomeCards/index.svelte';
 import PackageCards from './PackageCards/index.svelte';
 import PathwaysPreview from './PathwaysPreview/index.svelte';
 import PathwaysCards from './PathwaysCards/index.svelte';
-import AlternateHero from './AlternateHero/index.svelte';
+import PathwaysHero from './PathwaysHero/index.svelte';
 import QuoteBlock from './QuoteBlock/index.svelte';
 import RichText from './RichText/index.svelte';
 import SeeMoreWork from './SeeMoreWork/index.svelte';
@@ -44,7 +44,7 @@ export const components = {
 	packages: PackageCards,
 	pathways: PathwaysPreview,
 	pathways_cards: PathwaysCards,
-	pathways_hero: AlternateHero,
+	pathways_hero: PathwaysHero,
 	quote_block: QuoteBlock,
 	rich_text: RichText,
 	see_more_work: SeeMoreWork,

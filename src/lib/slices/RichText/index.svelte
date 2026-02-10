@@ -8,7 +8,7 @@
 	const { slice }: Props = $props();
 </script>
 
-<section class="container">
+<section class="container font-manrope">
 	<PrismicRichText
 		field={slice.primary.content}
 		components={{
