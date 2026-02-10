@@ -1,29 +1,15 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
 	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte';
-	import { onMount } from 'svelte';
-	import { createBackgroundChanger } from '$lib/backgroundChanger';
 	import HighlightText from '$lib/components/HighlightText.svelte';
 
 	type Props = SliceComponentProps<Content.ToolboxAndCapabilitiesSlice>;
 
 	const { slice }: Props = $props();
 
-	let sectionElement: HTMLElement;
-
-	onMount(() => {
-		if (!sectionElement) return;
-
-		const backgroundChanger = createBackgroundChanger(sectionElement);
-
-		return () => {
-			backgroundChanger?.destroy();
-		};
-	});
 </script>
 
 <section
-	bind:this={sectionElement}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
 	class="px-6 py-12 md:px-12 md:py-16 container relative min-h-screen"
