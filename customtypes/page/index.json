@@ -27,6 +27,9 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
+						"client_work_gallery": {
+							"type": "SharedSlice"
+						},
 						"pathways_hero": {
 							"type": "SharedSlice"
 						},

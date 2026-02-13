@@ -16,10 +16,6 @@
 
 	let galleryElement: HTMLElement | undefined = $state();
 	let hoveredIndex: number | null = $state(null);
-	let cursorX = $state(0);
-	let cursorY = $state(0);
-	let isCursorVisible = $state(false);
-	let activeClient: string | null = $state(null);
 
 	onMount(() => {
 		if (!galleryElement) return;
@@ -71,56 +67,33 @@
 		bind:this={galleryElement}
 		class="mosaic-grid"
 		role="presentation"
-		onmouseenter={() => {
-			isCursorVisible = true;
-		}}
 		onmouseleave={() => {
-			isCursorVisible = false;
-			activeClient = null;
 			hoveredIndex = null;
 		}}
-		onmousemove={(event) => {
-			const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
-			cursorX = event.clientX - rect.left;
-			cursorY = event.clientY - rect.top;
-		}}
 	>
-		<div
-			class="gallery-cursor"
-			class:visible={isCursorVisible}
-			class:expanded={!!activeClient}
-			style={`left: ${cursorX}px; top: ${cursorY}px;`}
-			aria-hidden="true"
-		>
-			{#if activeClient}
-				<span class="cursor-label">{activeClient}</span>
-			{/if}
-		</div>
 		{#each works as work, index}
 			{@const featuredVideo = work.data.featured_video}
 			{@const featuredImage = work.data.featured_image}
 			{@const hasVideo = featuredVideo && isFilled.linkToMedia(featuredVideo)}
 			{@const hasImage = featuredImage && isFilled.image(featuredImage)}
 			{@const videoUrl = hasVideo && 'url' in featuredVideo ? featuredVideo.url : null}
+			{@const marqueeText = (work.data.title || work.data.client_name || 'View project').toString()}
 			<a
 				href={`/work/${work.uid}`}
 				class="work-card mosaic-card group block bg-gray-300 rounded-md relative overflow-hidden hover:scale-[1.02] transition-transform duration-300"
 				class:dimmed={hoveredIndex !== null && hoveredIndex !== index}
+				class:marquee-visible={hoveredIndex === index}
 				onmouseover={() => {
 					hoveredIndex = index;
-					activeClient = work.data.client_name || null;
 				}}
 				onmouseout={() => {
 					hoveredIndex = null;
-					activeClient = null;
 				}}
 				onfocus={() => {
 					hoveredIndex = index;
-					activeClient = work.data.client_name || null;
 				}}
 				onblur={() => {
 					hoveredIndex = null;
-					activeClient = null;
 				}}
 			>
 				{#if hasVideo && videoUrl}
@@ -144,6 +117,21 @@
 				{/if}
 
 				<div class="dim-overlay" aria-hidden="true"></div>
+
+				<div class="marquee-overlay" aria-hidden="true">
+					<div class="marquee-track">
+						<span class="marquee-inner">
+							{#each Array(12) as _}
+								<span class="marquee-content">{marqueeText} — </span>
+							{/each}
+						</span>
+						<span class="marquee-inner">
+							{#each Array(12) as _}
+								<span class="marquee-content">{marqueeText} — </span>
+							{/each}
+						</span>
+					</div>
+				</div>
 			</a>
 		{/each}
 	</div>
@@ -157,12 +145,6 @@
 		column-gap: 12px;
 		width: 100%;
 		position: relative;
-		cursor: none;
-	}
-
-	.mosaic-grid *,
-	.mosaic-card {
-		cursor: none;
 	}
 
 	@media (min-width: 640px) {
@@ -229,58 +211,78 @@
 		opacity: 1;
 	}
 
-	.gallery-cursor {
+	.marquee-overlay {
 		position: absolute;
-		left: 0;
-		top: 0;
-		width: 16px;
-		height: 16px;
-		border-radius: 999px;
-		background: #ffffff;
-		transform: translate(-50%, -50%);
-		opacity: 0;
-		pointer-events: none;
-		z-index: 5;
+		inset: 0;
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		padding: 0;
-		transition:
-			height 200ms ease,
-			opacity 150ms ease;
+		justify-content: flex-start;
+		overflow: hidden;
+		opacity: 0;
+		transition: opacity 300ms ease;
+		pointer-events: none;
+		transform: rotate(-5deg);
+		/* Fade edges so text doesn’t hard-cut at card boundary */
+		mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 10%,
+			black 90%,
+			transparent 100%
+		);
+		mask-size: 100% 100%;
+		mask-repeat: no-repeat;
+		-webkit-mask-image: linear-gradient(
+			to right,
+			transparent 0%,
+			black 10%,
+			black 90%,
+			transparent 100%
+		);
+		-webkit-mask-size: 100% 100%;
+		-webkit-mask-repeat: no-repeat;
 	}
 
-	.gallery-cursor.visible {
+	.mosaic-card.marquee-visible .marquee-overlay {
 		opacity: 1;
 	}
 
-	.gallery-cursor.expanded {
-		height: 44px;
-		border-radius: 999px;
-		background: white;
-		padding: 0 16px;
-		width: max-content;
-		animation: cursor-pop 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
-	}
-
-	@keyframes cursor-pop {
-		0% {
-			transform: translate(-50%, -50%) scaleX(0.85);
-		}
-		60% {
-			transform: translate(-50%, -50%) scaleX(1.08);
-		}
-		100% {
-			transform: translate(-50%, -50%) scaleX(1);
-		}
-	}
-
-	.cursor-label {
-		color: #0a0a0a;
-		font-size: 0.8rem;
-		font-family: var(--font-manrope, sans-serif);
-		letter-spacing: 0.02em;
+	.marquee-track {
+		display: flex;
+		flex-wrap: nowrap;
 		white-space: nowrap;
-		padding: 0 12px;
+		width: max-content;
+		animation: marquee-scroll 25s linear infinite;
+		will-change: transform;
+	}
+
+	.mosaic-card.marquee-visible .marquee-track {
+		animation-play-state: running;
+	}
+
+	.marquee-inner {
+		display: flex;
+		flex-wrap: nowrap;
+		flex-shrink: 0;
+	}
+
+	.marquee-content {
+		flex-shrink: 0;
+		white-space: nowrap;
+		padding-right: 0.5em;
+		font-size: clamp(1.5rem, 2vw, 4rem);
+		font-weight: 800;
+		color: white;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+	}
+
+	@keyframes marquee-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
 	}
 </style>

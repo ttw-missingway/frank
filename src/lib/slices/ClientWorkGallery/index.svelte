@@ -4,8 +4,12 @@
 	import { isFilled } from '@prismicio/client';
 	import { PrismicImage } from '@prismicio/svelte';
 	import HorizontalScroller from '$lib/components/HorizontalScroller.svelte';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import Button from '$lib/components/Button.svelte';
+	import { gsap } from 'gsap';
+	import { Flip } from 'gsap/Flip';
+
+	gsap.registerPlugin(Flip);
 
 	type Props = SliceComponentProps<Content.ClientWorkGallerySlice>;
 
@@ -17,8 +21,6 @@
 	let containerElement: HTMLElement;
 	let isJumping = false;
 	let suppressTransitions = false;
-	const hoverScaleMultiplier = 1.05; // 5% increase on hover
-
 	const baseItems = $derived.by(() => slice.primary.work || []);
 	const shouldLoop = $derived.by(() => baseItems.length > 1);
 	const loopCopies = 3;
@@ -32,6 +34,7 @@
 	let lightboxOpen = $state(false);
 	let lightboxIndex = $state<number | null>(null);
 	let lightboxElement = $state<HTMLDivElement | null>(null);
+	let lightboxMediaElement = $state<HTMLDivElement | null>(null);
 
 	const updateCardStyles = () => {
 		if (!scrollerElement || cardElements.length === 0) return;
@@ -85,7 +88,7 @@
 			card.style.marginLeft = '';
 			card.style.transition = suppressTransitions
 				? 'none'
-				: 'transform 0.2s ease-out, z-index 0.2s ease-out';
+				: 'transform 0.2s ease-out, z-index 0.2s ease-out, box-shadow 0.25s ease-out';
 		});
 
 		// #region agent log
@@ -211,19 +214,28 @@
 		const baseScale = (card as any).baseScale || 1;
 		const baseTranslateX = (card as any).baseTranslateX || 0;
 		(card as any).isHovering = isHovering;
-		
-		if (isHovering) {
-			card.style.transform = `translateX(${baseTranslateX}px) scale(${baseScale * hoverScaleMultiplier})`;
-		} else {
-			card.style.transform = `translateX(${baseTranslateX}px) scale(${baseScale})`;
-		}
+		// No grow on hover — use base scale for both states
+		card.style.transform = `translateX(${baseTranslateX}px) scale(${baseScale})`;
 	};
 
-	const openLightbox = (index: number) => {
+	const openLightbox = async (index: number, clickedCard?: HTMLDivElement | null) => {
+		// Capture FLIP state of the card before opening (so we can animate from it)
+		const flipState = clickedCard ? Flip.getState(clickedCard) : null;
 		lightboxIndex = index;
 		lightboxOpen = true;
-		// Prevent body scroll when lightbox is open
 		document.body.style.overflow = 'hidden';
+		await tick();
+		// Run FLIP after layout so lightbox media has correct dimensions
+		requestAnimationFrame(() => {
+			if (flipState && lightboxMediaElement) {
+				Flip.from(flipState, {
+					targets: lightboxMediaElement,
+					duration: 0.5,
+					ease: 'power2.inOut',
+					clearProps: true
+				});
+			}
+		});
 	};
 
 	const closeLightbox = () => {
@@ -346,7 +358,7 @@
 					onmouseleave={() => handleCardHover(cardElements[index], false)}
 					onclick={() => {
 						if (hasImage || hasVideo) {
-							openLightbox(originalIndex);
+							openLightbox(originalIndex, cardElements[index]);
 						}
 					}}
 					onkeydown={(e) => {
@@ -426,13 +438,15 @@
 				}}
 				role="presentation"
 			>
-				<!-- Close button -->
-				<Button
-					class="lightbox-close"
-					on:click={closeLightbox}
-					aria-label="Close lightbox"
-					type="button"
-				>
+				<!-- Controls: close + nav aligned consistently -->
+				<div class="lightbox-controls">
+					<Button
+						class="lightbox-close"
+						hoverEffect={false}
+						on:click={closeLightbox}
+						aria-label="Close lightbox"
+						type="button"
+					>
 					<svg
 						width="24"
 						height="24"
@@ -448,56 +462,63 @@
 					</svg>
 				</Button>
 
-				<!-- Navigation arrows -->
+				<!-- Navigation arrows: one left of media, one right -->
 				{#if hasMultiple}
-					<Button
-						class="lightbox-nav lightbox-nav-prev"
-						on:click={() => {
-							const newIndex = lightboxIndex! > 0 ? lightboxIndex! - 1 : baseItems.length - 1;
-							lightboxIndex = newIndex;
-						}}
-						aria-label="Previous image"
-						type="button"
-					>
-						<svg
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+					<div class="lightbox-nav-wrap lightbox-nav-prev">
+						<Button
+							class="lightbox-nav"
+							hoverEffect={false}
+							on:click={() => {
+								const newIndex = lightboxIndex! > 0 ? lightboxIndex! - 1 : baseItems.length - 1;
+								lightboxIndex = newIndex;
+							}}
+							aria-label="Previous image"
+							type="button"
 						>
-							<polyline points="15 18 9 12 15 6" />
-						</svg>
-					</Button>
-					<Button
-						class="lightbox-nav lightbox-nav-next"
-						on:click={() => {
-							const newIndex = lightboxIndex! < baseItems.length - 1 ? lightboxIndex! + 1 : 0;
-							lightboxIndex = newIndex;
-						}}
-						aria-label="Next image"
-						type="button"
-					>
-						<svg
-							width="24"
-							height="24"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<polyline points="15 18 9 12 15 6" />
+							</svg>
+						</Button>
+					</div>
+					<div class="lightbox-nav-wrap lightbox-nav-next">
+						<Button
+							class="lightbox-nav"
+							hoverEffect={false}
+							on:click={() => {
+								const newIndex = lightboxIndex! < baseItems.length - 1 ? lightboxIndex! + 1 : 0;
+								lightboxIndex = newIndex;
+							}}
+							aria-label="Next image"
+							type="button"
 						>
-							<polyline points="9 18 15 12 9 6" />
-						</svg>
-					</Button>
+							<svg
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<polyline points="9 18 15 12 9 6" />
+							</svg>
+						</Button>
+					</div>
 				{/if}
+				</div>
 
-				<!-- Media content -->
-				<div class="lightbox-media">
+				<!-- Media content (FLIP target) -->
+				<div class="lightbox-media" bind:this={lightboxMediaElement}>
 					{#if hasVideo && videoUrl}
 						<video
 							src={videoUrl}
@@ -579,6 +600,12 @@
 		transform-origin: center center;
 		will-change: transform;
 		cursor: pointer;
+		transition: box-shadow 0.25s ease-out;
+		box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+	}
+
+	.carousel-card:hover {
+		box-shadow: 0 0 48px rgba(30, 55, 100, 0.75), 0 0 96px rgba(20, 40, 80, 0.55);
 	}
 
 	/* Lightbox Styles */
@@ -617,10 +644,22 @@
 		justify-content: center;
 	}
 
+	/* Single wrapper for all controls — consistent inset and alignment */
+	.lightbox-controls {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 10000;
+	}
+
+	.lightbox-controls :global(button) {
+		pointer-events: auto;
+	}
+
 	:global(.lightbox-close) {
 		position: absolute;
-		top: 1rem;
-		right: 1rem;
+		top: 1.5rem;
+		right: 1.5rem;
 		background: rgba(255, 255, 255, 0.1);
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 50%;
@@ -631,7 +670,6 @@
 		justify-content: center;
 		cursor: pointer;
 		color: white;
-		z-index: 10000;
 		transition: background-color 0.2s, border-color 0.2s;
 	}
 
@@ -640,35 +678,39 @@
 		border-color: rgba(255, 255, 255, 0.3);
 	}
 
-	:global(.lightbox-nav) {
+	/* Wrappers position one arrow left of media, one right — avoid Button's position:relative override */
+	.lightbox-nav-wrap {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
+		z-index: 1;
+	}
+
+	.lightbox-nav-wrap.lightbox-nav-prev {
+		left: 1.5rem;
+	}
+
+	.lightbox-nav-wrap.lightbox-nav-next {
+		right: 1.5rem;
+	}
+
+	:global(.lightbox-nav) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		background: rgba(255, 255, 255, 0.1);
 		border: 1px solid rgba(255, 255, 255, 0.2);
 		border-radius: 50%;
 		width: 48px;
 		height: 48px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		cursor: pointer;
 		color: white;
-		z-index: 10000;
 		transition: background-color 0.2s, border-color 0.2s;
 	}
 
 	:global(.lightbox-nav:hover) {
 		background: rgba(255, 255, 255, 0.2);
 		border-color: rgba(255, 255, 255, 0.3);
-	}
-
-	:global(.lightbox-nav-prev) {
-		left: 1rem;
-	}
-
-	:global(.lightbox-nav-next) {
-		right: 1rem;
 	}
 
 	.lightbox-media {
@@ -721,23 +763,23 @@
 		}
 
 		:global(.lightbox-close) {
-			top: 0.5rem;
-			right: 0.5rem;
+			top: 1rem;
+			right: 1rem;
 			width: 40px;
 			height: 40px;
+		}
+
+		.lightbox-nav-wrap.lightbox-nav-prev {
+			left: 1rem;
+		}
+
+		.lightbox-nav-wrap.lightbox-nav-next {
+			right: 1rem;
 		}
 
 		:global(.lightbox-nav) {
 			width: 40px;
 			height: 40px;
-		}
-
-		:global(.lightbox-nav-prev) {
-			left: 0.5rem;
-		}
-
-		:global(.lightbox-nav-next) {
-			right: 0.5rem;
 		}
 	}
 </style>

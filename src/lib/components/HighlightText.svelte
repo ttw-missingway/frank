@@ -140,19 +140,29 @@
 				if (!textContainer) return;
 				const baseRect = baseLayer.getBoundingClientRect();
 				const containerRect = textContainer.getBoundingClientRect();
-				
-				// Calculate offset from container to base layer
-				const offsetTop = baseRect.top - containerRect.top;
-				const offsetLeft = baseRect.left - containerRect.left;
+
+				// Use padding edge as origin (CSS containing block for absolute is padding edge of positioned ancestor)
+				const cs = getComputedStyle(textContainer);
+				const borderLeft = parseFloat(cs.borderLeftWidth) || 0;
+				const borderTop = parseFloat(cs.borderTopWidth) || 0;
+				const originLeft = containerRect.left + borderLeft;
+				const originTop = containerRect.top + borderTop;
+				const offsetTop = baseRect.top - originTop;
+				const offsetLeft = baseRect.left - originLeft;
 				const width = baseRect.width;
 				const height = baseRect.height;
+				// Round to avoid subpixel misalignment across browsers
+				const topPx = Math.round(offsetTop);
+				const leftPx = Math.round(offsetLeft);
+				const widthPx = Math.round(width);
+				const heightPx = Math.round(height);
 
 				// Position highlight layer to match base layer exactly
 				gsap.set(highlightLayer, {
-					top: `${offsetTop}px`,
-					left: `${offsetLeft}px`,
-					width: `${width}px`,
-					height: `${height}px`,
+					top: `${topPx}px`,
+					left: `${leftPx}px`,
+					width: `${widthPx}px`,
+					height: `${heightPx}px`,
 					right: 'auto',
 					bottom: 'auto'
 				});

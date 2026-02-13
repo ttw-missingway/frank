@@ -410,6 +410,7 @@ export type PackagesDocument<Lang extends string = string> = prismic.PrismicDocu
 >;
 
 type PageDocumentDataSlicesSlice =
+	| ClientWorkGallerySlice
 	| PathwaysHeroSlice
 	| ToolboxAndCapabilitiesSlice
 	| PathwaysCardsSlice

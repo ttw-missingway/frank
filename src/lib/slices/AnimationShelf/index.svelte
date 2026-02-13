@@ -120,7 +120,7 @@
 					class="card absolute"
 					style="transform-style: preserve-3d; left: 50%; top: 50%;"
 				>
-					<div class="rounded-2xl overflow-hidden shadow-lg bg-gray-200 w-[220px] md:w-[260px] aspect-3/4">
+					<div class="rounded-2xl overflow-hidden shadow-lg w-[220px] md:w-[260px] aspect-3/4">
 						{#if image?.url}
 							<PrismicImage
 								field={image}

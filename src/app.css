@@ -509,4 +509,66 @@
 		padding-left: 12px;
 		padding-right: 12px;
 	}
+
+	/* Rich text hero: typography so h1/h2/h3/p font sizes apply (global so they override) */
+	.rich-text-hero .rich-text-hero-content {
+		font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+		color: #ffffe6;
+		text-align: center;
+	}
+	.rich-text-hero .rich-text-hero-content h1 {
+		font-size: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+		line-height: clamp(2rem, 4vw + 1rem, 3rem);
+		font-weight: 400;
+		margin-bottom: 0.5em;
+	}
+	.rich-text-hero .rich-text-hero-content h2 {
+		font-size: clamp(1.5rem, 2.5vw + 1rem, 2rem);
+		line-height: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+		font-weight: 400;
+		margin-bottom: 0.5em;
+	}
+	.rich-text-hero .rich-text-hero-content h3 {
+		font-size: clamp(1.25rem, 2vw + 1rem, 1.5rem);
+		line-height: clamp(1.5rem, 2.5vw + 1rem, 2rem);
+		font-weight: 400;
+		margin-bottom: 0.5em;
+	}
+	.rich-text-hero .rich-text-hero-content p {
+		font-size: clamp(1.25rem, 2.5vw + 1rem, 1.75rem);
+		line-height: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+		margin-bottom: 0.5em;
+	}
+	.rich-text-hero .rich-text-hero-content p:last-child {
+		margin-bottom: 0;
+	}
+
+	/* Rich text default slice: typography for h1/h2/h3/p */
+	.rich-text-default .rich-text-default-content {
+		font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+		text-align: center;
+	}
+	.rich-text-default .rich-text-default-content h1 {
+		font-size: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+		line-height: clamp(2rem, 4vw + 1rem, 3rem);
+		margin-bottom: 0.5em;
+	}
+	.rich-text-default .rich-text-default-content h2 {
+		font-size: clamp(1.5rem, 2.5vw + 1rem, 2rem);
+		line-height: clamp(1.75rem, 3vw + 1rem, 2.5rem);
+		margin-bottom: 0.5em;
+	}
+	.rich-text-default .rich-text-default-content h3 {
+		font-size: clamp(1.25rem, 2vw + 1rem, 1.5rem);
+		line-height: clamp(1.5rem, 2.5vw + 1rem, 2rem);
+		margin-bottom: 0.5em;
+	}
+	.rich-text-default .rich-text-default-content p {
+		font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+		line-height: 1.6;
+		margin-bottom: 0.75em;
+	}
+	.rich-text-default .rich-text-default-content p:last-child {
+		margin-bottom: 0;
+	}
 }

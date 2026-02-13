@@ -60,14 +60,14 @@
 		display: flex;
 		flex-direction: column;
 		width: 220px;
-		height: 280px;
+		height: 300px;
 		flex-shrink: 0;
 		color: #000000;
 		overflow: hidden;
 	}
 
 	.outcome-card-icon {
-		font-size: clamp(4rem, 8vw + 2rem, 7rem); /* Responsive: 64px to 112px */
+		font-size: clamp(3rem, 6vw + 1.5rem, 4.75rem); /* Responsive: 48px to 76px */
 		line-height: 1;
 		color: #000000;
 		font-family: 'Venus+', sans-serif;
@@ -81,7 +81,7 @@
 		flex-direction: column;
 		gap: 0.5rem;
 		margin-top: auto;
-		flex: 0 0 33.333%;
+		flex: 0 0 48%;
 		min-height: 0;
 	}
 
@@ -106,8 +106,8 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		display: -webkit-box;
-		-webkit-line-clamp: 4;
-		line-clamp: 4;
+		-webkit-line-clamp: 5;
+		line-clamp: 5;
 		-webkit-box-orient: vertical;
 		flex: 1;
 		min-height: 0;
@@ -124,12 +124,12 @@
 
 		.outcome-card {
 			width: 260px;
-			height: 330px;
+			height: 360px;
 			padding: 1.5rem 2rem;
 		}
 
 		.outcome-card-icon {
-			font-size: clamp(5rem, 9vw + 2.5rem, 8rem); /* Responsive: 80px to 128px */
+			font-size: clamp(3.5rem, 6.5vw + 1.75rem, 5.25rem); /* Responsive: 56px to 84px */
 		}
 
 		.outcome-card-title {
@@ -138,8 +138,8 @@
 
 		.outcome-card-description {
 			font-size: clamp(0.8125rem, 1.125vw + 0.5625rem, 0.9375rem); /* Responsive: 13px to 15px */
-			-webkit-line-clamp: 5;
-			line-clamp: 5;
+			-webkit-line-clamp: 6;
+			line-clamp: 6;
 		}
 	}
 
@@ -150,12 +150,12 @@
 
 		.outcome-card {
 			width: 300px;
-			height: 380px;
+			height: 400px;
 			padding: 1.75rem 2.25rem;
 		}
 
 		.outcome-card-icon {
-			font-size: clamp(6rem, 10vw + 3rem, 9rem); /* Responsive: 96px to 144px */
+			font-size: clamp(4rem, 7vw + 2rem, 5.75rem); /* Responsive: 64px to 92px */
 		}
 
 		.outcome-card-title {
@@ -164,8 +164,8 @@
 
 		.outcome-card-description {
 			font-size: clamp(0.875rem, 1.25vw + 0.625rem, 1rem); /* Responsive: 14px to 16px */
-			-webkit-line-clamp: 6;
-			line-clamp: 6;
+			-webkit-line-clamp: 7;
+			line-clamp: 7;
 		}
 	}
 </style>

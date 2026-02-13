@@ -1,6 +1,8 @@
 import { createClient } from '$lib/prismicio';
 
-export const prerender = 'auto';
+// Disable prerender so Prismic content is fetched on each request (SSR).
+// With prerender='auto', pages were built once at deploy time and never updated.
+export const prerender = false;
 
 export async function load({ fetch, cookies }) {
 	const client = createClient({ fetch, cookies });
