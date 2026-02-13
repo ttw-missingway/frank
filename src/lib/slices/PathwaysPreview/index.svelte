@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
+	import { isFilled } from '@prismicio/client';
 	import type { SliceComponentProps } from '@prismicio/svelte';
 	import { PrismicLink } from '@prismicio/svelte';
 	import { onMount } from 'svelte';
@@ -11,41 +12,12 @@
 
 	gsap.registerPlugin(Flip, ScrollTrigger);
 
-	let pathways: {
-		title: string;
-		subtitle: string;
-		before_text: string;
-		after_text: string;
-	}[] = $state([
-		{
-			title: 'Scale',
-			subtitle: 'Brand Building',
-			before_text: "We can't be in two places at once.",
-			after_text: 'After Text 1'
-		},
-		{
-			title: 'Differentiate',
-			subtitle: 'Value-market fit',
-			before_text: 'No one understands why we matter. Value-market fit',
-			after_text: 'After Text 2'
-		},
-		{
-			title: 'Reposition',
-			subtitle: 'elevate, pivot',
-			before_text: "We've outgrown our old story, image, or market perception.",
-			after_text: 'After Text 3'
-		},
-		{
-			title: 'Attract',
-			subtitle: 'acquire, merge, exit, ipo',
-			before_text: "We're entering a high-stakes moment that requires clear confidence.",
-			after_text: 'After Text 4'
-		}
-	]);
-
 	type Props = SliceComponentProps<Content.PathwaysSlice>;
 
 	const { slice }: Props = $props();
+
+	// Pathways from Prismic (super text 1, 2, 3, 4 is always index + 1, not from CMS)
+	let pathways = $derived(slice.primary.pathways ?? []);
 
 	let hoveredIndex: number = $state(-1);
 	let previousHoveredIndex: number = $state(-1);
@@ -145,11 +117,11 @@
 	function setAllCardsToWhite() {
 		pathways.forEach((_, index) => {
 			if (numberElements[index]) {
-				gsap.to(numberElements[index], { color: '#ffffff', duration: 0.3, ease: 'power2.out' });
+				gsap.to(numberElements[index], { color: '#FFFFE6', duration: 0.3, ease: 'power2.out' });
 			}
 			if (titleElements[index]) {
 				gsap.to(titleElements[index], { 
-					color: '#ffffff', 
+					color: '#FFFFE6', 
 					x: 0,
 					duration: 0.3, 
 					ease: 'power2.out' 
@@ -157,14 +129,14 @@
 			}
 			if (subtitleElements[index]) {
 				gsap.to(subtitleElements[index], { 
-					color: '#ffffff', 
+					color: '#FFFFE6', 
 					x: 0,
 					duration: 0.3, 
 					ease: 'power2.out' 
 				});
 			}
 			if (descriptionElements[index]) {
-				gsap.to(descriptionElements[index], { color: '#ffffff', duration: 0.3, ease: 'power2.out' });
+				gsap.to(descriptionElements[index], { color: '#FFFFE6', duration: 0.3, ease: 'power2.out' });
 			}
 			if (arrowElements[index]) {
 				gsap.to(arrowElements[index], {
@@ -192,16 +164,16 @@
 		
 		// Initialize all text elements to white
 		numberElements.forEach((el) => {
-			if (el) gsap.set(el, { color: '#ffffff' });
+			if (el) gsap.set(el, { color: '#FFFFE6' });
 		});
 		titleElements.forEach((el) => {
-			if (el) gsap.set(el, { color: '#ffffff', x: 0 });
+			if (el) gsap.set(el, { color: '#FFFFE6', x: 0 });
 		});
 		subtitleElements.forEach((el) => {
-			if (el) gsap.set(el, { color: '#ffffff', x: 0 });
+			if (el) gsap.set(el, { color: '#FFFFE6', x: 0 });
 		});
 		descriptionElements.forEach((el) => {
-			if (el) gsap.set(el, { color: '#ffffff' });
+			if (el) gsap.set(el, { color: '#FFFFE6' });
 		});
 	}
 
@@ -403,7 +375,7 @@
 	bind:this={sectionElement}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white py-16 md:py-24"
+	class="bg-black text-[#FFFFE6] py-16 md:py-24"
 >
 	<div class="container px-6 md:px-12">
 		{#if slice.primary.eyebrow_text}
@@ -438,9 +410,8 @@
 					{#if pathway}
 						<div
 							bind:this={cardElements[index]}
-							class="relative pt-4 pb-3 px-4 rounded-xl bg-transparent cursor-pointer z-1 md:py-6"
-							role="button"
-							tabindex="0"
+							class="relative pt-4 pb-3 px-4 rounded-xl bg-transparent z-1 md:py-6 {isFilled.link(pathway.link) ? 'cursor-pointer' : 'cursor-default'}"
+							role="presentation"
 							onmouseenter={() => {
 								hoveredIndex = index;
 							}}
@@ -448,12 +419,19 @@
 								hoveredIndex = -1;
 							}}
 						>
+							{#if isFilled.link(pathway.link)}
+								<PrismicLink
+									field={pathway.link}
+									class="absolute inset-0 z-10 no-underline text-inherit"
+									aria-hidden="true"
+								/>
+							{/if}
 							<!-- Mobile: stack vertically, tight spacing, no arrow. Desktop: row with title block, description, arrow -->
 							<div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-12 relative">
 								<div class="flex items-start gap-3 md:gap-4 shrink-0 md:w-[320px]">
 									<span
 										bind:this={numberElements[index]}
-										class="text-white text-base leading-[1.2] md:text-xl"
+										class="text-[#FFFFE6] text-base leading-[1.2] md:text-xl"
 										style="font-family: 'Venus+', sans-serif;"
 									>
 										{index + 1}
@@ -461,7 +439,7 @@
 									<div class="flex flex-col gap-1 min-w-0">
 										<h3
 											bind:this={titleElements[index]}
-											class="text-white text-3xl font-normal leading-[1.2] m-0 md:text-[2.5rem]"
+											class="text-[#FFFFE6] text-3xl font-normal leading-[1.2] m-0 md:text-[2.5rem]"
 											style="font-family: 'Auge Trial', sans-serif;"
 										>
 											{pathway.title}
@@ -469,7 +447,7 @@
 										{#if pathway.subtitle}
 											<p
 												bind:this={subtitleElements[index]}
-												class="text-white text-sm font-normal uppercase tracking-[0.05em] leading-[1.4] m-0 opacity-90"
+												class="text-[#FFFFE6] text-sm font-normal uppercase tracking-[0.05em] leading-[1.4] m-0 opacity-90"
 												style="font-family: 'ClashDisplay Variable', sans-serif;"
 											>
 												{pathway.subtitle}
@@ -477,16 +455,16 @@
 										{/if}
 									</div>
 								</div>
-								{#if pathway.before_text}
+								{#if pathway.description}
 									<p
 										bind:this={descriptionElements[index]}
-										class="text-white text-base font-normal leading-normal m-0 min-w-0 md:flex-1"
+										class="text-[#FFFFE6] text-base font-normal leading-normal m-0 min-w-0 md:flex-1"
 										style="font-family: 'Manrope', sans-serif;"
 									>
-										{pathway.before_text}
+										{pathway.description}
 									</p>
 								{/if}
-								<div bind:this={arrowElements[index]} class="hidden shrink-0 md:block md:ml-auto">
+								<div bind:this={arrowElements[index]} class="hidden shrink-0 md:block md:ml-auto relative z-20">
 									<svg
 										width="48"
 										height="48"

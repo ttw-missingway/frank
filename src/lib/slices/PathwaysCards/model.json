@@ -32,28 +32,43 @@
             "label": "Pathways",
             "repeat": true,
             "fields": {
-              "pathway": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": ""
+                }
+              },
+              "subtitle": {
+                "type": "Text",
+                "config": {
+                  "label": "Subtitle",
+                  "placeholder": ""
+                }
+              },
+              "before_text": {
+                "type": "Text",
+                "config": {
+                  "label": "Before Text",
+                  "placeholder": ""
+                }
+              },
+              "after_text": {
+                "type": "Text",
+                "config": {
+                  "label": "After Text",
+                  "placeholder": ""
+                }
+              },
+              "link": {
                 "type": "Link",
                 "config": {
-                  "label": "Pathway",
-                  "select": "document",
-                  "repeat": false,
-                  "customtypes": [
-                    {
-                      "id": "pathways",
-                      "fields": [
-                        {
-                          "id": "pathway",
-                          "fields": [
-                            "title",
-                            "subtitle",
-                            "before_text",
-                            "after_text"
-                          ]
-                        }
-                      ]
-                    }
-                  ]
+                  "label": "Link",
+                  "placeholder": "",
+                  "select": null,
+                  "allowTargetBlank": true,
+                  "allowText": true,
+                  "repeat": false
                 }
               }
             }

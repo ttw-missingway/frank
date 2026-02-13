@@ -27,7 +27,7 @@
 </svelte:head>
 
 <PageTransition />
-<main class="bg-black text-white relative">
+<main class="bg-black text-[#FFFFE6] relative">
 	<Header settings={data.settings} />
 	{@render children()}
 	<Footer settings={data.settings} />

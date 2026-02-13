@@ -47,6 +47,14 @@
 					"constraint": {},
 					"thumbnails": []
 				}
+			},
+			"footer_logo": {
+				"type": "Image",
+				"config": {
+					"label": "Footer Logo",
+					"constraint": {},
+					"thumbnails": []
+				}
 			}
 		}
 	}

@@ -194,7 +194,7 @@
 	bind:this={sectionElement}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white py-12 md:py-16"
+	class="bg-black text-[#FFFFE6] py-12 md:py-16"
 >
 	<div class="container px-6 md:px-12 mb-8 md:mb-12">
 		{#if slice.primary.eyebrow_text}

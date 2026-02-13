@@ -27,7 +27,7 @@
 >
 	<div class="flex justify-between items-center py-6 md:py-8 lg:py-10 container">
 		<!-- Logo -->
-		<Logo />
+		<Logo logo={settings?.data?.logo} />
 
 		<!-- Hamburger menu button -->
 		<Button

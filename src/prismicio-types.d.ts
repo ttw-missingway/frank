@@ -670,6 +670,17 @@ interface SettingsDocumentData {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	logo: prismic.ImageField<never>;
+
+	/**
+	 * Footer Logo field in *Settings*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: settings.footer_logo
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	footer_logo: prismic.ImageField<never>;
 }
 
 /**
@@ -2134,16 +2145,44 @@ export type PackagesSlice = prismic.SharedSlice<'packages', PackagesSliceVariati
  */
 export interface PathwaysSliceDefaultPrimaryPathwaysItem {
 	/**
-	 * Pathway field in *PathwaysPreview → Default → Primary → Pathways*
+	 * Title field in *PathwaysPreview → Default → Primary → Pathways*
 	 *
-	 * - **Field Type**: Content Relationship
+	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pathways.default.primary.pathways[].pathway
-	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 * - **API ID Path**: pathways.default.primary.pathways[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	pathway: ContentRelationshipFieldWithData<
-		[{ id: 'pathways'; fields: [{ id: 'pathway'; fields: ['title', 'preview_text', 'subtitle'] }] }]
-	>;
+	title: prismic.KeyTextField;
+
+	/**
+	 * Subtitle field in *PathwaysPreview → Default → Primary → Pathways*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pathways.default.primary.pathways[].subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subtitle: prismic.KeyTextField;
+
+	/**
+	 * Description field in *PathwaysPreview → Default → Primary → Pathways*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pathways.default.primary.pathways[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	description: prismic.KeyTextField;
+
+	/**
+	 * Link field in *PathwaysPreview → Default → Primary → Pathways*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pathways.default.primary.pathways[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**
@@ -2213,21 +2252,54 @@ export type PathwaysSlice = prismic.SharedSlice<'pathways', PathwaysSliceVariati
  */
 export interface PathwaysCardsSliceDefaultPrimaryPathwaysItem {
 	/**
-	 * Pathway field in *PathwaysCards → Default → Primary → Pathways*
+	 * Title field in *PathwaysCards → Default → Primary → Pathways*
 	 *
-	 * - **Field Type**: Content Relationship
+	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: pathways_cards.default.primary.pathways[].pathway
-	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+	 * - **API ID Path**: pathways_cards.default.primary.pathways[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
-	pathway: ContentRelationshipFieldWithData<
-		[
-			{
-				id: 'pathways';
-				fields: [{ id: 'pathway'; fields: ['title', 'subtitle', 'before_text', 'after_text'] }];
-			}
-		]
-	>;
+	title: prismic.KeyTextField;
+
+	/**
+	 * Subtitle field in *PathwaysCards → Default → Primary → Pathways*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pathways_cards.default.primary.pathways[].subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subtitle: prismic.KeyTextField;
+
+	/**
+	 * Before Text field in *PathwaysCards → Default → Primary → Pathways*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pathways_cards.default.primary.pathways[].before_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	before_text: prismic.KeyTextField;
+
+	/**
+	 * After Text field in *PathwaysCards → Default → Primary → Pathways*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pathways_cards.default.primary.pathways[].after_text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	after_text: prismic.KeyTextField;
+
+	/**
+	 * Link field in *PathwaysCards → Default → Primary → Pathways*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: pathways_cards.default.primary.pathways[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 }
 
 /**

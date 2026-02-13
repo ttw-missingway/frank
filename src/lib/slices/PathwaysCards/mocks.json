@@ -10,13 +10,46 @@
 						"__TYPE__": "GroupItemContent",
 						"value": [
 							[
-								"pathway",
+								"title",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "freedom",
+									"type": "Text"
+								}
+							],
+							[
+								"subtitle",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "took",
+									"type": "Text"
+								}
+							],
+							[
+								"before_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "shout",
+									"type": "Text"
+								}
+							],
+							[
+								"after_text",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "wear",
+									"type": "Text"
+								}
+							],
+							[
+								"link",
 								{
 									"__TYPE__": "LinkContent",
-									"key": "04a57c72-6dbe-46e1-9f01-b7921161470e",
+									"key": "e5266d58-f81a-465d-910f-f06cf66723bf",
 									"value": {
-										"__TYPE__": "DocumentLink",
-										"id": "mock_document_id"
+										"__TYPE__": "ExternalLink",
+										"url": "https://slicemachine.dev",
+										"text": "duck"
 									}
 								}
 							]

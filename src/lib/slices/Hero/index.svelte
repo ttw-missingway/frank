@@ -365,7 +365,7 @@
 	bind:this={heroSection}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="min-h-[200vh] bg-black text-white flex flex-col relative container overflow-visible"
+	class="min-h-[200vh] bg-black text-[#FFFFE6] flex flex-col relative container overflow-visible"
 >
 	<!-- State 1: Lincoln Quote with Pills (Top Section) -->
 	<div

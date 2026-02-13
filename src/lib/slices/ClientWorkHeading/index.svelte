@@ -10,7 +10,7 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white py-16 md:py-24"
+	class="bg-black text-[#FFFFE6] py-16 md:py-24"
 >
 	<div class="container px-6 md:px-12">
 		<div class="flex flex-col items-center justify-center min-h-[60vh]">
@@ -21,7 +21,7 @@
 
 			<!-- Client Name -->
 			{#if slice.primary.client_name && 'data' in slice.primary.client_name && slice.primary.client_name.data?.client_name}
-				<h1 class="text-white text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-8 md:mb-12">
+				<h1 class="text-[#FFFFE6] text-4xl md:text-6xl lg:text-7xl font-bold text-center mb-8 md:mb-12">
 					{slice.primary.client_name.data.client_name}
 				</h1>
 			{/if}

@@ -18,7 +18,7 @@
 			<p class="text-gray-400 text-sm md:text-base mb-2">{slice.primary.eyebrow_text}</p>
 		{/if}
 		{#if slice.primary.heading}
-			<h2 class="text-white text-4xl md:text-5xl lg:text-6xl font-normal">
+			<h2 class="text-[#FFFFE6] text-4xl md:text-5xl lg:text-6xl font-normal">
 				{slice.primary.heading}
 			</h2>
 		{/if}

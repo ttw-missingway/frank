@@ -637,14 +637,14 @@
 	>
 		<div
 			bind:this={backgroundBlack}
-			class="background-black absolute top-0 left-0 w-full h-full bg-black z-10 outline-1 outline-white"
+			class="background-black absolute top-0 left-0 w-full h-full bg-black z-10 outline-1 outline-[#FFFFE6]"
 		></div>
 
 		<!-- Kinetic typography background layer (matching CodePen structure) -->
 		<div
 			bind:this={kineticTypeContainer}
 			id="kinetic-type"
-			class="absolute inset-0 z-[15] pointer-events-none font-auge text-white text-9xl font-black"
+			class="absolute inset-0 z-[15] pointer-events-none font-auge text-[#FFFFE6] text-9xl font-black"
 			style="display: grid; grid-template-columns: 1fr; gap: 0; place-items: center; transform-origin: center center; opacity: 1; visibility: visible;"
 		>
 			<!-- Type lines will be created dynamically in onMount -->
@@ -679,12 +679,12 @@
 		<div bind:this={topBar} class="fixed top-0 left-0 right-0 z-30">
 			<div class="flex justify-between items-center py-6 md:py-8 lg:py-10 container">
 				<!-- Logo -->
-				<Logo onClick={onClose} class="cursor-pointer relative" />
+				<Logo logo={settings?.data?.logo} onClick={onClose} class="cursor-pointer relative" />
 
 				<!-- Close button -->
 				<Button
 					on:click={onClose}
-					class="text-white hover:opacity-80 transition-opacity focus:outline-none p-2 relative cursor-pointer"
+					class="text-[#FFFFE6] hover:opacity-80 transition-opacity focus:outline-none p-2 relative cursor-pointer"
 					aria-label="Close menu"
 					type="button"
 					hoverEffect={false}
@@ -733,7 +733,7 @@
 						{/each}
 					{:else}
 						<!-- Debug: Show if no links -->
-						<div class="text-white/50 text-sm">No navigation links found in settings</div>
+						<div class="text-[#FFFFE6]/50 text-sm">No navigation links found in settings</div>
 					{/if}
 				</nav>
 			</div>
@@ -747,13 +747,13 @@
 							bind:value={emailValue}
 							type="email"
 							placeholder="Your email"
-							class="w-full bg-transparent border-0 border-b border-white/30 text-white placeholder:text-white/50 focus:outline-none focus:border-white/60 transition-colors pb-2 text-base md:text-lg font-manrope"
+							class="w-full bg-transparent border-0 border-b border-[#FFFFE6]/30 text-[#FFFFE6] placeholder:text-[#FFFFE6]/50 focus:outline-none focus:border-[#FFFFE6]/60 transition-colors pb-2 text-base md:text-lg font-manrope"
 							required
 						/>
 					</div>
 					<Button
 						type="submit"
-						class="text-white/60 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 rounded p-2 flex-shrink-0"
+						class="text-[#FFFFE6]/60 hover:text-[#FFFFE6] transition-colors focus:outline-none focus:ring-2 focus:ring-[#FFFFE6]/50 rounded p-2 flex-shrink-0"
 						aria-label="Submit email"
 					>
 						<svg

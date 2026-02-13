@@ -5,12 +5,12 @@
 		"primary": {
 			"eyebrow_text": {
 				"__TYPE__": "FieldContent",
-				"value": "mile",
+				"value": "Pathways",
 				"type": "Text"
 			},
 			"copy": {
 				"__TYPE__": "FieldContent",
-				"value": "came",
+				"value": "Where we can help",
 				"type": "Text"
 			},
 			"pathways": {
@@ -19,17 +19,37 @@
 					{
 						"__TYPE__": "GroupItemContent",
 						"value": [
-							[
-								"pathway",
-								{
-									"__TYPE__": "LinkContent",
-									"key": "59b33f93-b47d-44f5-8e80-c68e566af3e7",
-									"value": {
-										"__TYPE__": "DocumentLink",
-										"id": "mock_document_id"
-									}
-								}
-							]
+							["title", { "__TYPE__": "FieldContent", "value": "Scale", "type": "Text" }],
+							["subtitle", { "__TYPE__": "FieldContent", "value": "Brand Building", "type": "Text" }],
+							["description", { "__TYPE__": "FieldContent", "value": "We can't be in two places at once.", "type": "Text" }],
+							["link", { "__TYPE__": "LinkContent", "value": { "__TYPE__": "EmptyLink" } }]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							["title", { "__TYPE__": "FieldContent", "value": "Differentiate", "type": "Text" }],
+							["subtitle", { "__TYPE__": "FieldContent", "value": "Value-market fit", "type": "Text" }],
+							["description", { "__TYPE__": "FieldContent", "value": "No one understands why we matter. Value-market fit", "type": "Text" }],
+							["link", { "__TYPE__": "LinkContent", "key": "8b52e51b-c3b3-4b11-ba07-7bcf71cab829", "value": { "__TYPE__": "ExternalLink", "url": "https://slicemachine.dev", "text": null } }]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							["title", { "__TYPE__": "FieldContent", "value": "Reposition", "type": "Text" }],
+							["subtitle", { "__TYPE__": "FieldContent", "value": "Elevate, pivot", "type": "Text" }],
+							["description", { "__TYPE__": "FieldContent", "value": "We've outgrown our old story, image, or market perception.", "type": "Text" }],
+							["link", { "__TYPE__": "LinkContent", "value": { "__TYPE__": "EmptyLink" } }]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							["title", { "__TYPE__": "FieldContent", "value": "Attract", "type": "Text" }],
+							["subtitle", { "__TYPE__": "FieldContent", "value": "Acquire, merge, exit, IPO", "type": "Text" }],
+							["description", { "__TYPE__": "FieldContent", "value": "We're entering a high-stakes moment that requires clear confidence.", "type": "Text" }],
+							["link", { "__TYPE__": "LinkContent", "value": { "__TYPE__": "EmptyLink" } }]
 						]
 					}
 				]

@@ -11,11 +11,11 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white py-12 md:py-16"
+	class="bg-black text-[#FFFFE6] py-12 md:py-16"
 >
 	<div class="container px-6 md:px-12">
 		{#if slice.primary.heading}
-			<h2 class="text-white text-3xl md:text-4xl lg:text-5xl font-normal text-center mb-8 md:mb-12">
+			<h2 class="text-[#FFFFE6] text-3xl md:text-4xl lg:text-5xl font-normal text-center mb-8 md:mb-12">
 				{slice.primary.heading}
 			</h2>
 		{/if}

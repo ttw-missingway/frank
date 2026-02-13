@@ -24,7 +24,7 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white py-12 md:py-16"
+	class="bg-black text-[#FFFFE6] py-12 md:py-16"
 >
 	<div class="container px-6 md:px-12">
 		<h2 class="pathway-heading">Pathway</h2>
@@ -85,7 +85,7 @@
 	.pathway-heading {
 		font-size: 1.5rem;
 		font-weight: 400;
-		color: white;
+		color: #FFFFE6;
 		margin: 0 0 1.5rem 0;
 	}
 
@@ -127,14 +127,14 @@
 	.pathway-number {
 		font-size: 1.5rem;
 		font-weight: 400;
-		color: white;
+		color: #FFFFE6;
 		line-height: 1;
 	}
 
 	.pathway-title {
 		font-size: 1.5rem;
 		font-weight: 700;
-		color: white;
+		color: #FFFFE6;
 		margin: 0;
 		line-height: 1.3;
 	}
@@ -160,7 +160,7 @@
 
 	.pathway-description {
 		font-size: 1rem;
-		color: white;
+		color: #FFFFE6;
 		margin: 0;
 		line-height: 1.6;
 	}

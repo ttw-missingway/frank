@@ -6,7 +6,7 @@
 </script>
 
 <div class="container px-6 md:px-12 py-12 md:py-16 mt-[224px]">
-	<h1 class="text-white text-4xl md:text-5xl lg:text-6xl font-normal mb-12">
+	<h1 class="text-[#FFFFE6] text-4xl md:text-5xl lg:text-6xl font-normal mb-12">
 		Work
 	</h1>
 

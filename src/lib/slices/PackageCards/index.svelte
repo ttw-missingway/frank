@@ -17,7 +17,7 @@
 			<div class="flex flex-wrap items-stretch justify-around gap-5">
 				{#each slice.primary.packages as packageItem}
 					<div
-						class="flex h-[220px] w-[220px] flex-col items-center justify-center rounded-lg bg-white py-5 px-6 text-black md:h-[260px] md:w-[260px] md:py-6 md:px-8 lg:h-[300px] lg:w-[300px] lg:py-7 lg:px-9"
+						class="flex h-[220px] w-[220px] flex-col items-center justify-center rounded-lg bg-[#FFFFE6] py-5 px-6 text-black md:h-[260px] md:w-[260px] md:py-6 md:px-8 lg:h-[300px] lg:w-[300px] lg:py-7 lg:px-9"
 					>
 						{#if packageItem.eyebrow_text}
 							<div

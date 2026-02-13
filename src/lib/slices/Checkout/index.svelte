@@ -57,7 +57,7 @@
 <section 
 	data-slice-type={slice.slice_type} 
 	data-slice-variation={slice.variation}
-	class="bg-black text-white py-12 md:py-20 px-6 md:px-8"
+	class="bg-black text-[#FFFFE6] py-12 md:py-20 px-6 md:px-8"
 >
 	<div class="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
 		<!-- Left Card -->
@@ -152,7 +152,7 @@
 				{#if slice.primary.docusign_button_text}
 					<Button
 						type="button"
-						class="bg-white border-2 border-black text-black px-6 py-2 text-sm md:text-base font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
+						class="bg-[#FFFFE6] border-2 border-black text-black px-6 py-2 text-sm md:text-base font-medium hover:bg-gray-100 transition-colors whitespace-nowrap"
 					>
 						{slice.primary.docusign_button_text}
 					</Button>
@@ -161,7 +161,7 @@
 				{#if slice.primary.pay_button_text}
 					<Button
 						type="button"
-						class="bg-blue-600 text-white px-6 py-2 text-sm md:text-base font-medium hover:bg-blue-700 transition-colors whitespace-nowrap"
+						class="bg-blue-600 text-[#FFFFE6] px-6 py-2 text-sm md:text-base font-medium hover:bg-blue-700 transition-colors whitespace-nowrap"
 					>
 						{slice.primary.pay_button_text}
 					</Button>

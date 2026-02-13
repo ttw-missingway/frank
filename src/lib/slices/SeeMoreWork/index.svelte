@@ -64,8 +64,8 @@
 		>
 			See more work
 			<span
-				class="absolute bottom-0 left-0 w-full h-px bg-white"
-				style="background-color: #FFFFFF;"
+				class="absolute bottom-0 left-0 w-full h-px bg-[#FFFFE6]"
+				style="background-color: #FFFFE6;"
 			></span>
 		</a>
 	</div>

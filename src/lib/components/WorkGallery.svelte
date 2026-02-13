@@ -272,7 +272,7 @@
 		padding-right: 0.5em;
 		font-size: clamp(1.5rem, 2vw, 4rem);
 		font-weight: 800;
-		color: white;
+		color: #FFFFE6;
 		text-transform: uppercase;
 		letter-spacing: 0.02em;
 	}

@@ -6,6 +6,7 @@
 	type SettingsWithLogo = SettingsDocument & {
 		data: SettingsDocument['data'] & {
 			logo?: ImageField;
+			footer_logo?: ImageField;
 		};
 	};
 
@@ -16,19 +17,24 @@
 	const { settings = null }: Props = $props();
 </script>
 
-<footer class="bg-black text-white relative container py-8 md:py-12 lg:py-16">
+<footer class="bg-black text-[#FFFFE6] relative container py-8 md:py-12 lg:py-16">
 	<!-- Top Section: Brand and Navigation -->
 	<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 sm:gap-8 pb-8 md:pb-12 relative">
 		<!-- Brand Name -->
 		<a
 			href="/"
-			class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal m-0 text-white leading-tight hover:text-[#CFF602] transition-colors duration-600 cursor-pointer"
+			class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-normal m-0 text-[#FFFFE6] leading-tight hover:text-[#CFF602] transition-colors duration-600 cursor-pointer"
 			style="font-family: 'Auge Trial', sans-serif;"
 		>
-			{#if settings?.data?.logo}
+			{#if settings?.data?.footer_logo}
+				<PrismicImage
+					field={settings.data.footer_logo}
+					class="w-auto h-8 sm:h-10 md:h-14 lg:h-20 xl:h-30 object-contain"
+				/>
+			{:else if settings?.data?.logo}
 				<PrismicImage
 					field={settings.data.logo}
-					class="w-auto h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 object-contain"
+					class="w-auto h-8 sm:h-10 md:h-14 lg:h-20 xl:h-30 object-contain"
 				/>
 			{:else}
 				FRANK
@@ -45,19 +51,19 @@
 
 		<div class="flex flex-row items-center gap-4 sm:gap-8 md:gap-12 lg:gap-16 flex-wrap">
 			<a
-				class="formal-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal m-0 text-white leading-tight hover:text-[#CFF602] transition-colors duration-600"
+				class="formal-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal m-0 text-[#FFFFE6] leading-tight hover:text-[#CFF602] transition-colors duration-600"
 				href="/work"
 			>
 				Work
 			</a>
 			<a
-				class="formal-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal m-0 text-white leading-tight hover:text-[#CFF602] transition-colors duration-600"
+				class="formal-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal m-0 text-[#FFFFE6] leading-tight hover:text-[#CFF602] transition-colors duration-600"
 				href="/pathways"
 			>
 				Pathways
 			</a>
 			<a
-				class="formal-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal m-0 text-white leading-tight hover:text-[#CFF602] transition-colors duration-600"
+				class="formal-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-normal m-0 text-[#FFFFE6] leading-tight hover:text-[#CFF602] transition-colors duration-600"
 				href="/studio"
 			>
 				Studio
@@ -74,28 +80,28 @@
 				<div class="flex flex-col gap-4 md:gap-6">
 					<div class="flex flex-col gap-2">
 						<p
-							class="text-sm sm:text-base font-normal text-white m-0 leading-normal"
+							class="text-sm sm:text-base font-normal text-[#FFFFE6] m-0 leading-normal"
 							style="font-family: 'Venus+', sans-serif;"
 						>
 							New Business
 						</p>
 						<a
 							href="mailto:business@frankyou.com"
-							class="text-sm sm:text-base font-normal text-white underline transition-opacity duration-200 hover:opacity-80 break-all"
+							class="text-sm sm:text-base font-normal text-[#FFFFE6] underline transition-opacity duration-200 hover:opacity-80 break-all"
 							style="font-family: 'Venus+', sans-serif;">business@frankyou.com</a
 						>
 					</div>
 
 					<div class="flex flex-col gap-2">
 						<p
-							class="text-sm sm:text-base font-normal text-white m-0 leading-normal"
+							class="text-sm sm:text-base font-normal text-[#FFFFE6] m-0 leading-normal"
 							style="font-family: 'Venus+', sans-serif;"
 						>
 							Other Inquiries
 						</p>
 						<a
 							href="mailto:hello@frankyou.com"
-							class="text-sm sm:text-base font-normal text-white underline transition-opacity duration-200 hover:opacity-80 break-all"
+							class="text-sm sm:text-base font-normal text-[#FFFFE6] underline transition-opacity duration-200 hover:opacity-80 break-all"
 							style="font-family: 'Venus+', sans-serif;">hello@frankyou.com</a
 						>
 					</div>

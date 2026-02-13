@@ -108,7 +108,7 @@
 	bind:this={sectionElement}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white container py-12 md:py-16"
+	class="bg-black text-[#FFFFE6] container py-12 md:py-16"
 >
 	<div class="min-h-screen w-full flex flex-col justify-start items-center gap-4">
 		{#if slice.primary.heading}
@@ -165,11 +165,11 @@
 						class="absolute inset-0 flex items-center justify-center gap-2 z-10"
 					>
 						<span
-							class="text-white font-auge font-semibold"
+							class="text-[#FFFFE6] font-auge font-semibold"
 							style="font-size: clamp(4rem, 12vw + 2rem, 8.75rem);">22M</span
 						>
 						<span
-							class="text-white font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
+							class="text-[#FFFFE6] font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
 							style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); line-height: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);"
 						>
 							YouTube uploads daily
@@ -180,11 +180,11 @@
 						class="absolute inset-0 flex items-center justify-center gap-2 z-10"
 					>
 						<span
-							class="text-white font-auge font-semibold"
+							class="text-[#FFFFE6] font-auge font-semibold"
 							style="font-size: clamp(4rem, 12vw + 2rem, 8.75rem);">34M</span
 						>
 						<span
-							class="text-white font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
+							class="text-[#FFFFE6] font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
 							style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); line-height: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);"
 						>
 							Tik Tok uploads daily</span
@@ -196,7 +196,7 @@
 	</div>
 </section>
 <!-- Second pinned section -->
-<section bind:this={secondSectionElement} class=" text-white container relative mb-[20vh]">
+<section bind:this={secondSectionElement} class=" text-[#FFFFE6] container relative mb-[20vh]">
 	<div class="w-full flex flex-col justify-center items-center gap-4">
 		<!-- Add your second section content here -->
 		<div bind:this={animationFrameElement3} class="flex items-start justify-center z-30">
@@ -206,13 +206,13 @@
 				class="absolute inset-0 flex flex-col items-start justify-center z-10 pl-[var(--stat-block-padding,1.5rem)]"
 			>
 				<span
-					class="text-white font-manrope font-medium not-italic leading-tight"
+					class="text-[#FFFFE6] font-manrope font-medium not-italic leading-tight"
 					style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem);"
 				>
 					Domains registered daily
 				</span>
 				<span
-					class="text-white font-auge font-semibold leading-none"
+					class="text-[#FFFFE6] font-auge font-semibold leading-none"
 					style="font-size: clamp(4rem, 12vw + 2rem, 8.75rem);">200K+</span
 				>
 			</div>
@@ -221,11 +221,11 @@
 				class="absolute inset-0 flex items-center justify-center gap-2 z-10"
 			>
 				<span
-					class="text-white font-auge font-semibold"
+					class="text-[#FFFFE6] font-auge font-semibold"
 					style="font-size: clamp(4rem, 12vw + 2rem, 8.75rem);">2400</span
 				>
 				<span
-					class="text-white font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
+					class="text-[#FFFFE6] font-manrope font-medium not-italic text-wrap whitespace-pre-line max-w-[80px]"
 					style="font-size: clamp(0.875rem, 1vw + 0.5rem, 1rem); line-height: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);"
 				>
 					Apps launched daily</span

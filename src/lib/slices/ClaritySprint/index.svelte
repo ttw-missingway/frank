@@ -216,7 +216,7 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white min-h-screen flex flex-col justify-center items-center px-6 md:px-8 py-20 md:py-32"
+	class="bg-black text-[#FFFFE6] min-h-screen flex flex-col justify-center items-center px-6 md:px-8 py-20 md:py-32"
 >
 	<div class="w-full max-w-4xl flex flex-col items-center gap-8 md:gap-12">
 		<!-- Lead-in Text (Philosophical Statement) -->
@@ -276,7 +276,7 @@
 				<div class="flex flex-col gap-3">
 					{#each bulletColumns[0] as item}
 						{#if item.bullet_point}
-							<div class="bullet-item flex items-start gap-3 pb-3 border-b border-white/20 last:border-b-0 last:pb-0">
+							<div class="bullet-item flex items-start gap-3 pb-3 border-b border-[#FFFFE6]/20 last:border-b-0 last:pb-0">
 								<img src="/icons/Check.svg" alt="Checkmark" class="w-5 h-5" />
 								<span class="text-[#FFFFE6] text-2xl font-light font-auge leading-8 tracking-wide">{item.bullet_point}</span>
 							</div>
@@ -286,7 +286,7 @@
 				<div class="flex flex-col gap-3">
 					{#each bulletColumns[1] as item}
 						{#if item.bullet_point}
-							<div class="bullet-item flex items-start gap-3 pb-3 border-b border-white/20 last:border-b-0 last:pb-0">
+							<div class="bullet-item flex items-start gap-3 pb-3 border-b border-[#FFFFE6]/20 last:border-b-0 last:pb-0">
 								<img src="/icons/Check.svg" alt="Checkmark" class="w-5 h-5" />
 								<span class="text-[#FFFFE6] text-2xl font-light font-auge leading-8 tracking-wide">{item.bullet_point}</span>
 							</div>
@@ -348,7 +348,7 @@
 
 		<!-- Disclaimer -->
 		{#if slice.primary.disclaimer_text}
-			<p bind:this={disclaimer} class="text-xs md:text-sm text-center text-white/70 mt-4 font-manrope">
+			<p bind:this={disclaimer} class="text-xs md:text-sm text-center text-[#FFFFE6]/70 mt-4 font-manrope">
 				{slice.primary.disclaimer_text}
 			</p>
 		{/if}

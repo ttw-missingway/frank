@@ -36,7 +36,7 @@
 	}: Props = $props();
 
 	// Set default colors based on mode if not explicitly provided
-	const resolvedBaseColor = baseColor ?? (mode === 'light' ? '#ffffff' : '#595959');
+	const resolvedBaseColor = baseColor ?? (mode === 'light' ? '#FFFFE6' : '#595959');
 	const resolvedHighlightColor = highlightColor ?? (mode === 'light' ? '#1e1e1e' : '#ffffe6');
 
 	let textContainer: HTMLElement | undefined = $state();

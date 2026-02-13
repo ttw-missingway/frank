@@ -42,7 +42,7 @@
 	.capabilities-content {
 		font-family:
 			-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-		color: white;
+		color: #FFFFE6;
 	}
 
 	.capabilities-content :global(h1),
@@ -53,7 +53,7 @@
 		line-height: clamp(1.5rem, 2vw + 0.75rem, 1.75rem); /* Responsive: 24px to 28px */
 		margin-top: 2rem;
 		margin-bottom: 1rem;
-		color: white;
+		color: #FFFFE6;
 	}
 
 	.capabilities-content :global(h1:first-child),
@@ -88,7 +88,7 @@
 
 	.capabilities-content :global(li) {
 		margin-bottom: 0.5rem;
-		color: white;
+		color: #FFFFE6;
 		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-weight: 600; /* font-semibold */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
@@ -99,7 +99,7 @@
 
 	.capabilities-content :global(p) {
 		margin-bottom: 0.75rem;
-		color: white;
+		color: #FFFFE6;
 		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-weight: 600; /* font-semibold */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
@@ -110,7 +110,7 @@
 
 	.capabilities-content :global(strong) {
 		font-weight: 600;
-		color: white;
+		color: #FFFFE6;
 		font-size: clamp(0.6875rem, 0.75vw + 0.5rem, 0.75rem); /* Responsive: 11px to 12px */
 		font-family: 'Manrope', sans-serif; /* font-['Manrope'] */
 		line-height: clamp(1rem, 1.25vw + 0.625rem, 1.25rem); /* Responsive: 16px to 20px */

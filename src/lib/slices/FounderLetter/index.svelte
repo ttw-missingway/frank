@@ -63,7 +63,7 @@
 	bind:this={sectionEl}
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white container"
+	class="bg-black text-[#FFFFE6] container"
 >
 	<div class="grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-6 w-full max-w-[1400px] mx-auto">
 		<div

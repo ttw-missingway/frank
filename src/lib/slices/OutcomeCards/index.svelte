@@ -54,7 +54,7 @@
 	}
 
 	.outcome-card {
-		background-color: #ffffff;
+		background-color: #FFFFE6;
 		border-radius: 0.5rem;
 		padding: 1.25rem 1.5rem;
 		display: flex;

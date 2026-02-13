@@ -122,7 +122,7 @@
 		width: 100%;
 		padding: 0.75rem 1.5rem;
 		background-color: #007bff;
-		color: white;
+		color: #FFFFE6;
 		border: none;
 		border-radius: 4px;
 		font-size: 1rem;

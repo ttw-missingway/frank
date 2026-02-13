@@ -19,7 +19,7 @@
 		class="rich-text-hero min-h-dvh bg-black relative flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-20 md:py-32"
 	>
 		<!-- Centered main content -->
-		<div class="rich-text-hero-content text-center max-w-[48rem] mx-auto font-manrope text-white">
+		<div class="rich-text-hero-content text-center max-w-[48rem] mx-auto font-manrope text-[#FFFFE6]">
 			<PrismicRichText
 				field={slice.primary.content}
 				components={{
@@ -39,7 +39,7 @@
 		{#if heroPrimary.secondary_line_1 || heroPrimary.secondary_line_2}
 			<div class="rich-text-hero-secondary absolute right-4 sm:right-6 md:right-8 lg:right-12 bottom-10 sm:bottom-12 md:bottom-16 text-right max-w-sm">
 				{#if heroPrimary.secondary_line_1}
-					<p class="rich-text-hero-secondary-line1 text-white font-manrope">{heroPrimary.secondary_line_1}</p>
+					<p class="rich-text-hero-secondary-line1 text-[#FFFFE6] font-manrope">{heroPrimary.secondary_line_1}</p>
 				{/if}
 				{#if heroPrimary.secondary_line_2}
 					<p class="rich-text-hero-secondary-line2 text-[#858585] font-manrope">{heroPrimary.secondary_line_2}</p>
@@ -68,7 +68,7 @@
 
 	.rich-text-hero-eyebrow-pill {
 		display: inline-block;
-		color: #ffffff;
+		color: #FFFFE6;
 		font-family: 'ClashDisplay Variable', sans-serif;
 		font-size: clamp(0.75rem, 1vw + 0.5rem, 1rem);
 		font-weight: 400;

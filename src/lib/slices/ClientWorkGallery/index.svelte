@@ -340,7 +340,7 @@
 <section
 	data-slice-type={slice.slice_type}
 	data-slice-variation={slice.variation}
-	class="bg-black text-white carousel-section"
+	class="bg-black text-[#FFFFE6] carousel-section"
 >
 	<div class="container px-6 md:px-12" bind:this={containerElement}>
 		<HorizontalScroller>
@@ -669,7 +669,7 @@
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
-		color: white;
+		color: #FFFFE6;
 		transition: background-color 0.2s, border-color 0.2s;
 	}
 
@@ -704,7 +704,7 @@
 		width: 48px;
 		height: 48px;
 		cursor: pointer;
-		color: white;
+		color: #FFFFE6;
 		transition: background-color 0.2s, border-color 0.2s;
 	}
 
@@ -749,7 +749,7 @@
 		bottom: 1rem;
 		left: 50%;
 		transform: translateX(-50%);
-		color: white;
+		color: #FFFFE6;
 		background: rgba(0, 0, 0, 0.5);
 		padding: 0.5rem 1rem;
 		border-radius: 0.5rem;
