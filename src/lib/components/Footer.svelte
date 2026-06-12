@@ -83,26 +83,12 @@
 							class="text-sm sm:text-base font-normal text-[#FFFFE6] m-0 leading-normal"
 							style="font-family: 'Venus+', sans-serif;"
 						>
-							New Business
+							ALL INQUIRIES
 						</p>
 						<a
-							href="mailto:business@frankyou.com"
+							href="mailto:admin@newcastleflow.com"
 							class="text-sm sm:text-base font-normal text-[#FFFFE6] underline transition-opacity duration-200 hover:opacity-80 break-all"
-							style="font-family: 'Venus+', sans-serif;">business@frankyou.com</a
-						>
-					</div>
-
-					<div class="flex flex-col gap-2">
-						<p
-							class="text-sm sm:text-base font-normal text-[#FFFFE6] m-0 leading-normal"
-							style="font-family: 'Venus+', sans-serif;"
-						>
-							Other Inquiries
-						</p>
-						<a
-							href="mailto:hello@frankyou.com"
-							class="text-sm sm:text-base font-normal text-[#FFFFE6] underline transition-opacity duration-200 hover:opacity-80 break-all"
-							style="font-family: 'Venus+', sans-serif;">hello@frankyou.com</a
+							style="font-family: 'Venus+', sans-serif;">admin@newcastleflow.com</a
 						>
 					</div>
 				</div>
